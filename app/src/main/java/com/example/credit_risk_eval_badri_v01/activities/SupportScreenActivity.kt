@@ -16,14 +16,13 @@ class SupportScreenActivity : AppCompatActivity() {
         binding = ActivitySupportScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        enableBottomNavView()
 
-        //
+    }
+
+    private fun enableBottomNavView(){
         val bottomNavigationView = binding.bottomNavigation
-
-// Set About selected
         bottomNavigationView.setSelectedItemId(R.id.supportScreen)
-
-// Perform item selected listener
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.homeScreen -> {
@@ -37,10 +36,14 @@ class SupportScreenActivity : AppCompatActivity() {
                     overridePendingTransition(0, 0)
                     true
                 }
+                R.id.notificationsScreen -> {
+                    startActivity(Intent(applicationContext, NotificationsScreenActivity::class.java))
+                    overridePendingTransition(0, 0)
+                    true
+                }
                 else -> false
             }
         }
-
-
     }
+
 }

@@ -6,12 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/myBackground"
-    tools:context=".activities.HomeScreenActivity">
+    tools:context=".activities.NotificationsScreenActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Home"
+        android:text="Notifications"
         android:textColor="@color/myWhite"
         android:textSize="50sp"
         android:textStyle="bold"
@@ -24,8 +24,8 @@
         android:layout_alignParentBottom="true"
         app:itemBackground="@drawable/selector"
         app:itemIconTint="@drawable/selector"
-        app:itemActiveIndicatorStyle="@color/myYellow"
         app:itemTextColor="@drawable/selector"
+        app:itemActiveIndicatorStyle="@color/myYellow"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/nav_menu" />
 
