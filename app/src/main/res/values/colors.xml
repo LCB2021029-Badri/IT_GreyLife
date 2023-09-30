@@ -2,4 +2,14 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+<!--  My app themes start  -->
+    <color name="yellow">#FDD962</color>
+    <color name="grey">#3F5964</color>
+    <color name="lightGrey">#597481</color>
+    <color name="background">#202732</color>
+    <color name="myWhite">#FDFDFD</color>
+<!--  My app themes over  -->
+
+
 </resources>
