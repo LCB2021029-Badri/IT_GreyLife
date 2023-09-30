@@ -12,15 +12,15 @@
         android:layout_height="match_parent">
 
 
-        <TextView
-            android:id="@+id/qNo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textColor="@color/myWhite"
-            android:textSize="30dp"
-            android:textAlignment="center"
-            android:text="1"/>
+<!--        <TextView-->
+<!--            android:id="@+id/qNo"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textColor="@color/myWhite"-->
+<!--            android:textSize="30dp"-->
+<!--            android:textAlignment="center"-->
+<!--            android:text="1"/>-->
     </RelativeLayout>
 
 
