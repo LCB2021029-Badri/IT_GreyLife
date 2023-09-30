@@ -17,6 +17,8 @@ class HomeScreenActivity : AppCompatActivity() {
 
         enableBottomNavView()
 
+
+
     }
 
     private fun enableBottomNavView(){
