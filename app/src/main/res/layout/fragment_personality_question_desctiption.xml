@@ -70,40 +70,42 @@
                 android:id="@+id/option0"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="onRadioButtonClicked"
                 android:text="TVS Credit E.P.I.C S1"/>
 
             <RadioButton
                 android:id="@+id/option1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="onRadioButtonClicked"
                 android:text="TVS Credit E.P.I.C S2"/>
 
             <RadioButton
                 android:id="@+id/option2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="onRadioButtonClicked"
                 android:text="TVS Credit E.P.I.C S3"/>
 
             <RadioButton
                 android:id="@+id/option3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="onRadioButtonClicked"
                 android:text="TVS Credit E.P.I.C S4"/>
 
             <RadioButton
                 android:id="@+id/option4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="onRadioButtonClicked"
                 android:text="TVS Credit E.P.I.C S5"/>
 
 
 
         </RadioGroup>
+
+        <TextView
+            android:id="@+id/testing"
+            android:layout_below="@id/radioGroup"
+            android:text="xxxx"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
 
 
