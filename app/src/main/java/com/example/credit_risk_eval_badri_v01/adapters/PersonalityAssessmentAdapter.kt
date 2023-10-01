@@ -1,5 +1,6 @@
 package com.example.credit_risk_eval_badri_v01.adapters
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,7 +33,16 @@ class PersonalityAssessmentAdapter(private val questionsList:ArrayList<Personali
             override fun onClick(p0: View?) {
                 val activity = p0!!.context as AppCompatActivity
                 val questionFragment = PersonalityQuestionDesctiptionFragment()
-                activity.supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView,questionFragment).addToBackStack(null).commit()
+
+                //try
+                val bundle = Bundle()
+                bundle.putString("key", question.qNo)
+                questionFragment.arguments = bundle
+
+                activity.supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragmentContainerView,questionFragment)
+                    .addToBackStack(null)
+                    .commit()
             }
 
         })
