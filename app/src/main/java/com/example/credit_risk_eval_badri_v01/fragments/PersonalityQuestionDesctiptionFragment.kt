@@ -8,11 +8,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.example.credit_risk_eval_badri_v01.R
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
 class PersonalityQuestionDesctiptionFragment : Fragment() {
 
     override fun onCreateView(
@@ -29,6 +24,12 @@ class PersonalityQuestionDesctiptionFragment : Fragment() {
         val data = arguments?.getString("key")
         val questionNo:TextView = rootView.findViewById(R.id.questionNo)
         questionNo.text = data.toString()
+
+        val questionNoFromBundle:TextView = rootView.findViewById(R.id.qnofrombundle)
+        questionNoFromBundle.text = data.toString()
+
+
+
 
 
         return rootView
