@@ -45,18 +45,18 @@ class PersonalityQuestionDesctiptionFragment : Fragment() {
         questionNoFromBundle.text = data.toString()
 
         //-----------------------------------------------------------------------
-//        val questions = arrayOf(
-//            arrayOf("q1","opt1","opt2","opt2","opt4","opt5","null"),
-//            arrayOf("q2","opt1","opt2","opt2","opt4","opt5","null"),
-//            arrayOf("q3","opt1","opt2","opt2","opt4","opt5","null"),
-//            arrayOf("q4","opt1","opt2","opt2","opt4","opt5","null"),
-//            arrayOf("q5","opt1","opt2","opt2","opt4","opt5","null"),
-//            arrayOf("q6","opt1","opt2","opt2","opt4","opt5","null"),
-//            arrayOf("q7","opt1","opt2","opt2","opt4","opt5","null"),
-//            arrayOf("q8","opt1","opt2","opt2","opt4","opt5","null"),
-//            arrayOf("q9","opt1","opt2","opt2","opt4","opt5","null"),
-//            arrayOf("q10","opt1","opt2","opt2","opt4","opt5","null"),
-//        )
+        val questions = arrayOf(
+            arrayOf("q1","opt1","opt2","opt2","opt4","opt5","null"),
+            arrayOf("q2","opt1","opt2","opt2","opt4","opt5","null"),
+            arrayOf("q3","opt1","opt2","opt2","opt4","opt5","null"),
+            arrayOf("q4","opt1","opt2","opt2","opt4","opt5","null"),
+            arrayOf("q5","opt1","opt2","opt2","opt4","opt5","null"),
+            arrayOf("q6","opt1","opt2","opt2","opt4","opt5","null"),
+            arrayOf("q7","opt1","opt2","opt2","opt4","opt5","null"),
+            arrayOf("q8","opt1","opt2","opt2","opt4","opt5","null"),
+            arrayOf("q9","opt1","opt2","opt2","opt4","opt5","null"),
+            arrayOf("q10","opt1","opt2","opt2","opt4","opt5","null"),
+        )
 
         //-----------------------------------------------------------------------
         radioGroup.setOnCheckedChangeListener { group, checkedId ->
