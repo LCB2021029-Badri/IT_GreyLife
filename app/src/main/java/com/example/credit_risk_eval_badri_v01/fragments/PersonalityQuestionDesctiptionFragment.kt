@@ -32,22 +32,18 @@ class PersonalityQuestionDesctiptionFragment : Fragment() {
         val option2:RadioButton = view.findViewById(R.id.option2)
         val option3:RadioButton = view.findViewById(R.id.option3)
         val question:TextView = view.findViewById(R.id.question)
-
-//        val questionNo:TextView = view.findViewById(R.id.questionNo)
-//        questionNo.text = data.toString()
         val testing:TextView = view.findViewById(R.id.testing)
-//        Toast.makeText(requireContext(), "Hello, Option0", Toast.LENGTH_SHORT).show()
+        val questionNoFromBundle:TextView = view.findViewById(R.id.qnofrombundle)
 7
         //-----------------------------------------------------------------------
         val data = arguments?.getString("key")
         val qnumber = data!!.toInt()
-        val questionNoFromBundle:TextView = view.findViewById(R.id.qnofrombundle)
-        questionNoFromBundle.text = data.toString()
 
         //-----------------------------------------------------------------------
         val activity = activity as? PersonalityAssessmentActivity
 
         //-----------------------------------------------------------------------
+        questionNoFromBundle.text = data.toString()
         question.text = activity!!.questions[qnumber][0]
         option0.text = activity!!.questions[qnumber][1]
         option1.text = activity!!.questions[qnumber][2]
