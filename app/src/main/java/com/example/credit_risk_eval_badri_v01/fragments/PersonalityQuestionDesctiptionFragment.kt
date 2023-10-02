@@ -1,15 +1,15 @@
 package com.example.credit_risk_eval_badri_v01.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.example.credit_risk_eval_badri_v01.R
+import com.example.credit_risk_eval_badri_v01.activities.PersonalityAssessmentActivity
 
 class PersonalityQuestionDesctiptionFragment : Fragment() {
 
@@ -45,53 +45,64 @@ class PersonalityQuestionDesctiptionFragment : Fragment() {
         questionNoFromBundle.text = data.toString()
 
         //-----------------------------------------------------------------------
-        val questions = arrayOf(
-            arrayOf("q1","opt1","opt2","opt2","opt4","opt5","null"),
-            arrayOf("q2","opt1","opt2","opt2","opt4","opt5","null"),
-            arrayOf("q3","opt1","opt2","opt2","opt4","opt5","null"),
-            arrayOf("q4","opt1","opt2","opt2","opt4","opt5","null"),
-            arrayOf("q5","opt1","opt2","opt2","opt4","opt5","null"),
-            arrayOf("q6","opt1","opt2","opt2","opt4","opt5","null"),
-            arrayOf("q7","opt1","opt2","opt2","opt4","opt5","null"),
-            arrayOf("q8","opt1","opt2","opt2","opt4","opt5","null"),
-            arrayOf("q9","opt1","opt2","opt2","opt4","opt5","null"),
-            arrayOf("q10","opt1","opt2","opt2","opt4","opt5","null"),
-        )
+//        val questions = arrayOf(
+//            arrayOf("q1","opt1","opt2","opt2","opt4","opt5","null"),
+//            arrayOf("q2","opt1","opt2","opt2","opt4","opt5","null"),
+//            arrayOf("q3","opt1","opt2","opt2","opt4","opt5","null"),
+//            arrayOf("q4","opt1","opt2","opt2","opt4","opt5","null"),
+//            arrayOf("q5","opt1","opt2","opt2","opt4","opt5","null"),
+//            arrayOf("q6","opt1","opt2","opt2","opt4","opt5","null"),
+//            arrayOf("q7","opt1","opt2","opt2","opt4","opt5","null"),
+//            arrayOf("q8","opt1","opt2","opt2","opt4","opt5","null"),
+//            arrayOf("q9","opt1","opt2","opt2","opt4","opt5","null"),
+//            arrayOf("q10","opt1","opt2","opt2","opt4","opt5","null"),
+//        )
+
+
+
+        val activity = activity as? PersonalityAssessmentActivity
 
         //-----------------------------------------------------------------------
         radioGroup.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
                 R.id.option0 -> {
-                    questions[qnumber][6] = "0"
-                    testing.text = questions[qnumber][6]
+                    activity?.questions?.get(qnumber)?.set(6, "0")
+                    testing.text = activity!!.questions[qnumber][6]
                 }
                 R.id.option1 -> {
-                    questions[qnumber][6] = "1"
-                    testing.text = questions[qnumber][6]
+                    activity?.questions?.get(qnumber)?.set(6, "1")
+                    testing.text = activity!!.questions[qnumber][6]
                 }
                 R.id.option2 -> {
-                    questions[qnumber][6] = "2"
-                    testing.text = questions[qnumber][6]
+                    activity?.questions?.get(qnumber)?.set(6, "2")
+                    testing.text = activity!!.questions[qnumber][6]
                 }
                 R.id.option3 -> {
-                    questions[qnumber][6] = "3"
-                    testing.text = questions[qnumber][6]
+                    activity?.questions?.get(qnumber)?.set(6, "3")
+                    testing.text = activity!!.questions[qnumber][6]
                 }
                 R.id.option4 -> {
-                    questions[qnumber][6] = "4"
-                    testing.text = questions[qnumber][6]
+                    activity?.questions?.get(qnumber)?.set(6, "4")
+                    testing.text = activity!!.questions[qnumber][6]
                 }
             }
         }
 
-//        testing.text = questions[qnumber][6]
-
+        testing.text = activity!!.questions[qnumber][6]
 
 
 
 
         return view
     }
+
+
+
+//    fun updateArrayInMainActivity(newData: String) {
+//        val activity = activity as? PersonalityAssessmentActivity
+//        activity?.questions.add(newData)
+//        // You can now modify the array in MainActivity
+//    }
 
 
 }
