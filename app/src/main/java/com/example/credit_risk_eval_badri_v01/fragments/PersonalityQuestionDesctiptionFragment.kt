@@ -71,9 +71,6 @@ class PersonalityQuestionDesctiptionFragment : Fragment() {
         }
         testing.text = activity!!.questions[qnumber][5]
 
-
-
-
         return view
     }
 
