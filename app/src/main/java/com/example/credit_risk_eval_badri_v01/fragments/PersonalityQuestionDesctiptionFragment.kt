@@ -34,7 +34,7 @@ class PersonalityQuestionDesctiptionFragment : Fragment() {
         val question:TextView = view.findViewById(R.id.question)
         val testing:TextView = view.findViewById(R.id.testing)
         val questionNoFromBundle:TextView = view.findViewById(R.id.qnofrombundle)
-7
+
         //-----------------------------------------------------------------------
         val data = arguments?.getString("key")
         val qnumber = data!!.toInt()
