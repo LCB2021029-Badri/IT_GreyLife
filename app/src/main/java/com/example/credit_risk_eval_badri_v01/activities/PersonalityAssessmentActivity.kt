@@ -50,10 +50,10 @@ class PersonalityAssessmentActivity : AppCompatActivity() {
         ),
         arrayOf(
             "How do you feel about taking on debt for major purchases, such as a car or home?",
-            "I\\'m comfortable with it as long as I can afford the monthly payments",
+            "I\'m comfortable with it as long as I can afford the monthly payments",
             "I avoid taking on debt whenever possible ",
             "I prefer to pay for major purchases in cash",
-            "I\\'m willing to take on debt to get what I want",
+            "I\'m willing to take on debt to get what I want",
             "null"
         ),
         arrayOf(
@@ -61,14 +61,14 @@ class PersonalityAssessmentActivity : AppCompatActivity() {
             "Every week",
             "Once a month",
             "Rarely",
-            "I don\\'t typically review my statements",
+            "I don\'t typically review my statements",
             "null"
         ),
         arrayOf(
             "What is your attitude toward saving for retirement?",
             "I actively save for retirement and have a plan in place",
-            "I save occasionally, but retirement isn\\'t a top priority",
-            "I don\\'t currently save for retirement",
+            "I save occasionally, but retirement isn\'t a top priority",
+            "I don\'t currently save for retirement",
             "I rely on other sources of income for retirement",
             "null"
         ),
@@ -84,14 +84,14 @@ class PersonalityAssessmentActivity : AppCompatActivity() {
             "How would you describe your risk tolerance when it comes to investments?",
             "Very conservative; I prefer low-risk investments",
             "Moderately conservative; I seek a balance between risk and reward",
-            "Moderate risk-taker; I\\'m open to some investment risk",
-            "Aggressive risk-taker; I\\'m willing to take on higher risks for potential returns",
+            "Moderate risk-taker; I\'m open to some investment risk",
+            "Aggressive risk-taker; I\'m willing to take on higher risks for potential returns",
             "null"
         ),
         arrayOf(
             "Do you have a history of missed or late payments on loans or credit cards?",
-            "No, I\\'ve never missed a payment",
-            "Yes, I\\'ve missed a payment in the past",
+            "No, I\'ve never missed a payment",
+            "Yes, I\'ve missed a payment in the past",
             "I occasionally miss payments",
             "I frequently miss payments",
             "null"
