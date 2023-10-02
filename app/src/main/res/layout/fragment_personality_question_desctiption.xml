@@ -94,15 +94,6 @@
                 android:layout_height="wrap_content"
                 android:text="TVS Credit E.P.I.C S4"/>
 
-            <RadioButton
-                android:id="@+id/option4"
-                android:textColor="@color/myWhite"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TVS Credit E.P.I.C S5"/>
-
-
-
         </RadioGroup>
 
         <TextView

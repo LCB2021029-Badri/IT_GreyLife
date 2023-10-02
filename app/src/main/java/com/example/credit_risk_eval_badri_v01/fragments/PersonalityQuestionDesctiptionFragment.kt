@@ -31,7 +31,7 @@ class PersonalityQuestionDesctiptionFragment : Fragment() {
         val option1:RadioButton = view.findViewById(R.id.option1)
         val option2:RadioButton = view.findViewById(R.id.option2)
         val option3:RadioButton = view.findViewById(R.id.option3)
-        val option4:RadioButton = view.findViewById(R.id.option4)
+        val question:TextView = view.findViewById(R.id.question)
 
 //        val questionNo:TextView = view.findViewById(R.id.questionNo)
 //        questionNo.text = data.toString()
@@ -45,50 +45,36 @@ class PersonalityQuestionDesctiptionFragment : Fragment() {
         questionNoFromBundle.text = data.toString()
 
         //-----------------------------------------------------------------------
-//        val questions = arrayOf(
-//            arrayOf("q1","opt1","opt2","opt2","opt4","opt5","null"),
-//            arrayOf("q2","opt1","opt2","opt2","opt4","opt5","null"),
-//            arrayOf("q3","opt1","opt2","opt2","opt4","opt5","null"),
-//            arrayOf("q4","opt1","opt2","opt2","opt4","opt5","null"),
-//            arrayOf("q5","opt1","opt2","opt2","opt4","opt5","null"),
-//            arrayOf("q6","opt1","opt2","opt2","opt4","opt5","null"),
-//            arrayOf("q7","opt1","opt2","opt2","opt4","opt5","null"),
-//            arrayOf("q8","opt1","opt2","opt2","opt4","opt5","null"),
-//            arrayOf("q9","opt1","opt2","opt2","opt4","opt5","null"),
-//            arrayOf("q10","opt1","opt2","opt2","opt4","opt5","null"),
-//        )
-
-
-
         val activity = activity as? PersonalityAssessmentActivity
 
         //-----------------------------------------------------------------------
+        question.text = activity!!.questions[qnumber][0]
+        option0.text = activity!!.questions[qnumber][1]
+        option1.text = activity!!.questions[qnumber][2]
+        option2.text = activity!!.questions[qnumber][3]
+        option3.text = activity!!.questions[qnumber][4]
         radioGroup.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
                 R.id.option0 -> {
-                    activity?.questions?.get(qnumber)?.set(6, "0")
-                    testing.text = activity!!.questions[qnumber][6]
+                    activity?.questions?.get(qnumber)?.set(5, "0")
+                    testing.text = activity!!.questions[qnumber][5]
                 }
                 R.id.option1 -> {
-                    activity?.questions?.get(qnumber)?.set(6, "1")
-                    testing.text = activity!!.questions[qnumber][6]
+                    activity?.questions?.get(qnumber)?.set(5, "1")
+                    testing.text = activity!!.questions[qnumber][5]
                 }
                 R.id.option2 -> {
-                    activity?.questions?.get(qnumber)?.set(6, "2")
-                    testing.text = activity!!.questions[qnumber][6]
+                    activity?.questions?.get(qnumber)?.set(5, "2")
+                    testing.text = activity!!.questions[qnumber][5]
                 }
                 R.id.option3 -> {
-                    activity?.questions?.get(qnumber)?.set(6, "3")
-                    testing.text = activity!!.questions[qnumber][6]
-                }
-                R.id.option4 -> {
-                    activity?.questions?.get(qnumber)?.set(6, "4")
-                    testing.text = activity!!.questions[qnumber][6]
+                    activity?.questions?.get(qnumber)?.set(5, "3")
+                    testing.text = activity!!.questions[qnumber][5]
                 }
             }
         }
 
-        testing.text = activity!!.questions[qnumber][6]
+        testing.text = activity!!.questions[qnumber][5]
 
 
 
