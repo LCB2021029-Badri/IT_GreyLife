@@ -68,30 +68,35 @@
 
             <RadioButton
                 android:id="@+id/option0"
+                android:textColor="@color/myWhite"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="TVS Credit E.P.I.C S1"/>
 
             <RadioButton
                 android:id="@+id/option1"
+                android:textColor="@color/myWhite"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="TVS Credit E.P.I.C S2"/>
 
             <RadioButton
                 android:id="@+id/option2"
+                android:textColor="@color/myWhite"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="TVS Credit E.P.I.C S3"/>
 
             <RadioButton
                 android:id="@+id/option3"
+                android:textColor="@color/myWhite"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="TVS Credit E.P.I.C S4"/>
 
             <RadioButton
                 android:id="@+id/option4"
+                android:textColor="@color/myWhite"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="TVS Credit E.P.I.C S5"/>
@@ -104,6 +109,7 @@
             android:id="@+id/testing"
             android:layout_below="@id/radioGroup"
             android:text="xxxx"
+            android:textColor="@color/myWhite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
