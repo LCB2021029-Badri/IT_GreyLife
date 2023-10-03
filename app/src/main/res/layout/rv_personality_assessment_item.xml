@@ -6,6 +6,7 @@
     android:layout_height="80dp">
 
     <RelativeLayout
+        android:id="@+id/layout"
         android:layout_width="match_parent"
         android:background="@color/myNavBarBg"
         android:gravity="center"

@@ -122,7 +122,7 @@ class PersonalityAssessmentActivity : AppCompatActivity() {
         questionsList.add(PersonalityAssessmentQuestionModel("10"))
 
 
-        questionsAdapter = PersonalityAssessmentAdapter(questionsList)
+        questionsAdapter = PersonalityAssessmentAdapter(questionsList,this)
         recyclerView.adapter = questionsAdapter
 
         nextBtn()
