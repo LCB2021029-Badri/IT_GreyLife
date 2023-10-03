@@ -4,10 +4,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.credit_risk_eval_badri_v01.R
 import com.example.credit_risk_eval_badri_v01.databinding.ActivitySignupBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class SignupActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySignupBinding
+    private lateinit var auth: FirebaseAuth
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -15,7 +20,17 @@ class SignupActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
+        auth = Firebase.auth
+
+        val currentUser = auth.currentUser
+        if (currentUser == null) {
+            //go to login page
+        }
+
+
+
 
 
     }
+
 }
