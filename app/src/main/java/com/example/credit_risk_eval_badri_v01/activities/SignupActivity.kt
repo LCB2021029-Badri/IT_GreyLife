@@ -19,13 +19,8 @@ class SignupActivity : AppCompatActivity() {
         binding = ActivitySignupBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         auth = Firebase.auth
 
-        val currentUser = auth.currentUser
-        if (currentUser == null) {
-            //go to login page
-        }
 
 
 
