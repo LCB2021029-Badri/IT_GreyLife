@@ -49,6 +49,13 @@ class PersonalityQuestionDesctiptionFragment : Fragment() {
         option1.text = activity!!.questions[qnumber][2]
         option2.text = activity!!.questions[qnumber][3]
         option3.text = activity!!.questions[qnumber][4]
+        val selected:String = activity!!.questions[qnumber][5]
+        if(selected!="null"){
+            if(selected=="0") option0.isChecked = true
+            if(selected=="1") option1.isChecked = true
+            if(selected=="2") option2.isChecked = true
+            if(selected=="3") option3.isChecked = true
+        }
         radioGroup.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
                 R.id.option0 -> {
