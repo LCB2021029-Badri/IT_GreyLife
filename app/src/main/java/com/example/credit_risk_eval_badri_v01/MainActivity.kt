@@ -3,6 +3,7 @@ package com.example.credit_risk_eval_badri_v01
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.example.credit_risk_eval_badri_v01.activities.HomeScreenActivity
 import com.example.credit_risk_eval_badri_v01.activities.LoginActivity
 import com.example.credit_risk_eval_badri_v01.activities.PersonalityAssessmentActivity
@@ -35,6 +36,12 @@ class MainActivity : AppCompatActivity() {
         }
         binding.btnHomeActivity.setOnClickListener {
             startActivity(Intent(applicationContext, HomeScreenActivity::class.java))
+        }
+        binding.btnLogout.setOnClickListener {
+            Toast.makeText(applicationContext,"Logged out", Toast.LENGTH_SHORT).show()
+            auth.signOut()
+            startActivity(Intent(this,MainActivity::class.java))
+            finish()
         }
 
 
