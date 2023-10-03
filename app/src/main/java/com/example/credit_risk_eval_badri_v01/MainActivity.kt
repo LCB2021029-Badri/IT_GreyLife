@@ -17,7 +17,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 //        startActivity(Intent(applicationContext, HomeScreenActivity::class.java))
-        startActivity(Intent(applicationContext, PersonalityAssessmentActivity::class.java))
+//        startActivity(Intent(applicationContext, PersonalityAssessmentActivity::class.java))
+
+        binding.btnAssessmentActivity.setOnClickListener {
+            startActivity(Intent(applicationContext, PersonalityAssessmentActivity::class.java))
+        }
+        binding.btnHomeActivity.setOnClickListener {
+            startActivity(Intent(applicationContext, HomeScreenActivity::class.java))
+        }
+
 
     }
 }
