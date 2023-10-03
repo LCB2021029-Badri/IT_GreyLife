@@ -98,9 +98,11 @@
 
         <TextView
             android:id="@+id/testing"
+            android:layout_marginTop="5dp"
             android:layout_below="@id/radioGroup"
-            android:text="xxxx"
+            android:text="selected option"
             android:textColor="@color/myWhite"
+            android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 

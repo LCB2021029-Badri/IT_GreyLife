@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.credit_risk_eval_badri_v01.R
 import com.example.credit_risk_eval_badri_v01.adapters.PersonalityAssessmentAdapter
@@ -17,19 +18,6 @@ class PersonalityAssessmentActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var questionsList: ArrayList<PersonalityAssessmentQuestionModel>
     private lateinit var questionsAdapter: PersonalityAssessmentAdapter
-
-//    val questions = arrayOf(
-//        arrayOf("q1","opt1","opt2","opt2","opt4","opt5","null"),
-//        arrayOf("q2","opt1","opt2","opt2","opt4","opt5","null"),
-//        arrayOf("q3","opt1","opt2","opt2","opt4","opt5","null"),
-//        arrayOf("q4","opt1","opt2","opt2","opt4","opt5","null"),
-//        arrayOf("q5","opt1","opt2","opt2","opt4","opt5","null"),
-//        arrayOf("q6","opt1","opt2","opt2","opt4","opt5","null"),
-//        arrayOf("q7","opt1","opt2","opt2","opt4","opt5","null"),
-//        arrayOf("q8","opt1","opt2","opt2","opt4","opt5","null"),
-//        arrayOf("q9","opt1","opt2","opt2","opt4","opt5","null"),
-//        arrayOf("q10","opt1","opt2","opt2","opt4","opt5","null"),
-//    )
 
     val questions = arrayOf(
         arrayOf(
@@ -137,12 +125,27 @@ class PersonalityAssessmentActivity : AppCompatActivity() {
         questionsAdapter = PersonalityAssessmentAdapter(questionsList)
         recyclerView.adapter = questionsAdapter
 
+        nextBtn()
     }
 
-//    fun getQuestiuons():Array<Array<String>>{
-//        return questions
-//    }
+    private fun nextBtn(){
 
+        binding.btnNext.setOnClickListener {
+            var flag:Boolean = false
+            for(i in 0..9){
+                if(questions[i][5]=="null"){
+                    flag = true
+                    break
+                }
+            }
+            if(flag){
+                Toast.makeText(this,"incomplete questions",Toast.LENGTH_SHORT).show()
+            }
+            else{
+                Toast.makeText(this,"completed questions",Toast.LENGTH_SHORT).show()
+            }
+        }
 
+    }
 
 }

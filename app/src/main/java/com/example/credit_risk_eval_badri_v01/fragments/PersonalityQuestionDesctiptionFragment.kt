@@ -37,7 +37,7 @@ class PersonalityQuestionDesctiptionFragment : Fragment() {
 
         //-----------------------------------------------------------------------
         val data = arguments?.getString("key")
-        val qnumber = data!!.toInt()
+        val qnumber = data!!.toInt()-1
 
         //-----------------------------------------------------------------------
         val activity = activity as? PersonalityAssessmentActivity
@@ -80,14 +80,5 @@ class PersonalityQuestionDesctiptionFragment : Fragment() {
 
         return view
     }
-
-
-
-//    fun updateArrayInMainActivity(newData: String) {
-//        val activity = activity as? PersonalityAssessmentActivity
-//        activity?.questions.add(newData)
-//        // You can now modify the array in MainActivity
-//    }
-
 
 }
