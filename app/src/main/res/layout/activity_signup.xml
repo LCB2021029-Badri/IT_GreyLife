@@ -41,16 +41,24 @@
         android:layout_height="wrap_content"
         android:hint="Confirm Password"/>
 
-    <RadioButton
-        android:id="@+id/rbLender"
+    <RadioGroup
+        android:id="@+id/rbGroup"
         android:layout_below="@id/etConfirmPassword"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Select this only if you are LENDER"/>
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/rbLender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select this only if you are LENDER"/>
+
+    </RadioGroup>
+
 
     <Button
         android:id="@+id/btnSignup"
-        android:layout_below="@id/rbLender"
+        android:layout_below="@id/rbGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Signup"/>

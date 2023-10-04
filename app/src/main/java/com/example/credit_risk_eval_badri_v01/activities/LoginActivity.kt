@@ -22,22 +22,7 @@ class LoginActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
         binding.btnLogin.setOnClickListener {
-            val email = binding.etEmail.text.toString()
-            val pass = binding.etPassword.text.toString()
-            if(email.isNotEmpty() && pass.isNotEmpty()){
-                auth.signInWithEmailAndPassword(email,pass).addOnCompleteListener {
-                    if(it.isSuccessful){
-                        val intent = Intent(this,MainActivity::class.java)
-                        startActivity(intent)
-                    }
-                    else{
-                        Toast.makeText(this,it.exception.toString(), Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }
-            else{
-                Toast.makeText(this,"empty fields not allowed !", Toast.LENGTH_SHORT).show()
-            }
+            btnLoginClick()
         }
 
         binding.tvSignup.setOnClickListener {
@@ -46,5 +31,24 @@ class LoginActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    private fun btnLoginClick(){
+        val email = binding.etEmail.text.toString()
+        val pass = binding.etPassword.text.toString()
+        if(email.isNotEmpty() && pass.isNotEmpty()){
+            auth.signInWithEmailAndPassword(email,pass).addOnCompleteListener {
+                if(it.isSuccessful){
+                    val intent = Intent(this,MainActivity::class.java)
+                    startActivity(intent)
+                }
+                else{
+                    Toast.makeText(this,it.exception.toString(), Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+        else{
+            Toast.makeText(this,"empty fields not allowed !", Toast.LENGTH_SHORT).show()
+        }
     }
 }
