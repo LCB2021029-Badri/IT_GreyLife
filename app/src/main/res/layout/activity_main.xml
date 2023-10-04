@@ -8,6 +8,14 @@
     android:gravity="center"
     tools:context=".MainActivity">
 
+
+
+    <Button
+        android:id="@+id/btn_spare"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Spare Activity"/>
+
     <Button
         android:id="@+id/btn_assessment_activity"
         android:layout_width="match_parent"

@@ -1,14 +1,17 @@
 package com.example.credit_risk_eval_badri_v01
 
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.AttributeSet
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.example.credit_risk_eval_badri_v01.activities.HomeScreenActivity
 import com.example.credit_risk_eval_badri_v01.activities.LoginActivity
 import com.example.credit_risk_eval_badri_v01.activities.PersonalityAssessmentActivity
-import com.example.credit_risk_eval_badri_v01.activities.StatusScreenActivity
+import com.example.credit_risk_eval_badri_v01.activities.SpareActivity
 import com.example.credit_risk_eval_badri_v01.databinding.ActivityMainBinding
 import com.example.credit_risk_eval_badri_v01.models.UserModel
 import com.google.firebase.auth.FirebaseAuth
@@ -25,19 +28,23 @@ class MainActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var database: FirebaseDatabase
     private lateinit var dialog: AlertDialog
-    lateinit var lenderStatus: String
+    var lendingStatus:String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         auth = Firebase.auth
         database = FirebaseDatabase.getInstance()
 
-
         checkLogin()
         checkLenderStatusFromDB()
+
+        binding.btnSpare.setOnClickListener {
+            val intent = Intent(this, SpareActivity::class.java)
+            intent.putExtra("key", lendingStatus) // Put data with a key
+            startActivity(intent)
+        }
 
         binding.btnAssessmentActivity.setOnClickListener {
             startActivity(Intent(applicationContext, PersonalityAssessmentActivity::class.java))
@@ -54,7 +61,6 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
 
-
     }
 
     private fun checkLogin(){
@@ -66,6 +72,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkLenderStatusFromDB(){
+        var lender:String? = null
         dialogBox("Retrieving Lender? Status Data from FB Realtime DB","Please Wait ...")
         database.reference.child("users")
             .addValueEventListener(object : ValueEventListener {
@@ -74,7 +81,9 @@ class MainActivity : AppCompatActivity() {
                         val user = snapshot1.getValue(UserModel::class.java)
                         if(user!!.uid == FirebaseAuth.getInstance().uid){
                             dialog.dismiss()
-                            binding.tvLending.text = user!!.lender
+                            lendingStatus = user!!.lender
+                            binding.tvLending.text = lendingStatus
+                            break
                         }
                     }
 
