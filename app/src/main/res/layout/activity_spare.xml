@@ -4,12 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/myBackground"
     tools:context=".activities.SpareActivity">
-
-    <TextView
-        android:id="@+id/tvtext"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="something"/>
 
 </LinearLayout>

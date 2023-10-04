@@ -1,5 +1,6 @@
 package com.example.credit_risk_eval_badri_v01.activities
 
+import android.content.Intent
 import android.os.Binder
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -18,7 +19,19 @@ class SpareActivity : AppCompatActivity() {
 
         // In your second activity
         val receivedData = intent.getStringExtra("key")
-        binding.tvtext.text = receivedData
+//        binding.tvtext.text = receivedData
+
+        if(receivedData=="1"){
+            startActivity(Intent(applicationContext, ClientSideHomeScreenActivity::class.java))
+            finish()
+        }
+        else if(receivedData=="0"){
+            startActivity(Intent(applicationContext, HomeScreenActivity::class.java))
+            finish()
+        }
+        else{
+
+        }
 
 
 

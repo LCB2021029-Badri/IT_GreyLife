@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.example.credit_risk_eval_badri_v01.activities.ClientSideHomeScreenActivity
 import com.example.credit_risk_eval_badri_v01.activities.HomeScreenActivity
 import com.example.credit_risk_eval_badri_v01.activities.LoginActivity
 import com.example.credit_risk_eval_badri_v01.activities.PersonalityAssessmentActivity
@@ -59,6 +60,10 @@ class MainActivity : AppCompatActivity() {
             auth.signOut()
             startActivity(Intent(this,MainActivity::class.java))
             finish()
+        }
+
+        binding.btnClientHomeActivity.setOnClickListener {
+            startActivity(Intent(this,ClientSideHomeScreenActivity::class.java))
         }
 
     }
