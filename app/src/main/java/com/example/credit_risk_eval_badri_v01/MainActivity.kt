@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.example.credit_risk_eval_badri_v01.activities.HomeScreenActivity
 import com.example.credit_risk_eval_badri_v01.activities.LoginActivity
 import com.example.credit_risk_eval_badri_v01.activities.PersonalityAssessmentActivity
@@ -23,6 +24,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var database: FirebaseDatabase
+    private lateinit var dialog: AlertDialog
+    lateinit var lenderStatus: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -34,14 +37,16 @@ class MainActivity : AppCompatActivity() {
 
 
         checkLogin()
-        showLendingStatus()
+        checkLenderStatusFromDB()
 
         binding.btnAssessmentActivity.setOnClickListener {
             startActivity(Intent(applicationContext, PersonalityAssessmentActivity::class.java))
         }
+
         binding.btnHomeActivity.setOnClickListener {
             startActivity(Intent(applicationContext, HomeScreenActivity::class.java))
         }
+
         binding.btnLogout.setOnClickListener {
             Toast.makeText(applicationContext,"Logged out", Toast.LENGTH_SHORT).show()
             auth.signOut()
@@ -52,29 +57,41 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun showLendingStatus(){
-        database.reference.child("users")
-            .addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    for(snapshot1 in snapshot.children){
-                        val user = snapshot1.getValue(UserModel::class.java)
-                        if(user!!.uid == FirebaseAuth.getInstance().uid){
-                            binding.tvLending.text = user!!.lender
-                        }
-                    }
-
-                }
-                override fun onCancelled(error: DatabaseError) {
-                }
-            })
-    }
-
     private fun checkLogin(){
         val currentUser = auth.currentUser
         if (currentUser == null) {
             val intent = Intent(this,LoginActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    private fun checkLenderStatusFromDB(){
+        dialogBox("Retrieving Lender? Status Data from FB Realtime DB","Please Wait ...")
+        database.reference.child("users")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for(snapshot1 in snapshot.children){
+                        val user = snapshot1.getValue(UserModel::class.java)
+                        if(user!!.uid == FirebaseAuth.getInstance().uid){
+                            dialog.dismiss()
+                            binding.tvLending.text = user!!.lender
+                        }
+                    }
+
+                }
+                override fun onCancelled(error: DatabaseError) {
+                    dialog.dismiss()
+                }
+            })
+    }
+
+    private fun dialogBox(title:String,message:String){
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage(message)
+        builder.setTitle(title)
+        builder.setCancelable(false)
+        dialog = builder.create()
+        dialog.show()
     }
 
 }

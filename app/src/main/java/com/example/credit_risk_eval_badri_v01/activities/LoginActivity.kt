@@ -1,13 +1,17 @@
 package com.example.credit_risk_eval_badri_v01.activities
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import com.example.credit_risk_eval_badri_v01.MainActivity
 import com.example.credit_risk_eval_badri_v01.R
 import com.example.credit_risk_eval_badri_v01.databinding.ActivityLoginBinding
 import com.example.credit_risk_eval_badri_v01.databinding.ActivityMainBinding
+import com.google.android.material.snackbar.BaseTransientBottomBar
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
@@ -43,12 +47,25 @@ class LoginActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
                 else{
-                    Toast.makeText(this,it.exception.toString(), Toast.LENGTH_SHORT).show()
+                    createSnackBar(binding.root, "Error "+it.exception.toString(),"Try Again")
                 }
             }
         }
         else{
-            Toast.makeText(this,"empty fields not allowed !", Toast.LENGTH_SHORT).show()
+            createSnackBar(binding.root, "empty fields not allowed !","Try Again")
         }
     }
+
+    private fun createSnackBar(view: View, text: String, actionText:String){
+        Snackbar.make(view,text, Snackbar.LENGTH_INDEFINITE)
+            .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE)
+            .setBackgroundTint(Color.parseColor("#FF9494"))
+            .setTextColor(Color.parseColor("#EE4B28"))
+            .setActionTextColor(Color.parseColor("#000000"))
+            .setAction(actionText){
+//                Toast.makeText(this,"snackbar button pressed",Toast.LENGTH_SHORT).show()
+            }
+            .show()
+    }
+
 }
