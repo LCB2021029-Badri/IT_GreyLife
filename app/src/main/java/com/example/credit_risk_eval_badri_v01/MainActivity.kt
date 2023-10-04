@@ -1,14 +1,11 @@
 package com.example.credit_risk_eval_badri_v01
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.AttributeSet
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.example.credit_risk_eval_badri_v01.activities.ClientSideHomeScreenActivity
+import com.example.credit_risk_eval_badri_v01.activities.ClientDocumentsScreenActivity
 import com.example.credit_risk_eval_badri_v01.activities.HomeScreenActivity
 import com.example.credit_risk_eval_badri_v01.activities.LoginActivity
 import com.example.credit_risk_eval_badri_v01.activities.PersonalityAssessmentActivity
@@ -63,7 +60,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnClientHomeActivity.setOnClickListener {
-            startActivity(Intent(this,ClientSideHomeScreenActivity::class.java))
+            startActivity(Intent(this,ClientDocumentsScreenActivity::class.java))
         }
 
     }

@@ -1,11 +1,8 @@
 package com.example.credit_risk_eval_badri_v01.activities
 
 import android.content.Intent
-import android.os.Binder
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
-import com.example.credit_risk_eval_badri_v01.R
 import com.example.credit_risk_eval_badri_v01.databinding.ActivitySpareBinding
 
 class SpareActivity : AppCompatActivity() {
@@ -22,7 +19,7 @@ class SpareActivity : AppCompatActivity() {
 //        binding.tvtext.text = receivedData
 
         if(receivedData=="1"){
-            startActivity(Intent(applicationContext, ClientSideHomeScreenActivity::class.java))
+            startActivity(Intent(applicationContext, ClientDocumentsScreenActivity::class.java))
             finish()
         }
         else if(receivedData=="0"){
