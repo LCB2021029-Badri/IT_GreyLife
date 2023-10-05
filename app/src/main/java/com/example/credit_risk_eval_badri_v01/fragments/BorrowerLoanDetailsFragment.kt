@@ -17,14 +17,12 @@ class BorrowerLoanDetailsFragment : Fragment() {
         // Inflate the layout for this fragment
         val view =  inflater.inflate(R.layout.fragment_borrower_loan_details, container, false)
 
+        val tvLoanType:TextView = view.findViewById(R.id.tvLoanType)
         val etTesting:EditText = view.findViewById(R.id.etTesting)
-
-
-
-
-
-
         val data = arguments?.getString("key2")
+
+        tvLoanType.text = data
+
 
 
         return view
