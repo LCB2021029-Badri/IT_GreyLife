@@ -10,7 +10,7 @@ import com.example.credit_risk_eval_badri_v01.databinding.ActivitySupportScreenB
 class SupportScreenActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySupportScreenBinding
-    private val ADMIN_UID:String = "rfyPka5M1xgvs3SNro9Q6UGHVsG2"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,6 +18,7 @@ class SupportScreenActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         enableBottomNavView()
+
 
     }
 

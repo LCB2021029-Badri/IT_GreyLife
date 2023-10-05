@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+    android:background="@color/myGrey"
     tools:context=".activities.SignupActivity">
 
     <EditText
@@ -69,5 +70,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Login"/>
+
+    <TextView
+        android:id="@+id/tvTesting"
+        android:layout_below="@id/tvLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Testing"/>
 
 </RelativeLayout>

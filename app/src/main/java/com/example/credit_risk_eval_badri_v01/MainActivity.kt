@@ -11,6 +11,7 @@ import com.example.credit_risk_eval_badri_v01.activities.LoginActivity
 import com.example.credit_risk_eval_badri_v01.activities.PersonalityAssessmentActivity
 import com.example.credit_risk_eval_badri_v01.activities.SpareActivity
 import com.example.credit_risk_eval_badri_v01.databinding.ActivityMainBinding
+import com.example.credit_risk_eval_badri_v01.models.LenderLinkModel
 import com.example.credit_risk_eval_badri_v01.models.UserModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -66,6 +67,7 @@ class MainActivity : AppCompatActivity() {
 //        binding.btnUpdateDb.setOnClickListener {
 //            updateDatabaseValue()
 //        }
+//        assignLeastLinkedLender()
 
     }
 
@@ -115,5 +117,7 @@ class MainActivity : AppCompatActivity() {
 //        val updatedInfo = UserModel(auth.uid.toString(),"1","1","1")
 //        dbRef.setValue(updatedInfo)
 //    }
+
+
 
 }

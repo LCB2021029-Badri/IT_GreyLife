@@ -5,5 +5,6 @@ data class UserModel(
     val name:String? = "",
     val email:String? = "",
     val lender:String? = "",
-    val links:Int? = 0
+    val links:Int? = 0,
+    val partner:String? = ""
 )
