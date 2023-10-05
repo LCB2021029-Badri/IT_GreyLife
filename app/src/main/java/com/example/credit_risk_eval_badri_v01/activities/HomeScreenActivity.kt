@@ -28,17 +28,20 @@ class HomeScreenActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.statusScreen -> {
                     startActivity(Intent(applicationContext, StatusScreenActivity::class.java))
+                    finish()
                     overridePendingTransition(0, 0)
                     true
                 }
                 R.id.homeScreen -> true
                 R.id.supportScreen -> {
                     startActivity(Intent(applicationContext, SupportScreenActivity::class.java))
+                    finish()
                     overridePendingTransition(0, 0)
                     true
                 }
                 R.id.notificationsScreen -> {
                     startActivity(Intent(applicationContext, NotificationsScreenActivity::class.java))
+                    finish()
                     overridePendingTransition(0, 0)
                     true
                 }

@@ -27,12 +27,14 @@ class ClientStatusScreenActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.documentsScreen -> {
                     startActivity(Intent(applicationContext, ClientDocumentsScreenActivity::class.java))
+                    finish()
                     overridePendingTransition(0, 0)
                     true
                 }
                 R.id.statusScreen -> true
                 R.id.supportScreen -> {
                     startActivity(Intent(applicationContext, ClientSupportScreenActivity::class.java))
+                    finish()
                     overridePendingTransition(0, 0)
                     true
                 }
