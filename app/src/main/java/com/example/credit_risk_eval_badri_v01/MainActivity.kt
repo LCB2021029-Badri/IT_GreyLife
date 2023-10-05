@@ -63,9 +63,9 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this,ClientDocumentsScreenActivity::class.java))
         }
 
-        binding.btnUpdateDb.setOnClickListener {
-            updateDatabaseValue()
-        }
+//        binding.btnUpdateDb.setOnClickListener {
+//            updateDatabaseValue()
+//        }
 
     }
 
@@ -109,11 +109,11 @@ class MainActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    private fun updateDatabaseValue(){
-        val authRef = FirebaseAuth.getInstance()
-        val dbRef = FirebaseDatabase.getInstance().getReference("users").child(authRef.uid.toString())
-        val updatedInfo = UserModel(auth.uid.toString(),"1","1","1")
-        dbRef.setValue(updatedInfo)
-    }
+//    private fun updateDatabaseValue(){
+//        val authRef = FirebaseAuth.getInstance()
+//        val dbRef = FirebaseDatabase.getInstance().getReference("users").child(authRef.uid.toString())
+//        val updatedInfo = UserModel(auth.uid.toString(),"1","1","1")
+//        dbRef.setValue(updatedInfo)
+//    }
 
 }

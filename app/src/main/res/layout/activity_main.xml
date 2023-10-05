@@ -15,11 +15,11 @@
         android:textAlignment="center"
         android:text="lender?"/>
 
-    <Button
-        android:id="@+id/btn_updateDb"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="UpdateDb values"/>
+<!--    <Button-->
+<!--        android:id="@+id/btn_updateDb"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="UpdateDb values"/>-->
 
     <Button
         android:id="@+id/btn_spare"
