@@ -82,7 +82,8 @@ class SignupActivity : AppCompatActivity() {
         val user = UserModel(auth.uid.toString(),
             binding.etName.text.toString(),
             binding.etEmail.text.toString(),
-            lender)
+            lender,
+            0)
 
         database.reference.child("users")
             .child(auth.uid.toString())

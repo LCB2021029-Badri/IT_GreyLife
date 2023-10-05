@@ -15,6 +15,13 @@
         android:textAlignment="center"
         android:text="lender?"/>
 
+    <TextView
+        android:id="@+id/tvLinks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="Links"/>
+
 <!--    <Button-->
 <!--        android:id="@+id/btn_updateDb"-->
 <!--        android:layout_width="match_parent"-->

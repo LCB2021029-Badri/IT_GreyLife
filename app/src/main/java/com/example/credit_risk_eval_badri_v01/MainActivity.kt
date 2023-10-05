@@ -78,7 +78,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkLenderStatusFromDB(){
-        var lender:String? = null
         dialogBox("Retrieving Lender? Status Data from FB Realtime DB","Please Wait ...")
         database.reference.child("users")
             .addValueEventListener(object : ValueEventListener {
@@ -89,6 +88,7 @@ class MainActivity : AppCompatActivity() {
                             dialog.dismiss()
                             lendingStatus = user!!.lender
                             binding.tvLending.text = lendingStatus
+                            binding.tvLinks.text = user!!.links.toString()
                             break
                         }
                     }
