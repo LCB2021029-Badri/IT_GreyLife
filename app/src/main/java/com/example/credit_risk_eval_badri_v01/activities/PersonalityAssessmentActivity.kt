@@ -108,6 +108,12 @@ class PersonalityAssessmentActivity : AppCompatActivity() {
         binding = ActivityPersonalityAssessmentBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        enableRecyclerView()
+        nextBtn()
+    }
+
+
+    private fun enableRecyclerView(){
         recyclerView = binding.recyclerView
         questionsList = ArrayList()
         questionsList.add(PersonalityAssessmentQuestionModel("1"))
@@ -125,7 +131,6 @@ class PersonalityAssessmentActivity : AppCompatActivity() {
         questionsAdapter = PersonalityAssessmentAdapter(questionsList,this)
         recyclerView.adapter = questionsAdapter
 
-        nextBtn()
     }
 
     private fun nextBtn(){

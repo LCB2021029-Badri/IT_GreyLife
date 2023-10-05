@@ -26,6 +26,13 @@ class HomeScreenActivity : AppCompatActivity() {
 
         enableBottomNavView()
 
+        enableRecyclerView()
+
+
+    }
+
+
+    private fun enableRecyclerView(){
         recyclerView = binding.recyclerView
         loanTypeList = ArrayList()
         loanTypeList.add(LoanTypeModel("Tractor", R.drawable.ic_tractor))
@@ -34,7 +41,6 @@ class HomeScreenActivity : AppCompatActivity() {
         loanTypeList.add(LoanTypeModel("3-Wheeler", R.drawable.ic_auto))
         loanTypeAdapter = LoanTypeAdapter(loanTypeList,this)
         recyclerView.adapter = loanTypeAdapter
-
 
     }
 
