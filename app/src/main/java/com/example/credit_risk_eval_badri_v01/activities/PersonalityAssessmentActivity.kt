@@ -23,6 +23,7 @@ class PersonalityAssessmentActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var questionsList: ArrayList<PersonalityAssessmentQuestionModel>
     private lateinit var questionsAdapter: PersonalityAssessmentAdapter
+    lateinit var score:String
 
     val questions = arrayOf(
         arrayOf(
@@ -156,10 +157,13 @@ class PersonalityAssessmentActivity : AppCompatActivity() {
             else{
                 Toast.makeText(this,"completed questions",Toast.LENGTH_SHORT).show()
                 val intent = Intent(this,HomeScreenActivity::class.java)
-                val score:String = calculateAssessmentScore().toString()
+                score= calculateAssessmentScore().toString()
                 intent.putExtra("testScore",score)
 //                intent.putExtra("testScore","75")
                 startActivity(intent)
+
+
+
             }
         }
 

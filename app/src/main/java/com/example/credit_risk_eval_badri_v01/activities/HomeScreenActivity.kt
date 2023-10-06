@@ -19,7 +19,6 @@ class HomeScreenActivity : AppCompatActivity() {
     private lateinit var loanTypeList: ArrayList<LoanTypeModel>
     private lateinit var score:String
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeScreenBinding.inflate(layoutInflater)
@@ -27,9 +26,10 @@ class HomeScreenActivity : AppCompatActivity() {
 
         enableBottomNavView()
         enableRecyclerView()
+
+
         score = intent.getStringExtra("testScore")!!
         binding.tvTestScore.text = score
-
 
     }
 
@@ -74,5 +74,6 @@ class HomeScreenActivity : AppCompatActivity() {
             }
         }
     }
+
 
 }
