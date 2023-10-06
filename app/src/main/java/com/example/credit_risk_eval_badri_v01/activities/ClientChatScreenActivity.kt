@@ -5,9 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.credit_risk_eval_badri_v01.R
 import com.example.credit_risk_eval_badri_v01.adapters.MessageAdapter
-import com.example.credit_risk_eval_badri_v01.databinding.ActivityStatusScreenBinding
-import com.example.credit_risk_eval_badri_v01.databinding.ActivitySupportScreenBinding
+import com.example.credit_risk_eval_badri_v01.databinding.ActivityClientChatScreenBinding
 import com.example.credit_risk_eval_badri_v01.models.MessageModel
+import com.example.credit_risk_eval_badri_v01.models.UserModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -15,11 +15,10 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import java.util.Date
 
-class SupportScreenActivity : AppCompatActivity() {
+class ClientChatScreenActivity : AppCompatActivity() {
 
 
-//    private var LENDER_ID = "0Rl5g5tbbLfZl9DV5GGlsrmxZKq1"
-    private lateinit var binding: ActivitySupportScreenBinding
+    private lateinit var binding:ActivityClientChatScreenBinding
     private lateinit var database: FirebaseDatabase
     private lateinit var senderUid:String
     private lateinit var receiverUid:String
@@ -30,18 +29,16 @@ class SupportScreenActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySupportScreenBinding.inflate(layoutInflater)
+        binding = ActivityClientChatScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         database = FirebaseDatabase.getInstance()
         senderUid = FirebaseAuth.getInstance().uid.toString()
-        receiverUid = "0Rl5g5tbbLfZl9DV5GGlsrmxZKq1"
+        receiverUid = intent.getStringExtra("uid")!!
         senderUidMergedReceiverUid = senderUid+receiverUid
         receiverUidMergedSenderUid = receiverUid+senderUid
         list = ArrayList()
 
-
-        enableBottomNavView()
 
         binding.btnSend.setOnClickListener {
             if(binding.etMessage.text.isEmpty()){
@@ -85,7 +82,7 @@ class SupportScreenActivity : AppCompatActivity() {
                         list.add(data!!)
                     }
 
-                    binding.rvChat.adapter = MessageAdapter(this@SupportScreenActivity,list)
+                    binding.rvChat.adapter = MessageAdapter(this@ClientChatScreenActivity,list)
 
                 }
 
@@ -96,38 +93,7 @@ class SupportScreenActivity : AppCompatActivity() {
             })
 
 
-
-
-
     }
 
-    private fun enableBottomNavView(){
-        val bottomNavigationView = binding.bottomNavigation
-        bottomNavigationView.setSelectedItemId(R.id.supportScreen)
-        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.homeScreen -> {
-                    startActivity(Intent(applicationContext, HomeScreenActivity::class.java))
-                    finish()
-                    overridePendingTransition(0, 0)
-                    true
-                }
-                R.id.supportScreen -> true
-                R.id.statusScreen -> {
-                    startActivity(Intent(applicationContext, StatusScreenActivity::class.java))
-                    finish()
-                    overridePendingTransition(0, 0)
-                    true
-                }
-                R.id.notificationsScreen -> {
-                    startActivity(Intent(applicationContext, NotificationsScreenActivity::class.java))
-                    finish()
-                    overridePendingTransition(0, 0)
-                    true
-                }
-                else -> false
-            }
-        }
-    }
 
 }
