@@ -10,6 +10,7 @@ import com.example.credit_risk_eval_badri_v01.databinding.ActivitySupportScreenB
 class SupportScreenActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySupportScreenBinding
+    private var LENDER_ID = "0Rl5g5tbbLfZl9DV5GGlsrmxZKq1"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
