@@ -1,5 +1,6 @@
 package com.example.credit_risk_eval_badri_v01.activities
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -28,7 +29,11 @@ class HomeScreenActivity : AppCompatActivity() {
         enableRecyclerView()
 
 
-        score = intent.getStringExtra("testScore")!!
+//        score = intent.getStringExtra("testScore")!!
+//        binding.tvTestScore.text = score
+
+        val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val score = sharedPreferences.getString("testScore","")
         binding.tvTestScore.text = score
 
     }

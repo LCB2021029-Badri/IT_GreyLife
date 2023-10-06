@@ -156,12 +156,16 @@ class PersonalityAssessmentActivity : AppCompatActivity() {
             }
             else{
                 Toast.makeText(this,"completed questions",Toast.LENGTH_SHORT).show()
-                val intent = Intent(this,HomeScreenActivity::class.java)
                 score= calculateAssessmentScore().toString()
-                intent.putExtra("testScore",score)
-//                intent.putExtra("testScore","75")
-                startActivity(intent)
 
+                val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+                val editor = sharedPreferences.edit()
+                editor.putString("testScore", score)
+                editor.apply()
+
+                val intent = Intent(this,HomeScreenActivity::class.java)
+//                intent.putExtra("testScore",score)
+                startActivity(intent)
 
 
             }
