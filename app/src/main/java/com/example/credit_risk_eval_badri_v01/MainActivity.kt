@@ -116,7 +116,6 @@ class MainActivity : AppCompatActivity() {
 //        val dbRef = FirebaseDatabase.getInstance().getReference("users").child(authRef.uid.toString())
 //        val updatedInfo = UserModel(auth.uid.toString(),"1","1","1")
 //        dbRef.setValue(updatedInfo)
-
 //    }
 
 
