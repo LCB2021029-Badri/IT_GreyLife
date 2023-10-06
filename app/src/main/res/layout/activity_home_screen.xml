@@ -38,6 +38,19 @@
         android:textStyle="italic|bold"
         android:text="Username"/>
 
+    <TextView
+        android:id="@+id/tvTestScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignTop="@id/recyclerView"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp"
+        android:text="100"
+        android:textSize="20sp"
+        android:textColor="@color/myYellow"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_below="@id/tvUsername"

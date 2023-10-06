@@ -23,7 +23,7 @@ class SpareActivity : AppCompatActivity() {
             finish()
         }
         else if(receivedData=="0"){
-            startActivity(Intent(applicationContext, HomeScreenActivity::class.java))
+            startActivity(Intent(applicationContext, PersonalityAssessmentActivity::class.java))
             finish()
         }
         else{

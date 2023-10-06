@@ -1,15 +1,20 @@
 package com.example.credit_risk_eval_badri_v01.activities
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.credit_risk_eval_badri_v01.R
 import com.example.credit_risk_eval_badri_v01.adapters.PersonalityAssessmentAdapter
 import com.example.credit_risk_eval_badri_v01.data.PersonalityAssessmentQuestionModel
 import com.example.credit_risk_eval_badri_v01.databinding.ActivityPersonalityAssessmentBinding
+import com.google.android.material.snackbar.BaseTransientBottomBar
+import com.google.android.material.snackbar.Snackbar
 import org.json.JSONArray
 
 class PersonalityAssessmentActivity : AppCompatActivity() {
@@ -144,13 +149,61 @@ class PersonalityAssessmentActivity : AppCompatActivity() {
                 }
             }
             if(flag){
-                Toast.makeText(this,"incomplete questions",Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this,"incomplete questions",Toast.LENGTH_SHORT).show()
+                createSnackBar(binding.root, "incomplete questions","Try Again")
+                binding.score.text = calculateAssessmentScore().toString()
             }
             else{
                 Toast.makeText(this,"completed questions",Toast.LENGTH_SHORT).show()
+                val intent = Intent(this,HomeScreenActivity::class.java)
+                val score:String = calculateAssessmentScore().toString()
+                intent.putExtra("testScore",score)
+//                intent.putExtra("testScore","75")
+                startActivity(intent)
             }
         }
 
     }
+
+
+    private fun calculateAssessmentScore():Int{
+        var ans:Int= 0
+        for(i in 0..9){
+            val x = questions[i][5]
+            if(x=="0"){
+                ans+=10
+            }
+            else if(x=="1"){
+                ans+=8
+            }
+            else if(x=="2"){
+                ans+=5
+            }
+            else if(x=="3"){
+                ans+=3
+            }
+            else{
+                ans+=0
+            }
+        }
+        return ans
+    }
+
+
+
+    private fun createSnackBar(view: View, text: String, actionText:String){
+        Snackbar.make(view,text, Snackbar.LENGTH_INDEFINITE)
+            .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE)
+            .setBackgroundTint(Color.parseColor("#FF9494"))
+            .setTextColor(Color.parseColor("#EE4B28"))
+            .setActionTextColor(Color.parseColor("#000000"))
+            .setAction(actionText){
+//                Toast.makeText(this,"snackbar button pressed",Toast.LENGTH_SHORT).show()
+            }
+            .show()
+    }
+
+
+
 
 }
