@@ -1,5 +1,6 @@
 package com.example.credit_risk_eval_badri_v01.fragments
 
+import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -45,10 +46,15 @@ class PersonalityQuestionDesctiptionFragment : Fragment() {
         //-----------------------------------------------------------------------
         questionNoFromBundle.text = data.toString()
         question.text = activity!!.questions[qnumber][0]
-        option0.text = activity!!.questions[qnumber][1]
-        option1.text = activity!!.questions[qnumber][2]
-        option2.text = activity!!.questions[qnumber][3]
-        option3.text = activity!!.questions[qnumber][4]
+        if(activity!!.questions[qnumber][1]!="") option0.text = activity!!.questions[qnumber][1]
+        else option0.visibility = View.GONE
+        if(activity!!.questions[qnumber][2]!="") option1.text = activity!!.questions[qnumber][2]
+        else option1.visibility = View.GONE
+        if(activity!!.questions[qnumber][3]!="") option2.text = activity!!.questions[qnumber][3]
+        else option2.visibility = View.GONE
+        if(activity!!.questions[qnumber][4]!="") option3.text = activity!!.questions[qnumber][4]
+        else option3.visibility = View.GONE
+
         val selected:String = activity!!.questions[qnumber][5]
         if(selected!="null"){
             if(selected=="0") option0.isChecked = true

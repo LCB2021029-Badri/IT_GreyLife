@@ -27,83 +27,91 @@ class PersonalityAssessmentActivity : AppCompatActivity() {
 
     val questions = arrayOf(
         arrayOf(
-            "How often do you make a detailed budget for your monthly expenses?",
-            "Every month",
-            "Occasionally",
-            "Rarely",
-            "Never",
+            "What is your utility bill payment history?",
+            "Always on time",
+            "Sometimes late",
+            "Often late",
+            "Never Paid",
             "null"
         ),
         arrayOf(
-            "When you receive unexpected extra income, like a bonus or tax refund, what do you typically do?",
-            "Save it for emergencies or future goals",
-            "Spend it on non-essential items",
-            "Invest it",
-            "Pay off debts<",
+            "What is your mobile phone bill payment history?",
+            "Always on time",
+            "Sometimes late",
+            "Often late",
+            "Never Paid",
             "null"
         ),
         arrayOf(
-            "How do you feel about taking on debt for major purchases, such as a car or home?",
-            "I\'m comfortable with it as long as I can afford the monthly payments",
-            "I avoid taking on debt whenever possible ",
-            "I prefer to pay for major purchases in cash",
-            "I\'m willing to take on debt to get what I want",
+            "Do you have a social media presence? If so, what platforms do you use and how often?",
+            "Active on multiple platforms and post often",
+            "Active on one platform and post often",
+            "Active on one platform and post occasionally",
+            "No social media presence",
             "null"
         ),
         arrayOf(
-            "How often do you review your bank account statements and track your expenses?",
-            "Every week",
-            "Once a month",
-            "Rarely",
-            "I don\'t typically review my statements",
+            "Do you have a bank account? If so, how long have you had it and what is your account balance?",
+            "Have a bank account for over 5 years and have a positive balance",
+            "Have a bank account for less than 5 years but have a positive balance",
+            "Have a bank account but have a negative balance",
+            "No bank account",
             "null"
         ),
         arrayOf(
-            "What is your attitude toward saving for retirement?",
-            "I actively save for retirement and have a plan in place",
-            "I save occasionally, but retirement isn\'t a top priority",
-            "I don\'t currently save for retirement",
-            "I rely on other sources of income for retirement",
+            "Do you own a home or car? If so, how much equity do you have?",
+            "Own a home or car with more than 20% equity",
+            "Own a home or car with less than 20% equity",
+            "Own a home or car but have no equity",
+            "Do not own a home or car",
             "null"
         ),
         arrayOf(
-            "When faced with financial setbacks or unexpected expenses, what is your typical reaction?",
-            "I dip into my emergency savings",
-            "I borrow money from family or friends",
-            "I use credit cards to cover the expenses",
-            "I struggle to find a solution",
+            "Do you have a job? If so, how long have you been employed?",
+            "Employed for more than 2 years",
+            "Employed for 6 months to 2 years",
+            "Employed for less tha 6 months",
+            "Other (unemployed, student, retiree, etc.)",
             "null"
         ),
         arrayOf(
-            "How would you describe your risk tolerance when it comes to investments?",
-            "Very conservative; I prefer low-risk investments",
-            "Moderately conservative; I seek a balance between risk and reward",
-            "Moderate risk-taker; I\'m open to some investment risk",
-            "Aggressive risk-taker; I\'m willing to take on higher risks for potential returns",
+            "Do you have any outstanding debt? If so, what is the total amount?",
+            "No outstanding debt",
+            "Less than \$10,000 in outstanding debt:",
+            "More than \$10,000 in outstanding debt",
+            "I don't know",
             "null"
         ),
         arrayOf(
-            "Do you have a history of missed or late payments on loans or credit cards?",
-            "No, I\'ve never missed a payment",
-            "Yes, I\'ve missed a payment in the past",
-            "I occasionally miss payments",
-            "I frequently miss payments",
+            "Have you ever filed for bankruptcy?",
+            "No",
+            "",
+            "",
+            "Yes",
             "null"
         ),
         arrayOf(
-            "q9",
-            "opt1",
-            "opt2",
-            "opt2",
-            "opt4",
+            "What is your educational background?",
+            "College degree or higher",
+            "High school diploma or equivalent",
+            "Some college",
+            "No high school diploma",
             "null"
         ),
         arrayOf(
-            "q10",
-            "opt1",
-            "opt2",
-            "opt2",
-            "opt4",
+            "What is your employment history?",
+            "Stable employment history with no layoffs or firings",
+            "Some employment history with some layoffs or firings:",
+            "Short employment history or multiple job changes",
+            "No employment history",
+            "null"
+        ),
+        arrayOf(
+            "What is your income?",
+            "Over \$50,000",
+            "\$30,000-\$50,000",
+            "Less than \$30,000",
+            "I don't know",
             "null"
         ),
 
@@ -132,6 +140,7 @@ class PersonalityAssessmentActivity : AppCompatActivity() {
         questionsList.add(PersonalityAssessmentQuestionModel("8"))
         questionsList.add(PersonalityAssessmentQuestionModel("9"))
         questionsList.add(PersonalityAssessmentQuestionModel("10"))
+        questionsList.add(PersonalityAssessmentQuestionModel("11"))
 
 
         questionsAdapter = PersonalityAssessmentAdapter(questionsList,this)
@@ -176,19 +185,19 @@ class PersonalityAssessmentActivity : AppCompatActivity() {
 
     private fun calculateAssessmentScore():Int{
         var ans:Int= 0
-        for(i in 0..9){
+        for(i in 0..questions.size-1){
             val x = questions[i][5]
             if(x=="0"){
-                ans+=10
-            }
-            else if(x=="1"){
-                ans+=8
-            }
-            else if(x=="2"){
                 ans+=5
             }
-            else if(x=="3"){
+            else if(x=="1"){
                 ans+=3
+            }
+            else if(x=="2"){
+                ans+=1
+            }
+            else if(x=="3"){
+                ans+=0
             }
             else{
                 ans+=0

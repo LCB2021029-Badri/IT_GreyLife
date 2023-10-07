@@ -34,8 +34,13 @@ class HomeScreenActivity : AppCompatActivity() {
 
         val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val score = sharedPreferences.getString("testScore","")
-        binding.tvTestScore.text = score
-
+//        binding.tvTestScore.text = score
+        if(score!!.toInt()>=29.5){
+            binding.tvTestScore.text = score!! +" good"
+        }
+        else{
+            binding.tvTestScore.text = score!!+ " bad"
+        }
     }
 
 
