@@ -48,7 +48,7 @@ class LoanTypeAdapter(private val loanTypeList:ArrayList<LoanTypeModel>, private
 
                 //try
                 val bundle = Bundle()
-                bundle.putString("key2", loanType.loanType)
+                bundle.putString("loanType", loanType.loanType)
                 borrowerLoanDetailsFragment.arguments = bundle
 
                 activity.supportFragmentManager.beginTransaction()
