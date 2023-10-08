@@ -70,7 +70,7 @@ class BorrowerLoanDetailsFragment : Fragment() {
 
 
         //--------------------
-//        initializeData()
+        initializeData()
         //---------------------
 
 
@@ -104,7 +104,7 @@ class BorrowerLoanDetailsFragment : Fragment() {
     }
 
     private fun initializeData(){
-        loanType = arguments?.getString("LoanType")!!
+        loanType = arguments?.getString("loanType")!!
         val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         sritScore = sharedPreferences.getString("testScore","")!!
         database = FirebaseDatabase.getInstance()
