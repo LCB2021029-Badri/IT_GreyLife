@@ -60,11 +60,11 @@ class BorrowerLoanDetailsFragment : Fragment() {
 
 
     private fun uploadDataToBlockChain(){
-        eetrofitCreate()
+        retrofitCreate()
         postData()
     }
 
-    private fun eetrofitCreate() {
+    private fun retrofitCreate() {
         val credentials = Credentials.basic(
             USERNAME,
             PASSWORD
