@@ -39,6 +39,7 @@
 
     <LinearLayout
         android:id="@+id/ll"
+        android:layout_above="@id/btnSubmit"
         android:layout_marginTop="5dp"
         android:layout_below="@id/tvCommon"
         android:layout_width="match_parent"
@@ -57,6 +58,15 @@
 
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="@color/myYellow"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit"/>
 
 
 
