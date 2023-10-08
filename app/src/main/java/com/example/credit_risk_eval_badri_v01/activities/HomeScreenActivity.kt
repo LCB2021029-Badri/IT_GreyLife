@@ -18,7 +18,6 @@ class HomeScreenActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var loanTypeAdapter: LoanTypeAdapter
     private lateinit var loanTypeList: ArrayList<LoanTypeModel>
-    private lateinit var score:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

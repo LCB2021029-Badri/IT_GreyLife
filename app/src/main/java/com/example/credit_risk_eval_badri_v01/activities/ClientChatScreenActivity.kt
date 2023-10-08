@@ -47,9 +47,7 @@ class ClientChatScreenActivity : AppCompatActivity() {
             else{
                 //store in DB
                 val message = MessageModel(binding.etMessage.text.toString(),senderUid, Date().time)
-
                 val randomKey = database.reference.push().key
-
                 database.reference.child("chats")
                     .child(senderUidMergedReceiverUid)
                     .child("message")

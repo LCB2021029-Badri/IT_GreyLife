@@ -47,13 +47,100 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/etTesting"
+            android:id="@+id/etNoOfDependents"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Type something"
+            android:hint="No of Dependents"
             android:textColor="@color/myWhite"
             android:textColorHint="@color/myWhite"
             android:backgroundTint="@color/myWhite"/>
+
+        <EditText
+            android:id="@+id/etEducation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Highest Education"
+            android:textColor="@color/myWhite"
+            android:textColorHint="@color/myWhite"
+            android:backgroundTint="@color/myWhite"/>
+
+        <EditText
+            android:id="@+id/etIncomeAnnum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Annual Income"
+            android:textColor="@color/myWhite"
+            android:textColorHint="@color/myWhite"
+            android:backgroundTint="@color/myWhite"/>
+
+        <EditText
+            android:id="@+id/etLoanAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Loan Amount"
+            android:textColor="@color/myWhite"
+            android:textColorHint="@color/myWhite"
+            android:backgroundTint="@color/myWhite"/>
+
+
+
+        <EditText
+            android:id="@+id/etLoanTerm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Loan Term"
+            android:textColor="@color/myWhite"
+            android:textColorHint="@color/myWhite"
+            android:backgroundTint="@color/myWhite"/>
+
+
+        <EditText
+            android:id="@+id/etCIBILScore"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="CIBIL Score"
+            android:textColor="@color/myWhite"
+            android:textColorHint="@color/myWhite"
+            android:backgroundTint="@color/myWhite"/>
+
+        <EditText
+            android:id="@+id/etResedentialAssetsValie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Resedentil Assets Value"
+            android:textColor="@color/myWhite"
+            android:textColorHint="@color/myWhite"
+            android:backgroundTint="@color/myWhite"/>
+
+        <EditText
+            android:id="@+id/etCommercialAssetsValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Commercial Assets Value"
+            android:textColor="@color/myWhite"
+            android:textColorHint="@color/myWhite"
+            android:backgroundTint="@color/myWhite"/>
+
+        <EditText
+            android:id="@+id/etLuxuryAssetsValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Luxuary Assets Value"
+            android:textColor="@color/myWhite"
+            android:textColorHint="@color/myWhite"
+            android:backgroundTint="@color/myWhite"/>
+
+        <EditText
+            android:id="@+id/etBankAsssetsValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Bank Assets Value"
+            android:textColor="@color/myWhite"
+            android:textColorHint="@color/myWhite"
+            android:backgroundTint="@color/myWhite"/>
+
+<!--   + name + non traditional data score     -->
+
 
 
 

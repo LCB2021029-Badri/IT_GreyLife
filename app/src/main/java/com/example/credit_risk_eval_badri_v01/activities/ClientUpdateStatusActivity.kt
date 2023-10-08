@@ -2,6 +2,7 @@ package com.example.credit_risk_eval_badri_v01.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.EditText
 import android.widget.Toast
 import com.example.credit_risk_eval_badri_v01.R
 import com.example.credit_risk_eval_badri_v01.databinding.ActivityClientUpdateStatusBinding
@@ -31,74 +32,72 @@ class ClientUpdateStatusActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnRetrieve.setOnClickListener {
-            retrieveDataFromBlockChain()
+//            uploadDataToBlockChain()
         }
 
     }
 
-    private fun retrieveDataFromBlockChain(){
-        retrofitCreate()
-        getData()
-    }
+//    private fun uploadDataToBlockChain(){
+//        retrofitCreate()
+//        postData()
+//    }
+//
+//    private fun retrofitCreate() {
+//        val credentials = Credentials.basic(
+//            USERNAME,
+//            PASSWORD
+//        )
+//        val retrofit = Retrofit.Builder()
+//            .baseUrl(BASE_URL)
+//            .addConverterFactory(GsonConverterFactory.create())
+//            .client(
+//                //-----------------------
+//                OkHttpClient.Builder()
+//                    .addInterceptor(HttpLoggingInterceptor().apply {
+//                        level = HttpLoggingInterceptor.Level.BODY
+//                    })
+//                    .addInterceptor { chain ->
+//                        val newRequest = chain.request().newBuilder()
+//                            .header("Authorization", credentials)
+//                            .build()
+//                        chain.proceed(newRequest)
+//                    }
+//                    .build()
+//                //------------------------
+//            )
+//            .build()
+//
+//        myApi = retrofit.create(MyBlockchainApi::class.java)
+//    }
+//
+//    private fun postData() {
+////        val inputData = arguments?.getString("LoanType")
+//        val etTesting: EditText = findViewById(R.id.etTesting)
+//        val inputData = etTesting.text.toString()
+//        val requestData = MyBlockchainApi.RequestData(inputData!!)
+//        GlobalScope.launch(Dispatchers.IO) {
+//            try {
+//                val response = myApi.PostData(kldFromValue, requestData).execute()
+//
+//                if (response.isSuccessful) {
+//                    GlobalScope.launch(Dispatchers.Main) {
+//                        etTesting.text.clear()
+//                        Toast.makeText(this@ClientUpdateStatusActivity, "Data posted", Toast.LENGTH_SHORT).show()
+//                    }
+//                } else {
+//                    GlobalScope.launch(Dispatchers.Main) {
+//                        Toast.makeText(this@ClientUpdateStatusActivity, "Data not posted", Toast.LENGTH_SHORT)
+//                            .show()
+//                    }
+//                }
+//            } catch (e: Exception) {
+//                GlobalScope.launch(Dispatchers.Main) {
+//                    Toast.makeText(this@ClientUpdateStatusActivity, e.message, Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//        }
+//    }
 
-    private fun retrofitCreate() {
-        val credentials = Credentials.basic(
-            USERNAME,
-            PASSWORD
-        )
-        val retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(
-                //-----------------------
-                OkHttpClient.Builder()
-                    .addInterceptor(HttpLoggingInterceptor().apply {
-                        level = HttpLoggingInterceptor.Level.BODY
-                    })
-                    .addInterceptor { chain ->
-                        val newRequest = chain.request().newBuilder()
-                            .header("Authorization", credentials)
-                            .build()
-                        chain.proceed(newRequest)
-                    }
-                    .build()
-                //------------------------
-            )
-            .build()
 
-        myApi = retrofit.create(MyBlockchainApi::class.java)
-    }
-
-    private fun getData() {
-        GlobalScope.launch(Dispatchers.IO) {
-            try {
-                val response = myApi.getData(kldFromValue).execute()
-
-                if (response.isSuccessful) {
-                    val responseData = response.body()
-                    val output = responseData?.output
-                    GlobalScope.launch(Dispatchers.Main) {
-                        runOnUiThread {
-                            binding.tvDataRetrieved.text = output.toString()
-                        }
-                    }
-                } else {
-                    GlobalScope.launch(Dispatchers.Main) {
-
-                        runOnUiThread {
-//                            resultTextView.text = ("Data retrieval failed")
-                            Toast.makeText(this@ClientUpdateStatusActivity,"Data retrieval failed",Toast.LENGTH_SHORT).show()
-                        }
-                    }
-                }
-            } catch (e: Exception) {
-                GlobalScope.launch(Dispatchers.Main) {
-                    runOnUiThread {
-                        binding.tvDataRetrieved.text = ("Error: ${e.message}")
-                    }
-                }
-            }
-        }
-    }
 
 }
