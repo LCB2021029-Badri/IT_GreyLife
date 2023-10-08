@@ -31,7 +31,7 @@
             android:layout_height="match_parent"
             android:layout_below="@id/tvCommon"
             android:layout_marginHorizontal="5dp"
-            tools:listitem="@layout/client_chat_user_item_layout"
+            tools:listitem="@layout/client_status_user_item_layout"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
     </RelativeLayout>

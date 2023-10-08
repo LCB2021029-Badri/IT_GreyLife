@@ -28,31 +28,8 @@ class ClientSupportScreenActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         enableBottomNavView()
+        getUserListFromDatabaseAndSetToRecyclerView()
 
-        database = FirebaseDatabase.getInstance()
-        userList = ArrayList()
-
-        database.reference.child("users")
-            .addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    userList.clear()
-                    for(snapshot1 in snapshot.children){
-                        val user = snapshot1.getValue(UserModel::class.java)
-                        if(user!!.uid != FirebaseAuth.getInstance().uid){
-                            userList.add(user)
-                        }
-                    }
-
-                    //update the RV adapter with the new userList if data changes
-                    binding.userListRecyclerView.adapter = ChatAdapter(this@ClientSupportScreenActivity,userList)
-
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-
-                }
-
-            })
 
     }
 
@@ -77,6 +54,33 @@ class ClientSupportScreenActivity : AppCompatActivity() {
                 else -> false
             }
         }
+    }
+
+    private fun getUserListFromDatabaseAndSetToRecyclerView(){
+        database = FirebaseDatabase.getInstance()
+        userList = ArrayList()
+
+        database.reference.child("users")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    userList.clear()
+                    for(snapshot1 in snapshot.children){
+                        val user = snapshot1.getValue(UserModel::class.java)
+                        if(user!!.uid != FirebaseAuth.getInstance().uid){
+                            userList.add(user)
+                        }
+                    }
+
+                    //update the RV adapter with the new userList if data changes
+                    binding.userListRecyclerView.adapter = ChatAdapter(this@ClientSupportScreenActivity,userList)
+
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+            })
     }
 
 }
