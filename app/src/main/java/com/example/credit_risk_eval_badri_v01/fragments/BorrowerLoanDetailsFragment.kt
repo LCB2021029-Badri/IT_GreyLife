@@ -127,13 +127,15 @@ class BorrowerLoanDetailsFragment : Fragment() {
     }
 
     private fun saveLoanDetailsInDatabase(){
+        val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val scoreReceived = sharedPreferences.getString("testScore","")!!
         var loanData = LoanDataModel(
             userName,
             uid,
             loanType,
             et1.text.toString(),
             et2.text.toString(),
-            sritScore,
+            scoreReceived,
             et3.text.toString(),
             et4.text.toString(),
             et5.text.toString(),

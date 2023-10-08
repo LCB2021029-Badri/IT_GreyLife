@@ -6,7 +6,7 @@ data class LoanDataModel(
     val loanType:String? = null,
     val noOfDependents:String? = null,
     val education:String? = null,
-    val SRITScore:String? = null,
+    val SRITScore:String?=null,
     val etIncomeeAnnum:String? = null,
     val etLoanAmount:String? = null,
     val etLoanTerm:String? = null,
