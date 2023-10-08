@@ -13,6 +13,7 @@ import android.widget.Toast
 import com.example.credit_risk_eval_badri_v01.R
 import com.example.credit_risk_eval_badri_v01.interfaces.MyBlockchainApi
 import com.example.credit_risk_eval_badri_v01.models.ChatAdapter
+import com.example.credit_risk_eval_badri_v01.models.LoanDataModel
 import com.example.credit_risk_eval_badri_v01.models.UserModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -96,6 +97,7 @@ class BorrowerLoanDetailsFragment : Fragment() {
                 //send these details to ml model to get output
                 //store all data in database which is accessed by lender
                 // store important data in blockchain postdata function from ClientStatusUpdateActivity
+                saveLoanDetailsInDatabase()
             }
         }
 
@@ -122,6 +124,40 @@ class BorrowerLoanDetailsFragment : Fragment() {
                 override fun onCancelled(error: DatabaseError) {
                 }
             })
+    }
+
+    private fun saveLoanDetailsInDatabase(){
+        var loanData = LoanDataModel(
+            userName,
+            uid,
+            loanType,
+            et1.text.toString(),
+            et2.text.toString(),
+            sritScore,
+            et3.text.toString(),
+            et4.text.toString(),
+            et5.text.toString(),
+            et6.text.toString(),
+            et7.text.toString(),
+            et8.text.toString(),
+            et9.text.toString(),
+            et10.text.toString(),
+            "ML output"
+            )
+
+        database.reference.child("loans")
+            .child(uid)
+            .setValue(loanData)
+            .addOnSuccessListener {
+//                                startActivity(Intent(this@SignupActivity, MainActivity::class.java))
+//                                finish()
+            }
+            .addOnFailureListener {
+//                createSnackBar(binding.root,"failed to upload data to Realtime DB","Try Again")
+            }
+
+
+
     }
 
 

@@ -1,6 +1,6 @@
 package com.example.credit_risk_eval_badri_v01.models
 
-data class BlockchainDataModel(
+data class LoanDataModel(
     val name:String? = null,
     val uid:String? = null,
     val loanType:String? = null,
@@ -15,4 +15,5 @@ data class BlockchainDataModel(
     val etCommercialAssetsValue:String? = null,
     val etLuxuryAssetsValue:String? = null,
     val etBankAsssetsValue:String? = null,
+    val mlOutput:String? = null,
 )
