@@ -6,6 +6,7 @@ import android.os.Bundle
 import com.example.credit_risk_eval_badri_v01.R
 import com.example.credit_risk_eval_badri_v01.adapters.ClientStatusAdapter
 import com.example.credit_risk_eval_badri_v01.databinding.ActivityClientStatusScreenBinding
+import com.example.credit_risk_eval_badri_v01.models.LoanDataModel
 import com.example.credit_risk_eval_badri_v01.models.UserModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -17,7 +18,7 @@ class ClientStatusScreenActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityClientStatusScreenBinding
     private lateinit var database: FirebaseDatabase
-    private lateinit var userList : ArrayList<UserModel>
+    private lateinit var dataList : ArrayList<LoanDataModel>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,21 +57,21 @@ class ClientStatusScreenActivity : AppCompatActivity() {
 
     private fun getUserListFromDatabaseAndSetToRecyclerView(){
         database = FirebaseDatabase.getInstance()
-        userList = ArrayList()
+        dataList = ArrayList()
 
-        database.reference.child("users")
+        database.reference.child("loans")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    userList.clear()
+                    dataList.clear()
                     for(snapshot1 in snapshot.children){
-                        val user = snapshot1.getValue(UserModel::class.java)
-                        if(user!!.uid != FirebaseAuth.getInstance().uid){
-                            userList.add(user)
+                        val data = snapshot1.getValue(LoanDataModel::class.java)
+                        if(data!!.uid != FirebaseAuth.getInstance().uid){ // always true
+                            dataList.add(data)
                         }
                     }
 
                     //update the RV adapter with the new userList if data changes
-                    binding.userListRecyclerView.adapter = ClientStatusAdapter(this@ClientStatusScreenActivity,userList)
+                    binding.userListRecyclerView.adapter = ClientStatusAdapter(this@ClientStatusScreenActivity,dataList)
 
                 }
 

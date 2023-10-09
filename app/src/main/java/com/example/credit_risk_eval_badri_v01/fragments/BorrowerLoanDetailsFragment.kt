@@ -45,6 +45,7 @@ class BorrowerLoanDetailsFragment : Fragment() {
     private lateinit var et10:EditText
     private lateinit var userName:String
     private lateinit var uid:String
+    private lateinit var email:String
     private lateinit var sritScore:String
     private lateinit var loanType:String
 
@@ -118,6 +119,7 @@ class BorrowerLoanDetailsFragment : Fragment() {
                         val user = snapshot1.getValue(UserModel::class.java)
                         if(user!!.uid == uid){
                             userName = user.name!!
+                            email = user.email!!
                         }
                     }
                 }
@@ -132,6 +134,7 @@ class BorrowerLoanDetailsFragment : Fragment() {
         var loanData = LoanDataModel(
             userName,
             uid,
+            email,
             loanType,
             et1.text.toString(),
             et2.text.toString(),
@@ -144,7 +147,7 @@ class BorrowerLoanDetailsFragment : Fragment() {
             et8.text.toString(),
             et9.text.toString(),
             et10.text.toString(),
-            "ML output"
+            "Declined"
             )
 
         database.reference.child("loans")

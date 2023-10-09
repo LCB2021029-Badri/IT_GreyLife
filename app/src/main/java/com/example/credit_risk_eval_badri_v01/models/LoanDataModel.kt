@@ -3,6 +3,7 @@ package com.example.credit_risk_eval_badri_v01.models
 data class LoanDataModel(
     val name:String? = null,
     val uid:String? = null,
+    val email:String? = null,
     val loanType:String? = null,
     val noOfDependents:String? = null,
     val education:String? = null,

@@ -5,13 +5,15 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.credit_risk_eval_badri_v01.R
 import com.example.credit_risk_eval_badri_v01.activities.ClientUpdateStatusActivity
 import com.example.credit_risk_eval_badri_v01.databinding.ClientStatusUserItemLayoutBinding
+import com.example.credit_risk_eval_badri_v01.models.LoanDataModel
 import com.example.credit_risk_eval_badri_v01.models.UserModel
 
-class ClientStatusAdapter(var context: Context, var list:ArrayList<UserModel>) : RecyclerView.Adapter<ClientStatusAdapter.StatusViewHolder>() {
+class ClientStatusAdapter(var context: Context, var list:ArrayList<LoanDataModel>) : RecyclerView.Adapter<ClientStatusAdapter.StatusViewHolder>() {
 
     inner class StatusViewHolder(view: View) : RecyclerView.ViewHolder(view){
         var binding : ClientStatusUserItemLayoutBinding = ClientStatusUserItemLayoutBinding.bind(view)
@@ -28,18 +30,27 @@ class ClientStatusAdapter(var context: Context, var list:ArrayList<UserModel>) :
     }
 
     override fun onBindViewHolder(holder: StatusViewHolder, position: Int) {
-        val user = list[position]
+        val data = list[position]
         //set the profile
         //Glide.with(context).load(user.imageUrl).into(holder.binding.userImage)
-        holder.binding.userName.text = user.name
-        holder.binding.userId.text = user.uid
-        holder.binding.userEmail.text = user.email
-//        holder.binding.tvStatus.text = status from blockchain (or ml model if block chain integration fails)
+        holder.binding.userName.text = data.name
+        holder.binding.userId.text = data.uid
+        holder.binding.userEmail.text = data.email
+//        holder.binding.tvStatus.setBackgroundColor(ContextCompat.getColor(context, R.color.your_background_color))
+        if(data.mlOutput == "Declined"){
+            holder.binding.tvStatus.setBackgroundColor(ContextCompat.getColor(context, R.color.myRed))
+        }
+        else if(data.mlOutput == "Accepted"){
+            holder.binding.tvStatus.setBackgroundColor(ContextCompat.getColor(context, R.color.myGreen))
+        }
+        else{
+            holder.binding.tvStatus.setBackgroundColor(ContextCompat.getColor(context, R.color.myGrey))
+        }
 
         //on click
         holder.itemView.setOnClickListener {
             val intent = Intent(context, ClientUpdateStatusActivity::class.java)
-            intent.putExtra("uid",user.uid)
+            intent.putExtra("uid",data.uid)
             context.startActivity(intent)
         }
 

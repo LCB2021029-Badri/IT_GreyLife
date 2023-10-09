@@ -51,6 +51,7 @@ class DocsDetailsActivity : AppCompatActivity() {
                             binding.tv13.text = data.etLuxuryAssetsValue
                             binding.tv14.text = data.etBankAsssetsValue
                             binding.tv15.text = data.mlOutput
+                            binding.tv16.text = data.email
 
 
 
