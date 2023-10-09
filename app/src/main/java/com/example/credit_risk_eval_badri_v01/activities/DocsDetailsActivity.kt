@@ -29,9 +29,10 @@ class DocsDetailsActivity : AppCompatActivity() {
     private lateinit var uid: String
     private lateinit var database: FirebaseDatabase
     private lateinit var myApi: MyBlockchainApi
-    val USERNAME = "u0yxvm2kkq"
-    val PASSWORD = "t5OvSDtcASGoP6xRLBAfaYGZQ53XG4IpZHjorph3vtA"
-    val BASE2_URL = "https://u0ft62dsi9-u0bftvrkqx-rpc.us0aws.kaleido.io//gateways/testinggreylife/0xea3238eb802619629107e6e5f0fd00be0aa132bb/"
+    val USERNAME = "u0nbfzswwp"
+    val PASSWORD = "7kw_tDTpsWWwyeOtSdJmOfj6179YXiiewyQN4WU7CGA"
+//    val BASE2_URL = "https://u0ft62dsi9-u0bftvrkqx-rpc.us0aws.kaleido.io//gateways/testinggreylife/0xea3238eb802619629107e6e5f0fd00be0aa132bb/"
+    val BASE2_URL = "https://u0ft62dsi9-u0oicgb1o0-connect.us0-aws.kaleido.io/gateways/testinggreylife/0xea3238eb802619629107e6e5f0fd00be0aa132bb/"
     val kldFromValue2 = "0x0c7d6a7a583b790be7635bef63c9a65327d415d5"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,7 +73,7 @@ class DocsDetailsActivity : AppCompatActivity() {
                 }
             })
 
-
+        getData()
     }
 
 
@@ -106,40 +107,40 @@ class DocsDetailsActivity : AppCompatActivity() {
 
 
 
-//    private fun getData() {
-//        RetrofitCreate()
-//        GlobalScope.launch(Dispatchers.IO) {
-//            try {
-//                val response = myApi.getData(kldFromValue2).execute()
-//                if (response.isSuccessful) {
-//                    val responseData = response.body()
-//                    val output:Array<String> = responseData?.output!!
-//                    GlobalScope.launch(Dispatchers.Main) {
-//                        runOnUiThread {
-//                            binding.tvbc1.text = output[0]
-//                            binding.tvbc2.text = output[1]
-//                            binding.tvbc3.text = output[2]
-//                            binding.tvbc4.text = output[3]
-//                            binding.tvbc5.text = output[4]
-//                        }
-//                    }
-//                } else {
-//                    GlobalScope.launch(Dispatchers.Main) {
-//
-//                        runOnUiThread {
-//                            binding.tvTesting.text = ("Data retrieval failed")
-//                        }
-//                    }
-//                }
-//            } catch (e: Exception) {
-//                GlobalScope.launch(Dispatchers.Main) {
-//                    runOnUiThread {
-//                        binding.tvTesting.text = ("Error: ${e.message}")
-//                    }
-//                }
-//            }
-//        }
-//    }
+    private fun getData() {
+        RetrofitCreate()
+        GlobalScope.launch(Dispatchers.IO) {
+            try {
+                val response = myApi.getData(kldFromValue2).execute()
+                if (response.isSuccessful) {
+                    val responseData = response.body()
+                    val output:Array<String> = responseData?.output!!
+                    GlobalScope.launch(Dispatchers.Main) {
+                        runOnUiThread {
+                            binding.tvbc1.text = output[0]
+                            binding.tvbc2.text = output[1]
+                            binding.tvbc3.text = output[2]
+                            binding.tvbc4.text = output[3]
+                            binding.tvbc5.text = output[4]
+                        }
+                    }
+                } else {
+                    GlobalScope.launch(Dispatchers.Main) {
+
+                        runOnUiThread {
+                            binding.tvTesting.text = ("Data retrieval failed")
+                        }
+                    }
+                }
+            } catch (e: Exception) {
+                GlobalScope.launch(Dispatchers.Main) {
+                    runOnUiThread {
+                        binding.tvTesting.text = ("Error: ${e.message}")
+                    }
+                }
+            }
+        }
+    }
 
 
 
