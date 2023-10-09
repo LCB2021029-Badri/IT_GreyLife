@@ -110,6 +110,38 @@
             android:layout_height="wrap_content"
             android:text="testing"/>
 
+        <TextView
+            android:id="@+id/tvbc1"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="bc1"/>
+
+        <TextView
+            android:id="@+id/tvbc2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="bc2"/>
+
+        <TextView
+            android:id="@+id/tvbc3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="bc3"/>
+
+        <TextView
+            android:id="@+id/tvbc4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="bc4"/>
+        <TextView
+            android:id="@+id/tvbc5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="bc5"/>
+
+
+
 
     </LinearLayout>
 

@@ -107,16 +107,20 @@ class DocsDetailsActivity : AppCompatActivity() {
 
 
     private fun getData() {
+        RetrofitCreate()
         GlobalScope.launch(Dispatchers.IO) {
             try {
                 val response = myApi.getData(kldFromValue2).execute()
-
                 if (response.isSuccessful) {
                     val responseData = response.body()
-                    val output = responseData?.output
+                    val output:Array<String> = responseData?.output!!
                     GlobalScope.launch(Dispatchers.Main) {
                         runOnUiThread {
-                            binding.tvTesting.text = output.toString()
+                            binding.tvbc1.text = output[0]
+                            binding.tvbc2.text = output[1]
+                            binding.tvbc3.text = output[2]
+                            binding.tvbc4.text = output[3]
+                            binding.tvbc5.text = output[4]
                         }
                     }
                 } else {

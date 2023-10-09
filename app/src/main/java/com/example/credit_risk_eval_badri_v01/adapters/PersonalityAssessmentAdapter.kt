@@ -11,10 +11,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.credit_risk_eval_badri_v01.R
 import com.example.credit_risk_eval_badri_v01.activities.PersonalityAssessmentActivity
-import com.example.credit_risk_eval_badri_v01.data.PersonalityAssessmentQuestionModel
+import com.example.credit_risk_eval_badri_v01.models.PersonalityAssessmentQuestionModel
 import com.example.credit_risk_eval_badri_v01.fragments.PersonalityQuestionDesctiptionFragment
 
-class PersonalityAssessmentAdapter(private val questionsList:ArrayList<PersonalityAssessmentQuestionModel>,private val activity: PersonalityAssessmentActivity):RecyclerView.Adapter<PersonalityAssessmentAdapter.QuestionsViewHolder>(){
+class PersonalityAssessmentAdapter(private val questionsList:ArrayList<PersonalityAssessmentQuestionModel>, private val activity: PersonalityAssessmentActivity):RecyclerView.Adapter<PersonalityAssessmentAdapter.QuestionsViewHolder>(){
     class QuestionsViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView){
         val qNo:TextView = itemView.findViewById(R.id.qNo)
         val layout: RelativeLayout = itemView.findViewById(R.id.layout)

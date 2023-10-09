@@ -12,7 +12,6 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.credit_risk_eval_badri_v01.R
 import com.example.credit_risk_eval_badri_v01.interfaces.MyBlockchainApi
-import com.example.credit_risk_eval_badri_v01.models.ChatAdapter
 import com.example.credit_risk_eval_badri_v01.models.LoanDataModel
 import com.example.credit_risk_eval_badri_v01.models.UserModel
 import com.google.firebase.auth.FirebaseAuth
@@ -48,6 +47,7 @@ class BorrowerLoanDetailsFragment : Fragment() {
     private lateinit var email:String
     private lateinit var sritScore:String
     private lateinit var loanType:String
+    private lateinit var mlOutput:String
 
 //    BLOCKCHAIN DETAILS
     val USERNAME = "u0yxvm2kkq"
@@ -104,7 +104,7 @@ class BorrowerLoanDetailsFragment : Fragment() {
             }
             else{
                 saveLoanDetailsInDatabase()
-//                saveLoanDetailsInBlockchain()
+                postData()
             }
         }
         return view
@@ -166,10 +166,6 @@ class BorrowerLoanDetailsFragment : Fragment() {
             }
     }
 
-    private fun saveLoanDetailsInBlockchain(){
-
-    }
-
     private fun RetrofitCreate() {
         val credentials = Credentials.basic(
             USERNAME,
@@ -198,8 +194,16 @@ class BorrowerLoanDetailsFragment : Fragment() {
         myApi = retrofit.create(MyBlockchainApi::class.java)
     }
 
-    private fun PostData() {
-        val inputData = sritScore
+    private fun postData() {
+        RetrofitCreate()
+        getOutputFromML()
+        val inputData:Array<String> = arrayOf(
+            loanType,
+            et6.text.toString(),
+            sritScore,
+            mlOutput,
+            uid
+        )
         val requestData = MyBlockchainApi.RequestData(inputData)
         GlobalScope.launch(Dispatchers.IO) {
             try {
@@ -221,6 +225,10 @@ class BorrowerLoanDetailsFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun getOutputFromML(){
+        mlOutput = "Ml output by Badri"
     }
 
 

@@ -7,8 +7,8 @@ import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface MyBlockchainApi {
-    data class HelloWorldResponse(val output: String)
-    data class RequestData(val newString: String)
+    data class HelloWorldResponse(val output: Array<String>)
+    data class RequestData(val newString: Array<String>)
     data class ResponseData(val newString: String)
 
     @POST("setString")

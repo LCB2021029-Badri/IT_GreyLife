@@ -1,4 +1,4 @@
-package com.example.credit_risk_eval_badri_v01.models
+package com.example.credit_risk_eval_badri_v01.adapters
 
 import android.content.Context
 import android.content.Intent
@@ -6,10 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.credit_risk_eval_badri_v01.R
 import com.example.credit_risk_eval_badri_v01.activities.ClientChatScreenActivity
 import com.example.credit_risk_eval_badri_v01.databinding.ClientChatUserItemLayoutBinding
+import com.example.credit_risk_eval_badri_v01.models.UserModel
 
 class ChatAdapter(var context: Context, var list:ArrayList<UserModel>) : RecyclerView.Adapter<ChatAdapter.ChatViewHolder>() {
 

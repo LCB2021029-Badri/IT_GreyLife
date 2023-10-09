@@ -2,20 +2,17 @@ package com.example.credit_risk_eval_badri_v01.activities
 
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.example.credit_risk_eval_badri_v01.R
 import com.example.credit_risk_eval_badri_v01.adapters.PersonalityAssessmentAdapter
-import com.example.credit_risk_eval_badri_v01.data.PersonalityAssessmentQuestionModel
+import com.example.credit_risk_eval_badri_v01.models.PersonalityAssessmentQuestionModel
 import com.example.credit_risk_eval_badri_v01.databinding.ActivityPersonalityAssessmentBinding
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
-import org.json.JSONArray
 
 class PersonalityAssessmentActivity : AppCompatActivity() {
 

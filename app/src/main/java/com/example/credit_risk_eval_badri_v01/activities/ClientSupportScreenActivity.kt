@@ -3,12 +3,9 @@ package com.example.credit_risk_eval_badri_v01.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.content.ContentProviderCompat.requireContext
 import com.example.credit_risk_eval_badri_v01.R
-import com.example.credit_risk_eval_badri_v01.databinding.ActivityClientChatScreenBinding
-import com.example.credit_risk_eval_badri_v01.databinding.ActivityClientStatusScreenBinding
 import com.example.credit_risk_eval_badri_v01.databinding.ActivityClientSupportScreenBinding
-import com.example.credit_risk_eval_badri_v01.models.ChatAdapter
+import com.example.credit_risk_eval_badri_v01.adapters.ChatAdapter
 import com.example.credit_risk_eval_badri_v01.models.UserModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot

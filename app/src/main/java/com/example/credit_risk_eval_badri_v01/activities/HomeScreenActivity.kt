@@ -7,9 +7,7 @@ import android.os.Bundle
 import androidx.recyclerview.widget.RecyclerView
 import com.example.credit_risk_eval_badri_v01.R
 import com.example.credit_risk_eval_badri_v01.adapters.LoanTypeAdapter
-import com.example.credit_risk_eval_badri_v01.adapters.PersonalityAssessmentAdapter
-import com.example.credit_risk_eval_badri_v01.data.LoanTypeModel
-import com.example.credit_risk_eval_badri_v01.data.PersonalityAssessmentQuestionModel
+import com.example.credit_risk_eval_badri_v01.models.LoanTypeModel
 import com.example.credit_risk_eval_badri_v01.databinding.ActivityHomeScreenBinding
 
 class HomeScreenActivity : AppCompatActivity() {

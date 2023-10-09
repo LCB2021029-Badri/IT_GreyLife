@@ -6,7 +6,6 @@ import android.os.Bundle
 import com.example.credit_risk_eval_badri_v01.R
 import com.example.credit_risk_eval_badri_v01.adapters.DocsAdapter
 import com.example.credit_risk_eval_badri_v01.databinding.ActivityClientDocumentsScreenBinding
-import com.example.credit_risk_eval_badri_v01.models.ChatAdapter
 import com.example.credit_risk_eval_badri_v01.models.UserModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot

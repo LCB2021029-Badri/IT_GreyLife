@@ -13,9 +13,8 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.credit_risk_eval_badri_v01.R
 import com.example.credit_risk_eval_badri_v01.activities.HomeScreenActivity
-import com.example.credit_risk_eval_badri_v01.data.LoanTypeModel
+import com.example.credit_risk_eval_badri_v01.models.LoanTypeModel
 import com.example.credit_risk_eval_badri_v01.fragments.BorrowerLoanDetailsFragment
-import com.example.credit_risk_eval_badri_v01.fragments.PersonalityQuestionDesctiptionFragment
 
 class LoanTypeAdapter(private val loanTypeList:ArrayList<LoanTypeModel>, private val activity: HomeScreenActivity):
     RecyclerView.Adapter<LoanTypeAdapter.LoanTypeViewHolder>() {
