@@ -41,7 +41,7 @@ class DocsDetailsActivity : AppCompatActivity() {
                             binding.tv3.text = data.loanType
                             binding.tv4.text = data.noOfDependents
                             binding.tv5.text = data.education
-                            binding.tv6.text = data.SRITScore
+                            binding.tv6.text = data.sritscore
                             binding.tv7.text = data.etIncomeeAnnum
                             binding.tv8.text = data.etLoanAmount
                             binding.tv9.text = data.etLoanTerm
