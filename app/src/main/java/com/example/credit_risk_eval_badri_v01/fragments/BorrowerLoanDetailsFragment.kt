@@ -104,7 +104,7 @@ class BorrowerLoanDetailsFragment : Fragment() {
                 Toast.makeText(requireContext(),"fill all details",Toast.LENGTH_SHORT).show()
             }
             else{
-//                saveLoanDetailsInDatabase()
+                saveLoanDetailsInDatabase()
                 postData()
             }
         }
