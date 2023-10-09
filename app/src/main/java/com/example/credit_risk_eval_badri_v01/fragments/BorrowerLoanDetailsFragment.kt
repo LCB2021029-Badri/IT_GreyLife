@@ -197,7 +197,7 @@ class BorrowerLoanDetailsFragment : Fragment() {
     private fun postData() {
         RetrofitCreate()
         getOutputFromML()
-        val inputData:Array<String> = arrayOf(
+        val inputData:List<String> = listOf(
             loanType,
             et6.text.toString(),
             sritScore,
