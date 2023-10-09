@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.credit_risk_eval_badri_v01.R
 import com.example.credit_risk_eval_badri_v01.databinding.ActivityDocsDetailsBinding
+import com.example.credit_risk_eval_badri_v01.interfaces.MyBlockchainApi
 import com.example.credit_risk_eval_badri_v01.models.LoanDataModel
 import com.example.credit_risk_eval_badri_v01.models.UserModel
 import com.google.firebase.auth.FirebaseAuth
@@ -13,13 +14,25 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import okhttp3.Credentials
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class DocsDetailsActivity : AppCompatActivity() {
 
     private lateinit var binding:ActivityDocsDetailsBinding
     private lateinit var uid: String
     private lateinit var database: FirebaseDatabase
-
+    private lateinit var myApi: MyBlockchainApi
+    val USERNAME = "u0yxvm2kkq"
+    val PASSWORD = "t5OvSDtcASGoP6xRLBAfaYGZQ53XG4IpZHjorph3vtA"
+    val BASE2_URL = "https://u0ft62dsi9-u0bftvrkqx-rpc.us0aws.kaleido.io//gateways/testinggreylife/0xea3238eb802619629107e6e5f0fd00be0aa132bb/"
+    val kldFromValue2 = "0x0c7d6a7a583b790be7635bef63c9a65327d415d5"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDocsDetailsBinding.inflate(layoutInflater)
@@ -34,8 +47,6 @@ class DocsDetailsActivity : AppCompatActivity() {
                     for(snapshot1 in snapshot.children){
                         val data = snapshot1.getValue(LoanDataModel::class.java)
                         if(data!!.uid == uid){
-
-
                             binding.tv1.text = data.name
                             binding.tv2.text = data.uid
                             binding.tv3.text = data.loanType
@@ -52,13 +63,9 @@ class DocsDetailsActivity : AppCompatActivity() {
                             binding.tv14.text = data.etBankAsssetsValue
                             binding.tv15.text = data.mlOutput
                             binding.tv16.text = data.email
-
-
-
                             break
                         }
                     }
-
                 }
                 override fun onCancelled(error: DatabaseError) {
 //                    dialog.dismiss()
@@ -68,6 +75,67 @@ class DocsDetailsActivity : AppCompatActivity() {
 
     }
 
+
+    private fun RetrofitCreate() {
+        val credentials = Credentials.basic(
+            USERNAME,
+            PASSWORD
+        )
+        val retrofit = Retrofit.Builder()
+            .baseUrl(BASE2_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(
+                //-----------------------
+                OkHttpClient.Builder()
+                    .addInterceptor(HttpLoggingInterceptor().apply {
+                        level = HttpLoggingInterceptor.Level.BODY
+                    })
+                    .addInterceptor { chain ->
+                        val newRequest = chain.request().newBuilder()
+                            .header("Authorization", credentials)
+                            .build()
+                        chain.proceed(newRequest)
+                    }
+                    .build()
+                //------------------------
+            )
+            .build()
+
+        myApi = retrofit.create(MyBlockchainApi::class.java)
+    }
+
+
+
+    private fun getData() {
+        GlobalScope.launch(Dispatchers.IO) {
+            try {
+                val response = myApi.getData(kldFromValue2).execute()
+
+                if (response.isSuccessful) {
+                    val responseData = response.body()
+                    val output = responseData?.output
+                    GlobalScope.launch(Dispatchers.Main) {
+                        runOnUiThread {
+                            binding.tvTesting.text = output.toString()
+                        }
+                    }
+                } else {
+                    GlobalScope.launch(Dispatchers.Main) {
+
+                        runOnUiThread {
+                            binding.tvTesting.text = ("Data retrieval failed")
+                        }
+                    }
+                }
+            } catch (e: Exception) {
+                GlobalScope.launch(Dispatchers.Main) {
+                    runOnUiThread {
+                        binding.tvTesting.text = ("Error: ${e.message}")
+                    }
+                }
+            }
+        }
+    }
 
 
 

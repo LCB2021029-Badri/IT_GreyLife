@@ -49,6 +49,19 @@ class BorrowerLoanDetailsFragment : Fragment() {
     private lateinit var sritScore:String
     private lateinit var loanType:String
 
+//    BLOCKCHAIN DETAILS
+    val USERNAME = "u0yxvm2kkq"
+    val PASSWORD = "t5OvSDtcASGoP6xRLBAfaYGZQ53XG4IpZHjorph3vtA"
+    val BASE2_URL = "https://u0ft62dsi9-u0bftvrkqx-rpc.us0aws.kaleido.io//gateways/testinggreylife/0xea3238eb802619629107e6e5f0fd00be0aa132bb/"
+    val kldFromValue2 = "0x0c7d6a7a583b790be7635bef63c9a65327d415d5"
+    private lateinit var myApi: MyBlockchainApi
+
+//    ML API ENDPOINT
+//    val ML_URL = "https://greylifeapiproduction.up.railway.app"
+//    u should hit "/prediction"
+//    if the result is 1 then Approved
+//    Else Rejected
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -69,15 +82,10 @@ class BorrowerLoanDetailsFragment : Fragment() {
         et8 = view.findViewById(R.id.etCommercialAssetsValue)
         et9 = view.findViewById(R.id.etLuxuryAssetsValue)
         et10 = view.findViewById(R.id.etBankAsssetsValue)
-
-
         //--------------------
         initializeData()
         //---------------------
-
-
         tvLoanType.text = loanType
-
         btnNext.setOnClickListener {
             if(
                 et1.text.isNullOrEmpty()||
@@ -99,8 +107,6 @@ class BorrowerLoanDetailsFragment : Fragment() {
 //                saveLoanDetailsInBlockchain()
             }
         }
-
-
         return view
     }
 
@@ -162,6 +168,59 @@ class BorrowerLoanDetailsFragment : Fragment() {
 
     private fun saveLoanDetailsInBlockchain(){
 
+    }
+
+    private fun RetrofitCreate() {
+        val credentials = Credentials.basic(
+            USERNAME,
+            PASSWORD
+        )
+        val retrofit = Retrofit.Builder()
+            .baseUrl(BASE2_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(
+                //-----------------------
+                OkHttpClient.Builder()
+                    .addInterceptor(HttpLoggingInterceptor().apply {
+                        level = HttpLoggingInterceptor.Level.BODY
+                    })
+                    .addInterceptor { chain ->
+                        val newRequest = chain.request().newBuilder()
+                            .header("Authorization", credentials)
+                            .build()
+                        chain.proceed(newRequest)
+                    }
+                    .build()
+                //------------------------
+            )
+            .build()
+
+        myApi = retrofit.create(MyBlockchainApi::class.java)
+    }
+
+    private fun PostData() {
+        val inputData = sritScore
+        val requestData = MyBlockchainApi.RequestData(inputData)
+        GlobalScope.launch(Dispatchers.IO) {
+            try {
+                val response = myApi.PostData(kldFromValue2, requestData).execute()
+
+                if (response.isSuccessful) {
+                    GlobalScope.launch(Dispatchers.Main) {
+                        Toast.makeText(requireContext(), "Data posted", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    GlobalScope.launch(Dispatchers.Main) {
+                        Toast.makeText(requireContext(), "Data not posted", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }
+            } catch (e: Exception) {
+                GlobalScope.launch(Dispatchers.Main) {
+                    Toast.makeText(requireContext(), e.message, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 
 
