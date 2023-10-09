@@ -7,6 +7,11 @@ import android.widget.Toast
 import com.example.credit_risk_eval_badri_v01.R
 import com.example.credit_risk_eval_badri_v01.databinding.ActivityClientUpdateStatusBinding
 import com.example.credit_risk_eval_badri_v01.interfaces.MyBlockchainApi
+import com.example.credit_risk_eval_badri_v01.models.LoanDataModel
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -20,84 +25,121 @@ class ClientUpdateStatusActivity : AppCompatActivity() {
 
     private lateinit var binding:ActivityClientUpdateStatusBinding
     private lateinit var myApi: MyBlockchainApi
-    val USERNAME = "u0yxvm2kkq"
-    val PASSWORD = "t5OvSDtcASGoP6xRLBAfaYGZQ53XG4IpZHjorph3vtA"
-    val BASE_URL =
-        "https://u0lj156pi7-u0mlmn54wo-connect.us0-aws.kaleido.io/gateways/greylife/0xe18110e266f642686981ba41179709d241eb04cf/"
-    val kldFromValue = "0xdbca2ba3f5843a82ad7c811174d001cb51cc329a"
+    private lateinit var database: FirebaseDatabase
+
+
+    private lateinit var name:String
+    private lateinit var uid:String
+    private lateinit var email:String
+    private lateinit var loanType:String
+    private lateinit var noOfDependents:String
+    private lateinit var education:String
+    private lateinit var sritscore:String
+    private lateinit var etIncomeeAnnum:String
+    private lateinit var etLoanAmount:String
+    private lateinit var etLoanTerm:String
+    private lateinit var etCIBILScore:String
+    private lateinit var etResedentialAssetsValie:String
+    private lateinit var etCommercialAssetsValue:String
+    private lateinit var etLuxuryAssetsValue:String
+    private lateinit var etBankAsssetsValue:String
+    private lateinit var mlOutput:String
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityClientUpdateStatusBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnRetrieve.setOnClickListener {
-//            uploadDataToBlockChain()
+        displayCurrentResultFromDatabase()
+
+        binding.btnUpdate.setOnClickListener {
+            updateLLoanDataInDatabase()
+//            updateDataInBlockChain()
         }
 
     }
 
-//    private fun uploadDataToBlockChain(){
-//        retrofitCreate()
-//        postData()
-//    }
-//
-//    private fun retrofitCreate() {
-//        val credentials = Credentials.basic(
-//            USERNAME,
-//            PASSWORD
-//        )
-//        val retrofit = Retrofit.Builder()
-//            .baseUrl(BASE_URL)
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .client(
-//                //-----------------------
-//                OkHttpClient.Builder()
-//                    .addInterceptor(HttpLoggingInterceptor().apply {
-//                        level = HttpLoggingInterceptor.Level.BODY
-//                    })
-//                    .addInterceptor { chain ->
-//                        val newRequest = chain.request().newBuilder()
-//                            .header("Authorization", credentials)
-//                            .build()
-//                        chain.proceed(newRequest)
-//                    }
-//                    .build()
-//                //------------------------
-//            )
-//            .build()
-//
-//        myApi = retrofit.create(MyBlockchainApi::class.java)
-//    }
-//
-//    private fun postData() {
-////        val inputData = arguments?.getString("LoanType")
-//        val etTesting: EditText = findViewById(R.id.etTesting)
-//        val inputData = etTesting.text.toString()
-//        val requestData = MyBlockchainApi.RequestData(inputData!!)
-//        GlobalScope.launch(Dispatchers.IO) {
-//            try {
-//                val response = myApi.PostData(kldFromValue, requestData).execute()
-//
-//                if (response.isSuccessful) {
-//                    GlobalScope.launch(Dispatchers.Main) {
-//                        etTesting.text.clear()
-//                        Toast.makeText(this@ClientUpdateStatusActivity, "Data posted", Toast.LENGTH_SHORT).show()
-//                    }
-//                } else {
-//                    GlobalScope.launch(Dispatchers.Main) {
-//                        Toast.makeText(this@ClientUpdateStatusActivity, "Data not posted", Toast.LENGTH_SHORT)
-//                            .show()
-//                    }
-//                }
-//            } catch (e: Exception) {
-//                GlobalScope.launch(Dispatchers.Main) {
-//                    Toast.makeText(this@ClientUpdateStatusActivity, e.message, Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//        }
-//    }
+    private fun displayCurrentResultFromDatabase(){
+        database = FirebaseDatabase.getInstance()
+        uid = intent.getStringExtra("uid")!!
+        database.reference.child("loans")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for(snapshot1 in snapshot.children){
+                        val data = snapshot1.getValue(LoanDataModel::class.java)
+                        if(data!!.uid == uid){
+                            binding.tvCurrentResult.text = data.mlOutput
+                            name = data.name!!
+                            email = data.email!!
+                            loanType = data.loanType!!
+                            noOfDependents = data.noOfDependents!!
+                            education = data.education!!
+                            sritscore = data.sritscore!!
+                            etIncomeeAnnum = data.etIncomeeAnnum!!
+                            etCIBILScore = data.etCIBILScore!!
+                            etBankAsssetsValue = data.etBankAsssetsValue!!
+                            etLoanTerm = data.etLoanTerm!!
+                            etResedentialAssetsValie = data.etResedentialAssetsValie!!
+                            etLuxuryAssetsValue = data.etLuxuryAssetsValue!!
+                            etLoanAmount = data.etLoanAmount!!
+                            etCommercialAssetsValue = data.etCommercialAssetsValue!!
+                            mlOutput = data.mlOutput!!
 
+                            break
+                        }
+                    }
+                }
+                override fun onCancelled(error: DatabaseError) {
+//                    dialog.dismiss()
+                }
+            })
+    }
+
+    private fun updateLLoanDataInDatabase(){
+        if(binding.etUpdateResult.text.isNullOrEmpty()){
+            //do nothing
+        }
+        else{
+
+            var loanData = LoanDataModel(
+                name,
+                uid,
+                email,
+                loanType,
+                noOfDependents,
+                education,
+                sritscore,
+                etIncomeeAnnum,
+                etLoanAmount,
+                etLoanTerm,
+                etCIBILScore,
+                etResedentialAssetsValie,
+                etCommercialAssetsValue,
+                etLuxuryAssetsValue,
+                etBankAsssetsValue,
+                binding.etUpdateResult.text.toString()
+            )
+
+            database.reference.child("loans")
+                .child(uid)
+                .setValue(loanData)
+                .addOnSuccessListener {
+//                                startActivity(Intent(this@SignupActivity, MainActivity::class.java))
+//                                finish()
+                }
+                .addOnFailureListener {
+//                createSnackBar(binding.root,"failed to upload data to Realtime DB","Try Again")
+                }
+
+        }
+
+    }
+
+    private fun updateDataInBlockChain(){
+
+    }
 
 
 }

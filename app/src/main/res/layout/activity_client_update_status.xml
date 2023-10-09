@@ -8,15 +8,21 @@
     tools:context=".activities.ClientUpdateStatusActivity">
 
     <TextView
-        android:id="@+id/tvDataRetrieved"
+        android:id="@+id/tvCurrentResult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Data retrieved from block chain"/>
+        android:text="current status"/>
+
+    <EditText
+        android:id="@+id/etUpdateResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="updated result"/>
 
     <Button
-        android:id="@+id/btnRetrieve"
+        android:id="@+id/btnUpdate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Retrieve"/>
+        android:text="Update in Database and Blockchain"/>
 
 </LinearLayout>

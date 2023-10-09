@@ -95,10 +95,8 @@ class BorrowerLoanDetailsFragment : Fragment() {
                 Toast.makeText(requireContext(),"fill all details",Toast.LENGTH_SHORT).show()
             }
             else{
-                //send these details to ml model to get output
-                //store all data in database which is accessed by lender
-                // store important data in blockchain postdata function from ClientStatusUpdateActivity
                 saveLoanDetailsInDatabase()
+//                saveLoanDetailsInBlockchain()
             }
         }
 
@@ -160,8 +158,9 @@ class BorrowerLoanDetailsFragment : Fragment() {
             .addOnFailureListener {
 //                createSnackBar(binding.root,"failed to upload data to Realtime DB","Try Again")
             }
+    }
 
-
+    private fun saveLoanDetailsInBlockchain(){
 
     }
 
