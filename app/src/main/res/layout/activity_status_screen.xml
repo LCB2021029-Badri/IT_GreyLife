@@ -17,13 +17,45 @@
         android:padding="5dp"
         android:layout_height="wrap_content">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/userListRecyclerView"
+        <TextView
+            android:id="@+id/tvLoanType"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="5dp"
-            tools:listitem="@layout/borrower_status_item_layout"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/myYellow"
+            android:textSize="25sp"
+            android:textStyle="bold|italic"
+            android:text="Loan Type"/>
+
+        <TextView
+            android:id="@+id/tvCommon"
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:text="Your loan has been requested and its current status is -"/>
+
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvCommon"
+            android:layout_centerInParent="true"
+            android:padding="5dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/myGrey"
+            android:gravity="center"
+            android:text="Pending"
+            android:textColor="@color/myWhite"
+            android:textSize="25sp" />
 
     </RelativeLayout>
 

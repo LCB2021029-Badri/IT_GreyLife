@@ -42,6 +42,7 @@ class DocsDetailsActivity : AppCompatActivity() {
         uid = intent.getStringExtra("uid")!!
         database = FirebaseDatabase.getInstance()
 
+        //add uid+loantype
         database.reference.child("loans")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {

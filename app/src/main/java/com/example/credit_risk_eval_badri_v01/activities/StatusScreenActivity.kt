@@ -4,9 +4,16 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.example.credit_risk_eval_badri_v01.R
 import com.example.credit_risk_eval_badri_v01.databinding.ActivityStatusScreenBinding
 import com.example.credit_risk_eval_badri_v01.interfaces.MyBlockchainApi
+import com.example.credit_risk_eval_badri_v01.models.LoanDataModel
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -19,12 +26,17 @@ import retrofit2.converter.gson.GsonConverterFactory
 class StatusScreenActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityStatusScreenBinding
-    private lateinit var myApi: MyBlockchainApi
+    private lateinit var uid: String
+    private lateinit var status:String
+    private lateinit var database: FirebaseDatabase
     val USERNAME = "u0yxvm2kkq"
     val PASSWORD = "t5OvSDtcASGoP6xRLBAfaYGZQ53XG4IpZHjorph3vtA"
     val BASE_URL =
         "https://u0lj156pi7-u0mlmn54wo-connect.us0-aws.kaleido.io/gateways/greylife/0xe18110e266f642686981ba41179709d241eb04cf/"
     val kldFromValue = "0xdbca2ba3f5843a82ad7c811174d001cb51cc329a"
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityStatusScreenBinding.inflate(layoutInflater)
@@ -33,6 +45,37 @@ class StatusScreenActivity : AppCompatActivity() {
         enableBottomNavView()
 
         //get data from database
+        uid = FirebaseAuth.getInstance().uid!!
+        database = FirebaseDatabase.getInstance()
+
+        //add uid+loantype
+        database.reference.child("loans")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for(snapshot1 in snapshot.children){
+                        val data = snapshot1.getValue(LoanDataModel::class.java)
+                        if(data!!.uid == uid){
+                            status = data.mlOutput.toString()
+                            if(status == "Accepted"){
+                                binding.tvStatus.text = "Accepted"
+                                binding.tvStatus.setBackgroundColor(ContextCompat.getColor(this@StatusScreenActivity, R.color.myGreen))
+                            }
+                            else if(status == "Declined"){
+                                binding.tvStatus.text = "Declined"
+                                binding.tvStatus.setBackgroundColor(ContextCompat.getColor(this@StatusScreenActivity, R.color.myRed))
+                            }
+                            else{
+                                binding.tvStatus.text = "Pending"
+                                binding.tvStatus.setBackgroundColor(ContextCompat.getColor(this@StatusScreenActivity, R.color.myGrey))
+                            }
+                            break
+                        }
+                    }
+                }
+                override fun onCancelled(error: DatabaseError) {
+//                    dialog.dismiss()
+                }
+            })
 
 
     }
@@ -65,75 +108,5 @@ class StatusScreenActivity : AppCompatActivity() {
             }
         }
     }
-
-
-//    private fun retrieveDataFromBlockChain(){
-//        retrofitCreate()
-//        getData()
-//    }
-//
-//    private fun retrofitCreate() {
-//        val credentials = Credentials.basic(
-//            USERNAME,
-//            PASSWORD
-//        )
-//        val retrofit = Retrofit.Builder()
-//            .baseUrl(BASE_URL)
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .client(
-//                //-----------------------
-//                OkHttpClient.Builder()
-//                    .addInterceptor(HttpLoggingInterceptor().apply {
-//                        level = HttpLoggingInterceptor.Level.BODY
-//                    })
-//                    .addInterceptor { chain ->
-//                        val newRequest = chain.request().newBuilder()
-//                            .header("Authorization", credentials)
-//                            .build()
-//                        chain.proceed(newRequest)
-//                    }
-//                    .build()
-//                //------------------------
-//            )
-//            .build()
-//
-//        myApi = retrofit.create(MyBlockchainApi::class.java)
-//    }
-//
-//
-//
-//
-//    private fun getData() {
-//        GlobalScope.launch(Dispatchers.IO) {
-//            try {
-//                val response = myApi.getData(kldFromValue).execute()
-//
-//                if (response.isSuccessful) {
-//                    val responseData = response.body()
-//                    val output = responseData?.output
-//                    GlobalScope.launch(Dispatchers.Main) {
-//                        runOnUiThread {
-//                            binding.tvDataRetrieved.text = output.toString()
-//                        }
-//                    }
-//                } else {
-//                    GlobalScope.launch(Dispatchers.Main) {
-//
-//                        runOnUiThread {
-////                            resultTextView.text = ("Data retrieval failed")
-//                            Toast.makeText(this,"Data retrieval failed",
-//                                Toast.LENGTH_SHORT).show()
-//                        }
-//                    }
-//                }
-//            } catch (e: Exception) {
-//                GlobalScope.launch(Dispatchers.Main) {
-//                    runOnUiThread {
-//                        binding.tvDataRetrieved.text = ("Error: ${e.message}")
-//                    }
-//                }
-//            }
-//        }
-//    }
 
 }
