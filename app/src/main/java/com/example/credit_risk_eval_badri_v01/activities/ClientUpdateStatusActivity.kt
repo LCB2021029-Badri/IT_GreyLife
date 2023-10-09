@@ -24,8 +24,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 class ClientUpdateStatusActivity : AppCompatActivity() {
 
     private lateinit var binding:ActivityClientUpdateStatusBinding
-    private lateinit var myApi: MyBlockchainApi
     private lateinit var database: FirebaseDatabase
+
+    val USERNAME = "u0nbfzswwp"
+    val PASSWORD = "7kw_tDTpsWWwyeOtSdJmOfj6179YXiiewyQN4WU7CGA"
+    val BASE2_URL = "https://u0ft62dsi9-u0oicgb1o0-connect.us0-aws.kaleido.io/gateways/testinggreylife/0xea3238eb802619629107e6e5f0fd00be0aa132bb/"
+    val kldFromValue2 = "0x0c7d6a7a583b790be7635bef63c9a65327d415d5"
+    private lateinit var myApi: MyBlockchainApi
 
 
     private lateinit var name:String
@@ -53,10 +58,15 @@ class ClientUpdateStatusActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         displayCurrentResultFromDatabase()
-
         binding.btnUpdate.setOnClickListener {
-            updateLLoanDataInDatabase()
-//            updateDataInBlockChain()
+            if(binding.etUpdateResult.text.isNullOrEmpty()){
+
+            }
+            else{
+                mlOutput = binding.etUpdateResult.text.toString()
+                updateLLoanDataInDatabase()
+                postData()
+            }
         }
 
     }
@@ -137,8 +147,69 @@ class ClientUpdateStatusActivity : AppCompatActivity() {
 
     }
 
-    private fun updateDataInBlockChain(){
+    private fun RetrofitCreate() {
+        val credentials = Credentials.basic(
+            USERNAME,
+            PASSWORD
+        )
+        val retrofit = Retrofit.Builder()
+            .baseUrl(BASE2_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(
+                //-----------------------
+                OkHttpClient.Builder()
+                    .addInterceptor(HttpLoggingInterceptor().apply {
+                        level = HttpLoggingInterceptor.Level.BODY
+                    })
+                    .addInterceptor { chain ->
+                        val newRequest = chain.request().newBuilder()
+                            .header("Authorization", credentials)
+                            .build()
+                        chain.proceed(newRequest)
+                    }
+                    .build()
+                //------------------------
+            )
+            .build()
 
+        myApi = retrofit.create(MyBlockchainApi::class.java)
+    }
+
+    private fun postData() {
+        RetrofitCreate()
+        getOutputFromML()
+        val inputData:List<String> = listOf(
+            loanType,
+            etCIBILScore,
+            sritscore,
+            mlOutput,
+            uid
+        )
+        val requestData = MyBlockchainApi.RequestData(inputData)
+        GlobalScope.launch(Dispatchers.IO) {
+            try {
+                val response = myApi.PostData(kldFromValue2, requestData).execute()
+
+                if (response.isSuccessful) {
+                    GlobalScope.launch(Dispatchers.Main) {
+                        Toast.makeText(this@ClientUpdateStatusActivity, "Data posted", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    GlobalScope.launch(Dispatchers.Main) {
+                        Toast.makeText(this@ClientUpdateStatusActivity, "Data not posted", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }
+            } catch (e: Exception) {
+                GlobalScope.launch(Dispatchers.Main) {
+                    Toast.makeText(this@ClientUpdateStatusActivity, e.message, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    private fun getOutputFromML(){
+        mlOutput = binding.etUpdateResult.text.toString()
     }
 
 
