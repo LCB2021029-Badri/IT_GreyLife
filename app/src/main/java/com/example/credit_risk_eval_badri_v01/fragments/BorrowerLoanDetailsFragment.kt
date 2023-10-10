@@ -62,12 +62,6 @@ class BorrowerLoanDetailsFragment : Fragment() {
     val kldFromValue2 = "0x0c7d6a7a583b790be7635bef63c9a65327d415d5"
     private lateinit var myApi: MyBlockchainApi
 
-//    ML API ENDPOINT
-//    val ML_URL = "https://greylifeapiproduction.up.railway.app"
-//    u should hit "/prediction"
-//    if the result is 1 then Approved
-//    Else Rejected
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -110,8 +104,8 @@ class BorrowerLoanDetailsFragment : Fragment() {
             }
             else{
                 getOutputFromML()
-                saveLoanDetailsInDatabase()
-                postData()
+//                saveLoanDetailsInDatabase()
+//                postData()
             }
         }
         return view
@@ -120,7 +114,10 @@ class BorrowerLoanDetailsFragment : Fragment() {
     private fun initializeData(){
         loanType = arguments?.getString("loanType")!!
         val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-        sritScore = sharedPreferences.getString("testScore","")!!
+        val data = sharedPreferences.getString("testScore","")!!.toInt()
+        if(data>=29.5) sritScore = "1"
+        else sritScore = "0"
+
         database = FirebaseDatabase.getInstance()
         uid= FirebaseAuth.getInstance().uid.toString()
         database.reference.child("users")
@@ -139,8 +136,7 @@ class BorrowerLoanDetailsFragment : Fragment() {
             })
     }
 
-    private fun saveLoanDetailsInDatabase(){
-//        getOutputFromML()
+    private fun saveLoanDetailsInDatabase(mlOutput:String){
         val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val scoreReceived = sharedPreferences.getString("testScore","")!!
         var loanData = LoanDataModel(
@@ -202,9 +198,8 @@ class BorrowerLoanDetailsFragment : Fragment() {
         myApi = retrofit.create(MyBlockchainApi::class.java)
     }
 
-    private fun postData() {
+    private fun postData(mlOutput:String) {
         RetrofitCreate()
-//        getOutputFromML()
         val inputData:List<String> = listOf(
             loanType,
             et6.text.toString(),
@@ -270,25 +265,33 @@ class BorrowerLoanDetailsFragment : Fragment() {
                         val statusFromML = myResponse.prediction.toString()
                         if(statusFromML == "1"){
                             mlOutput = "Accepted"
+                            saveLoanDetailsInDatabase(mlOutput)
+                            postData(mlOutput)
                         }
                         else if(statusFromML == "0"){
                             mlOutput = "Declined"
+                            saveLoanDetailsInDatabase(mlOutput)
+                            postData(mlOutput)
                         }
                         else{
                             mlOutput = "Error from Ml"
+                            saveLoanDetailsInDatabase(mlOutput)
+                            postData(mlOutput)
                         }
                     }
                 } else {
 //                    resultTextView.text = "Error: ${response.code()}"
-                    val statusFromML = "Error from Ml"
-                    mlOutput = statusFromML
+                    mlOutput = "Error from Ml"
+                    saveLoanDetailsInDatabase(mlOutput)
+                    postData(mlOutput)
                 }
             }
 
             override fun onFailure(call: Call<MyMLApi.MyResponse>, t: Throwable) {
 //                resultTextView.text = "Network Error: ${t.message}"
-                val statusFromML = "Error from Ml"
-                mlOutput = statusFromML
+                mlOutput = "Error from Ml"
+                saveLoanDetailsInDatabase(mlOutput)
+                postData(mlOutput)
             }
         })
     }
