@@ -60,6 +60,7 @@ class SignupActivity : AppCompatActivity() {
     }
 
     private fun btnSignupCLick(){
+        dialogBox("Creating new account","Please Wait ...")
         val email = binding.etEmail.text.toString()
         val confirmEmail = binding.etConfirmEmail.text.toString()
         val pass = binding.etPassword.text.toString()
@@ -69,14 +70,18 @@ class SignupActivity : AppCompatActivity() {
                 auth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener {
                     if(it.isSuccessful){
                         uploadDataToDatabase()
+                        dialog.dismiss()
                     }else{
+                        dialog.dismiss()
                         createSnackBar(binding.root, "Error " + it.exception.toString(),"Try Again")
                     }
                 }
             }else{
+                dialog.dismiss()
                 createSnackBar(binding.root, "password or email is not matching !","Try Again")
             }
         }else{
+            dialog.dismiss()
             createSnackBar(binding.root, "empty fields not allowed !","Try Again")
         }
     }
