@@ -101,7 +101,6 @@ class MainActivity : AppCompatActivity() {
                 }
             })
     }
-
     private fun dialogBox(title:String,message:String){
         val builder = AlertDialog.Builder(this)
         builder.setMessage(message)

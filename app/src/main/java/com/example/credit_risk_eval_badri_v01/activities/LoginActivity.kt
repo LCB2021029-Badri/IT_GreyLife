@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.example.credit_risk_eval_badri_v01.MainActivity
 import com.example.credit_risk_eval_badri_v01.R
 import com.example.credit_risk_eval_badri_v01.databinding.ActivityLoginBinding
@@ -18,6 +19,7 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityLoginBinding
     private lateinit var auth: FirebaseAuth
+    private lateinit var dialog: AlertDialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -34,24 +36,39 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+//        dialogBox("Retrieving Lender? Status Data from FB Realtime DB","Please Wait ...")
+//        private lateinit var dialog: AlertDialog
+//        private fun dialogBox(title:String,message:String){
+//            val builder = AlertDialog.Builder(this)
+//            builder.setMessage(message)
+//            builder.setTitle(title)
+//            builder.setCancelable(false)
+//            dialog = builder.create()
+//            dialog.show()
+//        }
+
 
     }
 
     private fun btnLoginClick(){
+        dialogBox("Logging in","Please Wait ...")
         val email = binding.etEmail.text.toString()
         val pass = binding.etPassword.text.toString()
         if(email.isNotEmpty() && pass.isNotEmpty()){
             auth.signInWithEmailAndPassword(email,pass).addOnCompleteListener {
                 if(it.isSuccessful){
+                    dialog.dismiss()
                     val intent = Intent(this,MainActivity::class.java)
                     startActivity(intent)
                 }
                 else{
+                    dialog.dismiss()
                     createSnackBar(binding.root, "Error "+it.exception.toString(),"Try Again")
                 }
             }
         }
         else{
+            dialog.dismiss()
             createSnackBar(binding.root, "empty fields not allowed !","Try Again")
         }
     }
@@ -66,6 +83,16 @@ class LoginActivity : AppCompatActivity() {
 //                Toast.makeText(this,"snackbar button pressed",Toast.LENGTH_SHORT).show()
             }
             .show()
+    }
+
+
+    private fun dialogBox(title:String,message:String){
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage(message)
+        builder.setTitle(title)
+        builder.setCancelable(false)
+        dialog = builder.create()
+        dialog.show()
     }
 
 }

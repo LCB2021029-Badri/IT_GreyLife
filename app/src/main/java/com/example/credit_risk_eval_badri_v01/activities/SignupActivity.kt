@@ -104,6 +104,7 @@ class SignupActivity : AppCompatActivity() {
 
 
     private fun uploadDataToDatabase(){
+        dialogBox("Creating new account","Please Wait ...")
         var user = UserModel(auth.uid.toString(),
             binding.etName.text.toString(),
             binding.etEmail.text.toString(),
@@ -162,12 +163,9 @@ class SignupActivity : AppCompatActivity() {
                     }
 
                     override fun onCancelled(error: DatabaseError) {
-                        dialog.dismiss()
                     }
 
                 })
-
-
 
         }
         //else == 1
@@ -182,6 +180,8 @@ class SignupActivity : AppCompatActivity() {
                 createSnackBar(binding.root,"failed to upload data to Realtime DB","Try Again")
             }
 
+
+        dialog.dismiss()
         startActivity(Intent(this@SignupActivity, MainActivity::class.java))
         finish()
 
