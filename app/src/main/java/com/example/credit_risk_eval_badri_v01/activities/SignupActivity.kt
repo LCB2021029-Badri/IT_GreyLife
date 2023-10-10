@@ -109,7 +109,7 @@ class SignupActivity : AppCompatActivity() {
 
 
     private fun uploadDataToDatabase(){
-        dialogBox("Creating new account","Please Wait ...")
+        dialogBox("Uploading data to Database","Please Wait ...")
         var user = UserModel(auth.uid.toString(),
             binding.etName.text.toString(),
             binding.etEmail.text.toString(),
