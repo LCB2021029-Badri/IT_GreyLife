@@ -61,15 +61,6 @@
                 android:backgroundTint="@color/myWhite"/>
 
             <EditText
-                android:id="@+id/etEducation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Highest Education"
-                android:textColor="@color/myWhite"
-                android:textColorHint="@color/myWhite"
-                android:backgroundTint="@color/myWhite"/>
-
-            <EditText
                 android:id="@+id/etIncomeAnnum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -140,6 +131,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Bank Assets Value"
+                android:textColor="@color/myWhite"
+                android:textColorHint="@color/myWhite"
+                android:backgroundTint="@color/myWhite"/>
+
+            <EditText
+                android:id="@+id/etEducation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Highest Education"
                 android:textColor="@color/myWhite"
                 android:textColorHint="@color/myWhite"
                 android:backgroundTint="@color/myWhite"/>

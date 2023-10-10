@@ -12,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.credit_risk_eval_badri_v01.R
 import com.example.credit_risk_eval_badri_v01.interfaces.MyBlockchainApi
+import com.example.credit_risk_eval_badri_v01.interfaces.MyMLApi
 import com.example.credit_risk_eval_badri_v01.models.LoanDataModel
 import com.example.credit_risk_eval_badri_v01.models.UserModel
 import com.google.firebase.auth.FirebaseAuth
@@ -25,6 +26,9 @@ import kotlinx.coroutines.launch
 import okhttp3.Credentials
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -48,6 +52,8 @@ class BorrowerLoanDetailsFragment : Fragment() {
     private lateinit var sritScore:String
     private lateinit var loanType:String
     private lateinit var mlOutput:String
+
+    private lateinit var apiService: MyMLApi
 
 
     val USERNAME = "u0nbfzswwp"
@@ -103,6 +109,7 @@ class BorrowerLoanDetailsFragment : Fragment() {
                 Toast.makeText(requireContext(),"fill all details",Toast.LENGTH_SHORT).show()
             }
             else{
+                getOutputFromML()
                 saveLoanDetailsInDatabase()
                 postData()
             }
@@ -133,6 +140,7 @@ class BorrowerLoanDetailsFragment : Fragment() {
     }
 
     private fun saveLoanDetailsInDatabase(){
+//        getOutputFromML()
         val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val scoreReceived = sharedPreferences.getString("testScore","")!!
         var loanData = LoanDataModel(
@@ -151,7 +159,7 @@ class BorrowerLoanDetailsFragment : Fragment() {
             et8.text.toString(),
             et9.text.toString(),
             et10.text.toString(),
-            "Declined"
+            mlOutput
             )
 
         database.reference.child("loans")
@@ -196,7 +204,7 @@ class BorrowerLoanDetailsFragment : Fragment() {
 
     private fun postData() {
         RetrofitCreate()
-        getOutputFromML()
+//        getOutputFromML()
         val inputData:List<String> = listOf(
             loanType,
             et6.text.toString(),
@@ -228,7 +236,61 @@ class BorrowerLoanDetailsFragment : Fragment() {
     }
 
     private fun getOutputFromML(){
-        mlOutput = "Ml output by Badri"
+//        mlOutput = "Ml output by Badri"
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://greylifeapi-production.up.railway.app/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        apiService = retrofit.create(MyMLApi::class.java)
+        val request = MyMLApi.MyRequest(
+            listOf(
+                et1.text.toString(),
+                et3.text.toString(),
+                et4.text.toString(),
+                et5.text.toString(),
+                et6.text.toString(),
+                et7.text.toString(),
+                et8.text.toString(),
+                et9.text.toString(),
+                et10.text.toString(),
+                sritScore
+            )
+        )
+
+        apiService.postData(request).enqueue(object : Callback<MyMLApi.MyResponse> {
+            override fun onResponse(
+                call: Call<MyMLApi.MyResponse>,
+                response: Response<MyMLApi.MyResponse>
+            ) {
+                if (response.isSuccessful) {
+                    val myResponse = response.body()
+                    if (myResponse != null) {
+//                        resultTextView.text = "Prediction: ${myResponse.prediction}"
+                        val statusFromML = myResponse.prediction.toString()
+                        if(statusFromML == "1"){
+                            mlOutput = "Accepted"
+                        }
+                        else if(statusFromML == "0"){
+                            mlOutput = "Declined"
+                        }
+                        else{
+                            mlOutput = "Error from Ml"
+                        }
+                    }
+                } else {
+//                    resultTextView.text = "Error: ${response.code()}"
+                    val statusFromML = "Error from Ml"
+                    mlOutput = statusFromML
+                }
+            }
+
+            override fun onFailure(call: Call<MyMLApi.MyResponse>, t: Throwable) {
+//                resultTextView.text = "Network Error: ${t.message}"
+                val statusFromML = "Error from Ml"
+                mlOutput = statusFromML
+            }
+        })
     }
 
 
