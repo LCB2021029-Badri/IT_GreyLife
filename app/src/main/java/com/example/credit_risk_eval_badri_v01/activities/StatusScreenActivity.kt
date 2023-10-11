@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import com.example.credit_risk_eval_badri_v01.R
 import com.example.credit_risk_eval_badri_v01.databinding.ActivityStatusScreenBinding
@@ -29,6 +30,8 @@ class StatusScreenActivity : AppCompatActivity() {
     private lateinit var uid: String
     private lateinit var status:String
     private lateinit var database: FirebaseDatabase
+    private lateinit var dialog:AlertDialog
+
     val USERNAME = "u0yxvm2kkq"
     val PASSWORD = "t5OvSDtcASGoP6xRLBAfaYGZQ53XG4IpZHjorph3vtA"
     val BASE_URL =
@@ -43,39 +46,8 @@ class StatusScreenActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         enableBottomNavView()
+        getStatusFromDatabase()
 
-        //get data from database
-        uid = FirebaseAuth.getInstance().uid!!
-        database = FirebaseDatabase.getInstance()
-
-        //add uid+loantype
-        database.reference.child("loans")
-            .addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    for(snapshot1 in snapshot.children){
-                        val data = snapshot1.getValue(LoanDataModel::class.java)
-                        if(data!!.uid == uid){
-                            status = data.mlOutput.toString()
-                            if(status == "Accepted"){
-                                binding.tvStatus.text = "Accepted"
-                                binding.tvStatus.setBackgroundColor(ContextCompat.getColor(this@StatusScreenActivity, R.color.myGreen))
-                            }
-                            else if(status == "Declined"){
-                                binding.tvStatus.text = "Declined"
-                                binding.tvStatus.setBackgroundColor(ContextCompat.getColor(this@StatusScreenActivity, R.color.myRed))
-                            }
-                            else{
-                                binding.tvStatus.text = "Pending"
-                                binding.tvStatus.setBackgroundColor(ContextCompat.getColor(this@StatusScreenActivity, R.color.myGrey))
-                            }
-                            break
-                        }
-                    }
-                }
-                override fun onCancelled(error: DatabaseError) {
-//                    dialog.dismiss()
-                }
-            })
 
 
     }
@@ -107,6 +79,49 @@ class StatusScreenActivity : AppCompatActivity() {
                 else -> false
             }
         }
+    }
+
+    private fun getStatusFromDatabase(){
+        dialogBox("Fetching your loan status","Please wait...")
+        uid = FirebaseAuth.getInstance().uid!!
+        database = FirebaseDatabase.getInstance()
+        database.reference.child("loans")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for(snapshot1 in snapshot.children){
+                        val data = snapshot1.getValue(LoanDataModel::class.java)
+                        if(data!!.uid == uid){
+                            status = data.mlOutput.toString()
+                            if(status == "Accepted"){
+                                binding.tvStatus.text = "Accepted"
+                                binding.tvStatus.setBackgroundColor(ContextCompat.getColor(this@StatusScreenActivity, R.color.myGreen))
+                            }
+                            else if(status == "Declined"){
+                                binding.tvStatus.text = "Declined"
+                                binding.tvStatus.setBackgroundColor(ContextCompat.getColor(this@StatusScreenActivity, R.color.myRed))
+                            }
+                            else{
+                                binding.tvStatus.text = "Pending"
+                                binding.tvStatus.setBackgroundColor(ContextCompat.getColor(this@StatusScreenActivity, R.color.myGrey))
+                            }
+                            dialog.dismiss()
+                            break
+                        }
+                    }
+                }
+                override fun onCancelled(error: DatabaseError) {
+                    dialog.dismiss()
+                }
+            })
+    }
+
+    private fun dialogBox(title:String,message:String){
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage(message)
+        builder.setTitle(title)
+        builder.setCancelable(false)
+        dialog = builder.create()
+        dialog.show()
     }
 
 }

@@ -193,4 +193,17 @@ class SignupActivity : AppCompatActivity() {
     }
 
 
+
+//    private lateinit var dialog: AlertDialog
+//    dialogBox("Creating new account","Please Wait ...")
+//    private fun dialogBox(title:String,message:String){
+//        val builder = AlertDialog.Builder(this)
+//        builder.setMessage(message)
+//        builder.setTitle(title)
+//        builder.setCancelable(false)
+//        dialog = builder.create()
+//        dialog.show()
+//    }
+
+
 }

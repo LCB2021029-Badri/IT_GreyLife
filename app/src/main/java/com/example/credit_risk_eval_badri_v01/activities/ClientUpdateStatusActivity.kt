@@ -1,5 +1,6 @@
 package com.example.credit_risk_eval_badri_v01.activities
 
+import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
@@ -25,6 +26,7 @@ class ClientUpdateStatusActivity : AppCompatActivity() {
 
     private lateinit var binding:ActivityClientUpdateStatusBinding
     private lateinit var database: FirebaseDatabase
+    private lateinit var dialog:AlertDialog
 
     val USERNAME = "u0nbfzswwp"
     val PASSWORD = "7kw_tDTpsWWwyeOtSdJmOfj6179YXiiewyQN4WU7CGA"
@@ -72,6 +74,7 @@ class ClientUpdateStatusActivity : AppCompatActivity() {
     }
 
     private fun displayCurrentResultFromDatabase(){
+        dialogBox("Fetching data form Database","Please wait...")
         database = FirebaseDatabase.getInstance()
         uid = intent.getStringExtra("uid")!!
         database.reference.child("loans")
@@ -100,9 +103,10 @@ class ClientUpdateStatusActivity : AppCompatActivity() {
                             break
                         }
                     }
+                    dialog.dismiss()
                 }
                 override fun onCancelled(error: DatabaseError) {
-//                    dialog.dismiss()
+                    dialog.dismiss()
                 }
             })
     }
@@ -112,7 +116,7 @@ class ClientUpdateStatusActivity : AppCompatActivity() {
             //do nothing
         }
         else{
-
+            dialogBox("Updating data in Database","Please wait...")
             var loanData = LoanDataModel(
                 name,
                 uid,
@@ -138,9 +142,11 @@ class ClientUpdateStatusActivity : AppCompatActivity() {
                 .addOnSuccessListener {
 //                                startActivity(Intent(this@SignupActivity, MainActivity::class.java))
 //                                finish()
+                    dialog.dismiss()
                 }
                 .addOnFailureListener {
 //                createSnackBar(binding.root,"failed to upload data to Realtime DB","Try Again")
+                    dialog.dismiss()
                 }
 
         }
@@ -176,6 +182,7 @@ class ClientUpdateStatusActivity : AppCompatActivity() {
     }
 
     private fun postData() {
+        dialogBox("Adding updated data to the blockchain","Please wait...")
         RetrofitCreate()
         getOutputFromML()
         val inputData:List<String> = listOf(
@@ -192,16 +199,19 @@ class ClientUpdateStatusActivity : AppCompatActivity() {
 
                 if (response.isSuccessful) {
                     GlobalScope.launch(Dispatchers.Main) {
-                        Toast.makeText(this@ClientUpdateStatusActivity, "Data posted", Toast.LENGTH_SHORT).show()
+                        dialog.dismiss()
+//                        Toast.makeText(this@ClientUpdateStatusActivity, "Data posted", Toast.LENGTH_SHORT).show()
                     }
                 } else {
                     GlobalScope.launch(Dispatchers.Main) {
+                        dialog.dismiss()
                         Toast.makeText(this@ClientUpdateStatusActivity, "Data not posted", Toast.LENGTH_SHORT)
                             .show()
                     }
                 }
             } catch (e: Exception) {
                 GlobalScope.launch(Dispatchers.Main) {
+                    dialog.dismiss()
                     Toast.makeText(this@ClientUpdateStatusActivity, e.message, Toast.LENGTH_SHORT).show()
                 }
             }
@@ -210,6 +220,15 @@ class ClientUpdateStatusActivity : AppCompatActivity() {
 
     private fun getOutputFromML(){
         mlOutput = binding.etUpdateResult.text.toString()
+    }
+
+    private fun dialogBox(title:String,message:String){
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage(message)
+        builder.setTitle(title)
+        builder.setCancelable(false)
+        dialog = builder.create()
+        dialog.show()
     }
 
 

@@ -49,51 +49,12 @@ class SupportScreenActivity : AppCompatActivity() {
             }
             else{
                 //store in DB
-                val message = MessageModel(binding.etMessage.text.toString(),senderUid, Date().time)
-
-                val randomKey = database.reference.push().key
-
-                database.reference.child("chats")
-                    .child(senderUidMergedReceiverUid)
-                    .child("message")
-                    .child(randomKey!!)
-                    .setValue(message)
-                    .addOnSuccessListener {
-                        //if data saved successful for sender then we must save it in receiver also
-                        database.reference.child("chats")
-                            .child(receiverUidMergedSenderUid)
-                            .child("message")
-                            .child(randomKey!!)
-                            .setValue(message)
-                            .addOnSuccessListener {
-                                //message sent successfully
-                                binding.etMessage.text = null
-                            }
-                    }
+                saveChatToDatabase()
             }
 
         }
 
-        database.reference.child("chats")
-            .child(senderUidMergedReceiverUid)
-            .child("message")
-            .addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    list.clear()
-                    for(snapshot1 in snapshot.children){
-                        val data = snapshot1.getValue(MessageModel::class.java)
-                        list.add(data!!)
-                    }
-
-                    binding.rvChat.adapter = MessageAdapter(this@SupportScreenActivity,list)
-
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    //toast message
-                }
-
-            })
+        loadChatFromDatabase()
 
 
 
@@ -128,6 +89,51 @@ class SupportScreenActivity : AppCompatActivity() {
                 else -> false
             }
         }
+    }
+
+    private fun loadChatFromDatabase(){
+        database.reference.child("chats")
+            .child(senderUidMergedReceiverUid)
+            .child("message")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    list.clear()
+                    for(snapshot1 in snapshot.children){
+                        val data = snapshot1.getValue(MessageModel::class.java)
+                        list.add(data!!)
+                    }
+
+                    binding.rvChat.adapter = MessageAdapter(this@SupportScreenActivity,list)
+
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    //toast message
+                }
+
+            })
+    }
+
+    private fun saveChatToDatabase(){
+        val message = MessageModel(binding.etMessage.text.toString(),senderUid, Date().time)
+        val randomKey = database.reference.push().key
+        database.reference.child("chats")
+            .child(senderUidMergedReceiverUid)
+            .child("message")
+            .child(randomKey!!)
+            .setValue(message)
+            .addOnSuccessListener {
+                //if data saved successful for sender then we must save it in receiver also
+                database.reference.child("chats")
+                    .child(receiverUidMergedSenderUid)
+                    .child("message")
+                    .child(randomKey!!)
+                    .setValue(message)
+                    .addOnSuccessListener {
+                        //message sent successfully
+                        binding.etMessage.text = null
+                    }
+            }
     }
 
 }

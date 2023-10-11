@@ -1,5 +1,6 @@
 package com.example.credit_risk_eval_badri_v01.activities
 
+import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -18,6 +19,7 @@ class ClientSupportScreenActivity : AppCompatActivity() {
     private lateinit var binding:ActivityClientSupportScreenBinding
     private lateinit var database: FirebaseDatabase
     private lateinit var userList : ArrayList<UserModel>
+    private lateinit var dialog:AlertDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +56,7 @@ class ClientSupportScreenActivity : AppCompatActivity() {
     }
 
     private fun getUserListFromDatabaseAndSetToRecyclerView(){
+        dialogBox("Fetching borrower list","Please wait...")
         database = FirebaseDatabase.getInstance()
         userList = ArrayList()
 
@@ -70,14 +73,24 @@ class ClientSupportScreenActivity : AppCompatActivity() {
 
                     //update the RV adapter with the new userList if data changes
                     binding.userListRecyclerView.adapter = ChatAdapter(this@ClientSupportScreenActivity,userList)
-
+                    dialog.dismiss()
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-
+                    dialog.dismiss()
                 }
 
             })
+    }
+
+
+    private fun dialogBox(title:String,message:String){
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage(message)
+        builder.setTitle(title)
+        builder.setCancelable(false)
+        dialog = builder.create()
+        dialog.show()
     }
 
 }

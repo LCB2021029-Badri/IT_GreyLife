@@ -1,5 +1,6 @@
 package com.example.credit_risk_eval_badri_v01.activities
 
+import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -18,6 +19,7 @@ class ClientDocumentsScreenActivity : AppCompatActivity() {
     private lateinit var binding:ActivityClientDocumentsScreenBinding
     private lateinit var database: FirebaseDatabase
     private lateinit var userList : ArrayList<UserModel>
+    private lateinit var dialog: AlertDialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityClientDocumentsScreenBinding.inflate(layoutInflater)
@@ -55,7 +57,7 @@ class ClientDocumentsScreenActivity : AppCompatActivity() {
     private fun getUserListFromDatabaseAndSetToRecyclerView(){
         database = FirebaseDatabase.getInstance()
         userList = ArrayList()
-
+        dialogBox("Fetching borrowers list","Please Wait ...")
         database.reference.child("users")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -69,14 +71,25 @@ class ClientDocumentsScreenActivity : AppCompatActivity() {
 
                     //update the RV adapter with the new userList if data changes
                     binding.userListRecyclerView.adapter = DocsAdapter(this@ClientDocumentsScreenActivity,userList)
-
+                    dialog.dismiss()
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-
+                    dialog.dismiss()
                 }
 
             })
+    }
+
+
+
+    private fun dialogBox(title:String,message:String){
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage(message)
+        builder.setTitle(title)
+        builder.setCancelable(false)
+        dialog = builder.create()
+        dialog.show()
     }
 
 

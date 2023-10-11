@@ -1,5 +1,6 @@
 package com.example.credit_risk_eval_badri_v01.activities
 
+import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.credit_risk_eval_badri_v01.R
@@ -25,6 +26,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class DocsDetailsActivity : AppCompatActivity() {
 
+    private lateinit var dialog:AlertDialog
+
     private lateinit var binding:ActivityDocsDetailsBinding
     private lateinit var uid: String
     private lateinit var database: FirebaseDatabase
@@ -43,36 +46,8 @@ class DocsDetailsActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance()
 
         //add uid+loantype
-        database.reference.child("loans")
-            .addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    for(snapshot1 in snapshot.children){
-                        val data = snapshot1.getValue(LoanDataModel::class.java)
-                        if(data!!.uid == uid){
-                            binding.tv1.text = data.name
-                            binding.tv2.text = data.uid
-                            binding.tv3.text = data.loanType
-                            binding.tv4.text = data.noOfDependents
-                            binding.tv5.text = data.education
-                            binding.tv6.text = data.sritscore
-                            binding.tv7.text = data.etIncomeeAnnum
-                            binding.tv8.text = data.etLoanAmount
-                            binding.tv9.text = data.etLoanTerm
-                            binding.tv10.text = data.etCIBILScore
-                            binding.tv11.text = data.etResedentialAssetsValie
-                            binding.tv12.text = data.etCommercialAssetsValue
-                            binding.tv13.text = data.etLuxuryAssetsValue
-                            binding.tv14.text = data.etBankAsssetsValue
-                            binding.tv15.text = data.mlOutput
-                            binding.tv16.text = data.email
-                            break
-                        }
-                    }
-                }
-                override fun onCancelled(error: DatabaseError) {
-//                    dialog.dismiss()
-                }
-            })
+
+        saveUpdatedDataToDatabase()
 
         getData()
     }
@@ -109,6 +84,7 @@ class DocsDetailsActivity : AppCompatActivity() {
 
 
     private fun getData() {
+        dialogBox("Fetching data form Blockchain","Please wait...")
         RetrofitCreate()
         GlobalScope.launch(Dispatchers.IO) {
             try {
@@ -123,6 +99,7 @@ class DocsDetailsActivity : AppCompatActivity() {
                             binding.tvbc3.text = output[2]
                             binding.tvbc4.text = output[3]
                             binding.tvbc5.text = output[4]
+                            dialog.dismiss()
                         }
                     }
                 } else {
@@ -130,17 +107,65 @@ class DocsDetailsActivity : AppCompatActivity() {
 
                         runOnUiThread {
                             binding.tvTesting.text = ("Data retrieval failed")
+                            dialog.dismiss()
                         }
                     }
                 }
+//                dialog.dismiss()
             } catch (e: Exception) {
                 GlobalScope.launch(Dispatchers.Main) {
                     runOnUiThread {
                         binding.tvTesting.text = ("Error: ${e.message}")
+                        dialog.dismiss()
                     }
                 }
             }
         }
+        dialog.dismiss()
+    }
+
+    private fun dialogBox(title:String,message:String){
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage(message)
+        builder.setTitle(title)
+        builder.setCancelable(false)
+        dialog = builder.create()
+        dialog.show()
+    }
+
+    private fun saveUpdatedDataToDatabase(){
+        database.reference.child("loans")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    dialogBox("Fetching data from database","please wait...")
+                    for(snapshot1 in snapshot.children){
+                        val data = snapshot1.getValue(LoanDataModel::class.java)
+                        if(data!!.uid == uid){
+                            binding.tv1.text = data.name
+                            binding.tv2.text = data.uid
+                            binding.tv3.text = data.loanType
+                            binding.tv4.text = data.noOfDependents
+                            binding.tv5.text = data.education
+                            binding.tv6.text = data.sritscore
+                            binding.tv7.text = data.etIncomeeAnnum
+                            binding.tv8.text = data.etLoanAmount
+                            binding.tv9.text = data.etLoanTerm
+                            binding.tv10.text = data.etCIBILScore
+                            binding.tv11.text = data.etResedentialAssetsValie
+                            binding.tv12.text = data.etCommercialAssetsValue
+                            binding.tv13.text = data.etLuxuryAssetsValue
+                            binding.tv14.text = data.etBankAsssetsValue
+                            binding.tv15.text = data.mlOutput
+                            binding.tv16.text = data.email
+                            dialog.dismiss()
+                            break
+                        }
+                    }
+                }
+                override fun onCancelled(error: DatabaseError) {
+                    dialog.dismiss()
+                }
+            })
     }
 
 

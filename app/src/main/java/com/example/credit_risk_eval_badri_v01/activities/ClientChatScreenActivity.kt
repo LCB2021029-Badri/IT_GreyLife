@@ -3,6 +3,7 @@ package com.example.credit_risk_eval_badri_v01.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import com.example.credit_risk_eval_badri_v01.R
 import com.example.credit_risk_eval_badri_v01.adapters.MessageAdapter
 import com.example.credit_risk_eval_badri_v01.databinding.ActivityClientChatScreenBinding
@@ -25,6 +26,7 @@ class ClientChatScreenActivity : AppCompatActivity() {
     private lateinit var senderUidMergedReceiverUid:String
     private lateinit var receiverUidMergedSenderUid:String
     private lateinit var list:ArrayList<MessageModel>
+    private lateinit var dialog: AlertDialog
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,29 +48,39 @@ class ClientChatScreenActivity : AppCompatActivity() {
             }
             else{
                 //store in DB
-                val message = MessageModel(binding.etMessage.text.toString(),senderUid, Date().time)
-                val randomKey = database.reference.push().key
-                database.reference.child("chats")
-                    .child(senderUidMergedReceiverUid)
-                    .child("message")
-                    .child(randomKey!!)
-                    .setValue(message)
-                    .addOnSuccessListener {
-                        //if data saved successful for sender then we must save it in receiver also
-                        database.reference.child("chats")
-                            .child(receiverUidMergedSenderUid)
-                            .child("message")
-                            .child(randomKey!!)
-                            .setValue(message)
-                            .addOnSuccessListener {
-                                //message sent successfully
-                                binding.etMessage.text = null
-                            }
-                    }
+                saveChatInDatabase()
             }
 
         }
 
+        loadChatFromDatabase()
+
+
+    }
+
+    private fun saveChatInDatabase(){
+        val message = MessageModel(binding.etMessage.text.toString(),senderUid, Date().time)
+        val randomKey = database.reference.push().key
+        database.reference.child("chats")
+            .child(senderUidMergedReceiverUid)
+            .child("message")
+            .child(randomKey!!)
+            .setValue(message)
+            .addOnSuccessListener {
+                //if data saved successful for sender then we must save it in receiver also
+                database.reference.child("chats")
+                    .child(receiverUidMergedSenderUid)
+                    .child("message")
+                    .child(randomKey!!)
+                    .setValue(message)
+                    .addOnSuccessListener {
+                        //message sent successfully
+                        binding.etMessage.text = null
+                    }
+            }
+    }
+
+    private fun loadChatFromDatabase(){
         database.reference.child("chats")
             .child(senderUidMergedReceiverUid)
             .child("message")
@@ -89,9 +101,16 @@ class ClientChatScreenActivity : AppCompatActivity() {
                 }
 
             })
-
-
     }
+    private fun dialogBox(title:String,message:String){
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage(message)
+        builder.setTitle(title)
+        builder.setCancelable(false)
+        dialog = builder.create()
+        dialog.show()
+    }
+
 
 
 }
