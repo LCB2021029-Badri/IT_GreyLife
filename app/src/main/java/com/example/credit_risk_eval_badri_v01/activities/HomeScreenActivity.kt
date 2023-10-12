@@ -4,11 +4,18 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.example.credit_risk_eval_badri_v01.R
 import com.example.credit_risk_eval_badri_v01.adapters.LoanTypeAdapter
 import com.example.credit_risk_eval_badri_v01.models.LoanTypeModel
 import com.example.credit_risk_eval_badri_v01.databinding.ActivityHomeScreenBinding
+import com.example.credit_risk_eval_badri_v01.models.UserModel
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class HomeScreenActivity : AppCompatActivity() {
 
@@ -16,6 +23,8 @@ class HomeScreenActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var loanTypeAdapter: LoanTypeAdapter
     private lateinit var loanTypeList: ArrayList<LoanTypeModel>
+    private lateinit var dialog:AlertDialog
+    private lateinit var database: FirebaseDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +33,7 @@ class HomeScreenActivity : AppCompatActivity() {
 
         enableBottomNavView()
         enableRecyclerView()
+        getNameFromDatabase()
 
 
 //        score = intent.getStringExtra("testScore")!!
@@ -80,6 +90,38 @@ class HomeScreenActivity : AppCompatActivity() {
                 else -> false
             }
         }
+    }
+
+    private fun getNameFromDatabase(){
+        database = FirebaseDatabase.getInstance()
+        dialogBox("Retrieving Data from FB Realtime DB","Please Wait ...")
+        database.reference.child("users")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for(snapshot1 in snapshot.children){
+                        val user = snapshot1.getValue(UserModel::class.java)
+                        if(user!!.uid == FirebaseAuth.getInstance().uid){
+                            binding.tvUsername.text = user.name
+                            dialog.dismiss()
+                            break
+                        }
+                    }
+
+                }
+                override fun onCancelled(error: DatabaseError) {
+                    dialog.dismiss()
+                }
+            })
+    }
+
+
+    private fun dialogBox(title:String,message:String){
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage(message)
+        builder.setTitle(title)
+        builder.setCancelable(false)
+        dialog = builder.create()
+        dialog.show()
     }
 
 
