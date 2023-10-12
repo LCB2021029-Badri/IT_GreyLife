@@ -151,7 +151,6 @@ class BorrowerLoanDetailsFragment : Fragment() {
             .baseUrl(BASE2_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(
-                //-----------------------
                 OkHttpClient.Builder()
                     .addInterceptor(HttpLoggingInterceptor().apply {
                         level = HttpLoggingInterceptor.Level.BODY
@@ -163,7 +162,6 @@ class BorrowerLoanDetailsFragment : Fragment() {
                         chain.proceed(newRequest)
                     }
                     .build()
-                //------------------------
             )
             .build()
 
