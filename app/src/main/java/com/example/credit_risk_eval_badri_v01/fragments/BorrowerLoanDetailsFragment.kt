@@ -1,5 +1,6 @@
 package com.example.credit_risk_eval_badri_v01.fragments
 
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -35,6 +36,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class BorrowerLoanDetailsFragment : Fragment() {
 
     private lateinit var database: FirebaseDatabase
+    private lateinit var dialog:AlertDialog
 
     private lateinit var et1:EditText
     private lateinit var et2:EditText
@@ -69,9 +71,6 @@ class BorrowerLoanDetailsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view =  inflater.inflate(R.layout.fragment_borrower_loan_details, container, false)
-
-        val btnNext:Button = view.findViewById(R.id.btnSubmit)
-        val tvLoanType:TextView = view.findViewById(R.id.tvLoanType)
         et1= view.findViewById(R.id.etNoOfDependents)
         et2 = view.findViewById(R.id.etEducation)
         et3 = view.findViewById(R.id.etIncomeAnnum)
@@ -82,24 +81,15 @@ class BorrowerLoanDetailsFragment : Fragment() {
         et8 = view.findViewById(R.id.etCommercialAssetsValue)
         et9 = view.findViewById(R.id.etLuxuryAssetsValue)
         et10 = view.findViewById(R.id.etBankAsssetsValue)
+        val btnNext:Button = view.findViewById(R.id.btnSubmit)
+        val tvLoanType:TextView = view.findViewById(R.id.tvLoanType)
         //--------------------
         initializeData()
         //---------------------
         tvLoanType.text = loanType
         btnNext.setOnClickListener {
-            if(
-                et1.text.isNullOrEmpty()||
-                et2.text.isNullOrEmpty()||
-                et3.text.isNullOrEmpty()||
-                et4.text.isNullOrEmpty()||
-                et5.text.isNullOrEmpty()||
-                et6.text.isNullOrEmpty()||
-                et7.text.isNullOrEmpty()||
-                et8.text.isNullOrEmpty()||
-                et9.text.isNullOrEmpty()||
-                et10.text.isNullOrEmpty()
+            if(et1.text.isNullOrEmpty()|| et2.text.isNullOrEmpty()|| et3.text.isNullOrEmpty()|| et4.text.isNullOrEmpty()|| et5.text.isNullOrEmpty()|| et6.text.isNullOrEmpty()|| et7.text.isNullOrEmpty()|| et8.text.isNullOrEmpty()|| et9.text.isNullOrEmpty()|| et10.text.isNullOrEmpty()
             ){
-                //check empty attributes
                 Toast.makeText(requireContext(),"fill all details",Toast.LENGTH_SHORT).show()
             }
             else{
@@ -137,36 +127,18 @@ class BorrowerLoanDetailsFragment : Fragment() {
     }
 
     private fun saveLoanDetailsInDatabase(mlOutput:String){
+        dialogBox("Saving Data in Database","Please wait")
         val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val scoreReceived = sharedPreferences.getString("testScore","")!!
-        var loanData = LoanDataModel(
-            userName,
-            uid,
-            email,
-            loanType,
-            et1.text.toString(),
-            et2.text.toString(),
-            scoreReceived,
-            et3.text.toString(),
-            et4.text.toString(),
-            et5.text.toString(),
-            et6.text.toString(),
-            et7.text.toString(),
-            et8.text.toString(),
-            et9.text.toString(),
-            et10.text.toString(),
-            mlOutput
-            )
-
+        var loanData = LoanDataModel(userName, uid, email, loanType, et1.text.toString(), et2.text.toString(), scoreReceived, et3.text.toString(), et4.text.toString(), et5.text.toString(), et6.text.toString(), et7.text.toString(), et8.text.toString(), et9.text.toString(), et10.text.toString(), mlOutput)
         database.reference.child("loans")
             .child(uid)
             .setValue(loanData)
             .addOnSuccessListener {
-//                                startActivity(Intent(this@SignupActivity, MainActivity::class.java))
-//                                finish()
+                dialog.dismiss()
             }
             .addOnFailureListener {
-//                createSnackBar(binding.root,"failed to upload data to Realtime DB","Try Again")
+                dialog.dismiss()
             }
     }
 
@@ -214,11 +186,11 @@ class BorrowerLoanDetailsFragment : Fragment() {
 
                 if (response.isSuccessful) {
                     GlobalScope.launch(Dispatchers.Main) {
-                        Toast.makeText(requireContext(), "Data posted", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "blockchain transaction successful", Toast.LENGTH_SHORT).show()
                     }
                 } else {
                     GlobalScope.launch(Dispatchers.Main) {
-                        Toast.makeText(requireContext(), "Data not posted", Toast.LENGTH_SHORT)
+                        Toast.makeText(requireContext(), "blockchain transaction failed", Toast.LENGTH_SHORT)
                             .show()
                     }
                 }
@@ -279,6 +251,7 @@ class BorrowerLoanDetailsFragment : Fragment() {
                             postData(mlOutput)
                         }
                     }
+
                 } else {
 //                    resultTextView.text = "Error: ${response.code()}"
                     mlOutput = "Error from Ml"
@@ -294,6 +267,15 @@ class BorrowerLoanDetailsFragment : Fragment() {
                 postData(mlOutput)
             }
         })
+    }
+
+    private fun dialogBox(title:String,message:String){
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setMessage(message)
+        builder.setTitle(title)
+        builder.setCancelable(false)
+        dialog = builder.create()
+        dialog.show()
     }
 
 

@@ -35,16 +35,41 @@ class MainActivity : AppCompatActivity() {
 
         auth = Firebase.auth
         database = FirebaseDatabase.getInstance()
-
         checkLogin()
-        checkLenderStatusFromDB()
 
-        binding.btnSpare.setOnClickListener {
-            val intent = Intent(this, SpareActivity::class.java)
-            intent.putExtra("key", lendingStatus) // Put data with a key
-            startActivity(intent)
-            finish()
-        }
+        dialogBox("Retrieving Lender? Status Data from FB Realtime DB","Please Wait ...")
+        database.reference.child("users")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for(snapshot1 in snapshot.children){
+                        val user = snapshot1.getValue(UserModel::class.java)
+                        if(user!!.uid == FirebaseAuth.getInstance().uid){
+                            dialog.dismiss()
+                            lendingStatus = user!!.lender
+//                            binding.tvLending.text = lendingStatus
+//                            binding.tvLinks.text = user!!.links.toString()
+                            val intent = Intent(this@MainActivity, SpareActivity::class.java)
+                            intent.putExtra("key", lendingStatus) // Put data with a key
+                            startActivity(intent)
+                            finish()
+                            break
+                        }
+                    }
+
+                }
+                override fun onCancelled(error: DatabaseError) {
+                    dialog.dismiss()
+                }
+            })
+
+
+//        checkLenderStatusFromDB()
+//        binding.btnSpare.setOnClickListener {
+//            val intent = Intent(this, SpareActivity::class.java)
+//            intent.putExtra("key", lendingStatus) // Put data with a key
+//            startActivity(intent)
+//            finish()
+//        }
 
         binding.btnAssessmentActivity.setOnClickListener {
             startActivity(Intent(applicationContext, PersonalityAssessmentActivity::class.java))
@@ -65,11 +90,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this,ClientDocumentsScreenActivity::class.java))
         }
 
-//        binding.btnUpdateDb.setOnClickListener {
-//            updateDatabaseValue()
-//        }
-//        assignLeastLinkedLender()
-
     }
 
     private fun checkLogin(){
@@ -82,26 +102,26 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkLenderStatusFromDB(){
-        dialogBox("Retrieving Lender? Status Data from FB Realtime DB","Please Wait ...")
-        database.reference.child("users")
-            .addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    for(snapshot1 in snapshot.children){
-                        val user = snapshot1.getValue(UserModel::class.java)
-                        if(user!!.uid == FirebaseAuth.getInstance().uid){
-                            dialog.dismiss()
-                            lendingStatus = user!!.lender
-                            binding.tvLending.text = lendingStatus
-                            binding.tvLinks.text = user!!.links.toString()
-                            break
-                        }
-                    }
-
-                }
-                override fun onCancelled(error: DatabaseError) {
-                    dialog.dismiss()
-                }
-            })
+//        dialogBox("Retrieving Lender? Status Data from FB Realtime DB","Please Wait ...")
+//        database.reference.child("users")
+//            .addValueEventListener(object : ValueEventListener {
+//                override fun onDataChange(snapshot: DataSnapshot) {
+//                    for(snapshot1 in snapshot.children){
+//                        val user = snapshot1.getValue(UserModel::class.java)
+//                        if(user!!.uid == FirebaseAuth.getInstance().uid){
+//                            dialog.dismiss()
+//                            lendingStatus = user!!.lender
+//                            binding.tvLending.text = lendingStatus
+//                            binding.tvLinks.text = user!!.links.toString()
+//                            break
+//                        }
+//                    }
+//
+//                }
+//                override fun onCancelled(error: DatabaseError) {
+//                    dialog.dismiss()
+//                }
+//            })
     }
     private fun dialogBox(title:String,message:String){
         val builder = AlertDialog.Builder(this)
@@ -111,14 +131,6 @@ class MainActivity : AppCompatActivity() {
         dialog = builder.create()
         dialog.show()
     }
-
-//    private fun updateDatabaseValue(){
-//        val authRef = FirebaseAuth.getInstance()
-//        val dbRef = FirebaseDatabase.getInstance().getReference("users").child(authRef.uid.toString())
-//        val updatedInfo = UserModel(auth.uid.toString(),"1","1","1")
-//        dbRef.setValue(updatedInfo)
-//    }
-
 
 
 }
