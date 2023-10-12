@@ -4,8 +4,8 @@
 
     <item
         android:id="@+id/documentsScreen"
-        android:icon="@drawable/ic_docs"
-        android:title="Documents"  />
+        android:icon="@drawable/ic_homescreen"
+        android:title="Home"  />
     <item
         android:id="@+id/supportScreen"
         android:icon="@drawable/ic_supportscreen"

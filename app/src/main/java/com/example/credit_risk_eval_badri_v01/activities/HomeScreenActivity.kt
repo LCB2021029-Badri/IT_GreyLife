@@ -4,18 +4,22 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
+import com.example.credit_risk_eval_badri_v01.MainActivity
 import com.example.credit_risk_eval_badri_v01.R
 import com.example.credit_risk_eval_badri_v01.adapters.LoanTypeAdapter
 import com.example.credit_risk_eval_badri_v01.models.LoanTypeModel
 import com.example.credit_risk_eval_badri_v01.databinding.ActivityHomeScreenBinding
 import com.example.credit_risk_eval_badri_v01.models.UserModel
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.ktx.Firebase
 
 class HomeScreenActivity : AppCompatActivity() {
 
@@ -25,6 +29,7 @@ class HomeScreenActivity : AppCompatActivity() {
     private lateinit var loanTypeList: ArrayList<LoanTypeModel>
     private lateinit var dialog:AlertDialog
     private lateinit var database: FirebaseDatabase
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +39,10 @@ class HomeScreenActivity : AppCompatActivity() {
         enableBottomNavView()
         enableRecyclerView()
         getNameFromDatabase()
+
+        binding.btnLogout.setOnClickListener {
+            logout()
+        }
 
 
 //        score = intent.getStringExtra("testScore")!!
@@ -122,6 +131,14 @@ class HomeScreenActivity : AppCompatActivity() {
         builder.setCancelable(false)
         dialog = builder.create()
         dialog.show()
+    }
+
+    private fun logout(){
+        auth = Firebase.auth
+        Toast.makeText(applicationContext,"Logged out", Toast.LENGTH_SHORT).show()
+        auth.signOut()
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 
 

@@ -48,8 +48,21 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="15dp"
         android:text="100"
+        android:visibility="gone"
         android:textSize="20sp"
         android:textColor="@color/myYellow"/>
+
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:backgroundTint="@color/myYellow"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        android:text="Logout"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

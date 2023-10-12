@@ -187,7 +187,7 @@ class SignupActivity : AppCompatActivity() {
 
 
         dialog.dismiss()
-        startActivity(Intent(this@SignupActivity, MainActivity::class.java))
+        startActivity(Intent(this@SignupActivity, LoginActivity::class.java))
         finish()
 
     }

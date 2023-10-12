@@ -1,5 +1,6 @@
 package com.example.credit_risk_eval_badri_v01.activities
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,17 +15,23 @@ class SpareActivity : AppCompatActivity() {
         binding = ActivitySpareBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // In your second activity
         val receivedData = intent.getStringExtra("key")
-//        binding.tvtext.text = receivedData
+        val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val score = sharedPreferences.getString("testScore","")
 
         if(receivedData=="1"){
             startActivity(Intent(applicationContext, ClientDocumentsScreenActivity::class.java))
             finish()
         }
         else if(receivedData=="0"){
-            startActivity(Intent(applicationContext, PersonalityAssessmentActivity::class.java))
-            finish()
+            if(score=="") {
+                startActivity(Intent(applicationContext, PersonalityAssessmentActivity::class.java))
+                finish()
+            }
+            else{
+                startActivity(Intent(applicationContext, HomeScreenActivity::class.java))
+                finish()
+            }
         }
         else{
 

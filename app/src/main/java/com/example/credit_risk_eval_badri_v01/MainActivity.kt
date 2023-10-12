@@ -43,6 +43,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, SpareActivity::class.java)
             intent.putExtra("key", lendingStatus) // Put data with a key
             startActivity(intent)
+            finish()
         }
 
         binding.btnAssessmentActivity.setOnClickListener {
@@ -76,6 +77,7 @@ class MainActivity : AppCompatActivity() {
         if (currentUser == null) {
             val intent = Intent(this,LoginActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 

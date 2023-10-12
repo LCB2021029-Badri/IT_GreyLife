@@ -20,16 +20,40 @@
             android:id="@+id/tvCommon"
             android:textSize="24sp"
             android:textStyle="bold"
+            android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/myYellow"
             android:text="Customer Documents"/>
 
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/myYellow"
+            android:textColor="@color/black"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="10dp"
+            android:text="Logout"/>
+
+<!--        <Button-->
+<!--            android:id="@+id/btnLogout"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_marginRight="10dp"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:backgroundTint="@color/myYellow"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:text="Logout"/>-->
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/userListRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/tvCommon"
+            android:layout_below="@id/btnLogout"
             android:layout_marginHorizontal="5dp"
             tools:listitem="@layout/client_chat_user_item_layout"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>

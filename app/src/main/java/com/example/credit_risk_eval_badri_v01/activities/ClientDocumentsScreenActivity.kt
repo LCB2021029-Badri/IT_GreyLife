@@ -4,15 +4,19 @@ import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import com.example.credit_risk_eval_badri_v01.MainActivity
 import com.example.credit_risk_eval_badri_v01.R
 import com.example.credit_risk_eval_badri_v01.adapters.DocsAdapter
 import com.example.credit_risk_eval_badri_v01.databinding.ActivityClientDocumentsScreenBinding
 import com.example.credit_risk_eval_badri_v01.models.UserModel
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.ktx.Firebase
 
 class ClientDocumentsScreenActivity : AppCompatActivity() {
 
@@ -20,6 +24,7 @@ class ClientDocumentsScreenActivity : AppCompatActivity() {
     private lateinit var database: FirebaseDatabase
     private lateinit var userList : ArrayList<UserModel>
     private lateinit var dialog: AlertDialog
+    private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityClientDocumentsScreenBinding.inflate(layoutInflater)
@@ -28,6 +33,9 @@ class ClientDocumentsScreenActivity : AppCompatActivity() {
         enableBottomNavView()
         getUserListFromDatabaseAndSetToRecyclerView()
 
+        binding.btnLogout.setOnClickListener {
+            logout()
+        }
     }
 
     private fun enableBottomNavView(){
@@ -90,6 +98,14 @@ class ClientDocumentsScreenActivity : AppCompatActivity() {
         builder.setCancelable(false)
         dialog = builder.create()
         dialog.show()
+    }
+
+    private fun logout(){
+        auth = Firebase.auth
+        Toast.makeText(applicationContext,"Logged out", Toast.LENGTH_SHORT).show()
+        auth.signOut()
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 
 
