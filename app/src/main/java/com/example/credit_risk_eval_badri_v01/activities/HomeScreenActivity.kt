@@ -44,6 +44,10 @@ class HomeScreenActivity : AppCompatActivity() {
             logout()
         }
 
+        binding.srit.setOnClickListener {
+            startActivity(Intent(this, PersonalityAssessmentActivity::class.java))
+        }
+
 
 //        score = intent.getStringExtra("testScore")!!
 //        binding.tvTestScore.text = score

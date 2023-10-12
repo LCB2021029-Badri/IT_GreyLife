@@ -52,7 +52,19 @@
         android:textSize="20sp"
         android:textColor="@color/myYellow"/>
 
-    <Button
+<!--    <Button-->
+<!--        android:id="@+id/btnLogout"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:backgroundTint="@color/myYellow"-->
+<!--        android:layout_marginRight="10dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:text="Logout"/>-->
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -60,9 +72,24 @@
         android:layout_alignParentTop="true"
         android:backgroundTint="@color/myYellow"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:textColor="@color/black"
         android:text="Logout"/>
+
+    <TextView
+        android:id="@+id/srit"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@id/btnLogout"
+        android:layout_above="@id/recyclerView"
+        android:gravity="right|center_vertical"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@id/tvWelcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/myYellow"
+        android:textStyle="italic"
+        android:text="SRIT"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
