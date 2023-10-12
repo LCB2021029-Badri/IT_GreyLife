@@ -35,7 +35,6 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(this,SignupActivity::class.java)
             startActivity(intent)
         }
-
 //        dialogBox("Retrieving Lender? Status Data from FB Realtime DB","Please Wait ...")
 //        private lateinit var dialog: AlertDialog
 //        private fun dialogBox(title:String,message:String){
