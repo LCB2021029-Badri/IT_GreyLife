@@ -303,6 +303,28 @@
 
             </LinearLayout>
 
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="hello"-->
+<!--                android:textColor="@color/myYellow"/>-->
+
+            <EditText
+                android:id="@+id/etSelectPdf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/myYellow"
+                android:hint="tap 2 times to upload pdf"/>
+
+            <Button
+                android:id="@+id/btnUpload"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/myYellow"
+                android:textColor="@color/black"
+                android:text="Upload Pdf"/>
+
+
 
         </LinearLayout>
 

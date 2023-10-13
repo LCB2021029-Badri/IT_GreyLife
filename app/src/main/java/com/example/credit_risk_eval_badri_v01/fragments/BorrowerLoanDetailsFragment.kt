@@ -1,9 +1,13 @@
 package com.example.credit_risk_eval_badri_v01.fragments
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
+import android.database.Cursor
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.provider.OpenableColumns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,16 +15,21 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.example.credit_risk_eval_badri_v01.R
 import com.example.credit_risk_eval_badri_v01.interfaces.MyBlockchainApi
 import com.example.credit_risk_eval_badri_v01.interfaces.MyMLApi
+import com.example.credit_risk_eval_badri_v01.models.FileinModel
 import com.example.credit_risk_eval_badri_v01.models.LoanDataModel
 import com.example.credit_risk_eval_badri_v01.models.UserModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -32,10 +41,14 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.File
 
 class BorrowerLoanDetailsFragment : Fragment() {
 
     private lateinit var database: FirebaseDatabase
+    private lateinit var storageReference: StorageReference
+    private lateinit var databaseReference: DatabaseReference
+    private lateinit var apiService: MyMLApi
     private lateinit var dialog:AlertDialog
 
     private lateinit var et1:EditText
@@ -55,7 +68,10 @@ class BorrowerLoanDetailsFragment : Fragment() {
     private lateinit var loanType:String
     private lateinit var mlOutput:String
 
-    private lateinit var apiService: MyMLApi
+
+
+    private lateinit var etSelectPdf:EditText
+    private lateinit var btnUpload:Button
 
 
     val USERNAME = "u0nbfzswwp"
@@ -83,9 +99,18 @@ class BorrowerLoanDetailsFragment : Fragment() {
         et10 = view.findViewById(R.id.etBankAsssetsValue)
         val btnNext:Button = view.findViewById(R.id.btnSubmit)
         val tvLoanType:TextView = view.findViewById(R.id.tvLoanType)
+        etSelectPdf = view.findViewById(R.id.etSelectPdf)
+        btnUpload = view.findViewById(R.id.btnUpload)
         //--------------------
         initializeData()
         //---------------------
+
+        //------------
+        etSelectPdf.setOnClickListener {
+            selectPDF()
+        }
+        //------------
+
         tvLoanType.text = loanType
         btnNext.setOnClickListener {
             if(et1.text.isNullOrEmpty()|| et2.text.isNullOrEmpty()|| et3.text.isNullOrEmpty()|| et4.text.isNullOrEmpty()|| et5.text.isNullOrEmpty()|| et6.text.isNullOrEmpty()|| et7.text.isNullOrEmpty()|| et8.text.isNullOrEmpty()|| et9.text.isNullOrEmpty()|| et10.text.isNullOrEmpty()
@@ -99,6 +124,78 @@ class BorrowerLoanDetailsFragment : Fragment() {
             }
         }
         return view
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+
+        if (requestCode == 101 && resultCode == Activity.RESULT_OK && data != null && data.data != null) {
+            val uri = data.data
+
+            //we need the file name of the pdf file, so extract the name of the pdf file
+            val uriString = uri.toString()
+            val myFile = File(uriString)
+            val path = myFile.absolutePath
+            var displayName: String? = null
+            if (uriString.startsWith("content://")) {
+                var cursor: Cursor? = null
+                try {
+                    //--------------------
+                    cursor = requireContext().getContentResolver().query(uri!!, null, null, null, null)
+                    if (cursor != null && cursor.moveToFirst()) {
+                        displayName =
+                            cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME))
+                    }
+                } finally {
+                    cursor!!.close()
+                }
+            } else if (uriString.startsWith("file://")) {
+                displayName = myFile.name
+            }
+            etSelectPdf.setText(displayName)
+            btnUpload.setOnClickListener(View.OnClickListener { uploadPDF(data.data!!) })
+        }
+
+    }
+
+
+    private fun uploadPDF(data: Uri) {
+        storageReference = FirebaseStorage.getInstance().reference
+        databaseReference = FirebaseDatabase.getInstance().getReference("pdfs")
+
+        val reference = storageReference.child("uploads/" + System.currentTimeMillis() + ".pdf")
+        // store in upload folder of the Firebase storage
+        // store in upload folder of the Firebase storage
+        reference.putFile(data)
+            .addOnSuccessListener { taskSnapshot ->
+                val uriTask = taskSnapshot.storage.downloadUrl
+                while (!uriTask.isComplete);
+                val uri = uriTask.result
+                val fileinModel =
+                    FileinModel(
+                        etSelectPdf.getText().toString(),
+                        uri.toString()
+                    ) //get the views from the model class
+                databaseReference.child(databaseReference.push().key!!)
+                    .setValue(fileinModel) // push the value into the realtime database
+                Toast.makeText(
+                    requireContext(),
+                    "File Uploaded Successfully!!",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }.addOnProgressListener { snapshot ->
+                val percent = (100 * snapshot.bytesTransferred / snapshot.totalByteCount).toFloat()
+            }
+
+    }
+
+    private fun selectPDF(){
+        val intent = Intent()
+        intent.type = "application/pdf"
+        intent.action = Intent.ACTION_GET_CONTENT
+        startActivityForResult(Intent.createChooser(intent, "Select Pdf files"), 101)
     }
 
     private fun initializeData(){
@@ -275,6 +372,5 @@ class BorrowerLoanDetailsFragment : Fragment() {
         dialog = builder.create()
         dialog.show()
     }
-
 
 }
