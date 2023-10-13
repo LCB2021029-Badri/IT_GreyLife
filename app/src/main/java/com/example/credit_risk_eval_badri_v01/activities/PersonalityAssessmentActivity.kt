@@ -7,8 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
+import com.example.credit_risk_eval_badri_v01.R
 import com.example.credit_risk_eval_badri_v01.adapters.PersonalityAssessmentAdapter
 import com.example.credit_risk_eval_badri_v01.models.PersonalityAssessmentQuestionModel
 import com.example.credit_risk_eval_badri_v01.databinding.ActivityPersonalityAssessmentBinding
@@ -223,12 +225,13 @@ class PersonalityAssessmentActivity : AppCompatActivity() {
     private fun defaultFragmentDisplayed(){
         val fragmentContainer = binding.fragmentContainerView
         // Check if the fragment is already added to avoid adding it multiple times
-            val defaultFragment = AssessmentDefaultFragment()
-            val transaction = supportFragmentManager.beginTransaction()
-            transaction.replace(fragmentContainer.id, defaultFragment, "DefaultFragmentTag")
-            transaction.addToBackStack(null) // Add to back stack if needed
-            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-            transaction.commit()
+        val defaultFragment = AssessmentDefaultFragment()
+        val fragmentManager = supportFragmentManager
+        fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        val transaction = fragmentManager.beginTransaction()
+        transaction.replace(fragmentContainer.id, defaultFragment)
+        transaction.commit()
+
     }
 
 

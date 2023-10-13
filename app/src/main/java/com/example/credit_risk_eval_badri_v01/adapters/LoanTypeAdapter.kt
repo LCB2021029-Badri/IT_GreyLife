@@ -57,10 +57,7 @@ class LoanTypeAdapter(private val loanTypeList:ArrayList<LoanTypeModel>, private
 //                    .commit()
 
                 val fragmentManager = activity.supportFragmentManager
-
-                // Clear the back stack before replacing the current fragment
                 fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-
                 val transaction = fragmentManager.beginTransaction()
                 transaction.replace(R.id.fragmentContainerView, borrowerLoanDetailsFragment)
                 transaction.commit()

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.example.credit_risk_eval_badri_v01.MainActivity
@@ -152,11 +153,12 @@ class HomeScreenActivity : AppCompatActivity() {
         val fragmentContainer = binding.fragmentContainerView
         // Check if the fragment is already added to avoid adding it multiple times
         val defaultFragment = LoanDefaultFragment()
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(fragmentContainer.id, defaultFragment, "DefaultFragmentTag")
-        transaction.addToBackStack(null) // Add to back stack if needed
-        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+        val fragmentManager = supportFragmentManager
+        fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        val transaction = fragmentManager.beginTransaction()
+        transaction.replace(fragmentContainer.id, defaultFragment)
         transaction.commit()
+
     }
 
 
