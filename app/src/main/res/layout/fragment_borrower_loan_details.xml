@@ -16,6 +16,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/myWhite"
         android:textSize="18sp"
+        android:textStyle="bold|italic"
         android:text="Details for "/>
 
     <TextView
@@ -35,6 +36,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/myWhite"
         android:textSize="18sp"
+        android:textStyle="bold|italic"
         android:text=" Loan"/>
 
     <ScrollView
@@ -51,102 +53,255 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/etNoOfDependents"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="No of Dependents"
-                android:textColor="@color/myWhite"
-                android:textColorHint="@color/myWhite"
-                android:backgroundTint="@color/myWhite"/>
+                android:weightSum="2"
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/etIncomeAnnum"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/myWhite"
+                    android:text="No of Dependents:"/>
+
+                <EditText
+                    android:id="@+id/etNoOfDependents"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="No of Dependents"
+                    android:textColor="@color/myYellow"
+                    android:textColorHint="@color/myWhite"
+                    android:backgroundTint="@color/myYellow"/>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Annual Income"
-                android:textColor="@color/myWhite"
-                android:textColorHint="@color/myWhite"
-                android:backgroundTint="@color/myWhite"/>
+                android:weightSum="2"
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/etLoanAmount"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/myWhite"
+                    android:text="Income per Annum:"/>
+
+                <EditText
+                    android:id="@+id/etIncomeAnnum"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Annual Income"
+                    android:textColor="@color/myYellow"
+                    android:textColorHint="@color/myWhite"
+                    android:backgroundTint="@color/myYellow"/>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Loan Amount"
-                android:textColor="@color/myWhite"
-                android:textColorHint="@color/myWhite"
-                android:backgroundTint="@color/myWhite"/>
+                android:weightSum="2"
+                android:orientation="horizontal">
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/myWhite"
+                    android:text="Loan Amount:"/>
 
+                <EditText
+                    android:id="@+id/etLoanAmount"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Loan Amount"
+                    android:textColor="@color/myYellow"
+                    android:textColorHint="@color/myWhite"
+                    android:backgroundTint="@color/myYellow"/>
 
-            <EditText
-                android:id="@+id/etLoanTerm"
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Loan Term"
-                android:textColor="@color/myWhite"
-                android:textColorHint="@color/myWhite"
-                android:backgroundTint="@color/myWhite"/>
+                android:weightSum="2"
+                android:orientation="horizontal">
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/myWhite"
+                    android:text="Loan Term:"/>
 
-            <EditText
-                android:id="@+id/etCIBILScore"
+                <EditText
+                    android:id="@+id/etLoanTerm"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Loan Term"
+                    android:textColor="@color/myYellow"
+                    android:textColorHint="@color/myWhite"
+                    android:backgroundTint="@color/myYellow"/>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="CIBIL Score"
-                android:textColor="@color/myWhite"
-                android:textColorHint="@color/myWhite"
-                android:backgroundTint="@color/myWhite"/>
+                android:weightSum="2"
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/etResedentialAssetsValie"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/myWhite"
+                    android:text="CIBIL score:"/>
+
+                <EditText
+                    android:id="@+id/etCIBILScore"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="CIBIL score"
+                    android:textColor="@color/myYellow"
+                    android:textColorHint="@color/myWhite"
+                    android:backgroundTint="@color/myYellow"/>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Resedentil Assets Value"
-                android:textColor="@color/myWhite"
-                android:textColorHint="@color/myWhite"
-                android:backgroundTint="@color/myWhite"/>
+                android:weightSum="2"
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/etCommercialAssetsValue"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/myWhite"
+                    android:text="Resedential Assets Value:"/>
+
+                <EditText
+                    android:id="@+id/etResedentialAssetsValie"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Resedential Asset"
+                    android:textColor="@color/myYellow"
+                    android:textColorHint="@color/myWhite"
+                    android:backgroundTint="@color/myYellow"/>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Commercial Assets Value"
-                android:textColor="@color/myWhite"
-                android:textColorHint="@color/myWhite"
-                android:backgroundTint="@color/myWhite"/>
+                android:weightSum="2"
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/etLuxuryAssetsValue"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/myWhite"
+                    android:text="Commercial Assets Value:"/>
+
+                <EditText
+                    android:id="@+id/etCommercialAssetsValue"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Commercial Asset"
+                    android:textColor="@color/myYellow"
+                    android:textColorHint="@color/myWhite"
+                    android:backgroundTint="@color/myYellow"/>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Luxuary Assets Value"
-                android:textColor="@color/myWhite"
-                android:textColorHint="@color/myWhite"
-                android:backgroundTint="@color/myWhite"/>
+                android:weightSum="2"
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/etBankAsssetsValue"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/myWhite"
+                    android:text="Luxury Assets Value:"/>
+
+                <EditText
+                    android:id="@+id/etLuxuryAssetsValue"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Luxury Asset"
+                    android:textColor="@color/myYellow"
+                    android:textColorHint="@color/myWhite"
+                    android:backgroundTint="@color/myYellow"/>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Bank Assets Value"
-                android:textColor="@color/myWhite"
-                android:textColorHint="@color/myWhite"
-                android:backgroundTint="@color/myWhite"/>
+                android:weightSum="2"
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/etEducation"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/myWhite"
+                    android:text="Bank Assets Value:"/>
+
+                <EditText
+                    android:id="@+id/etBankAsssetsValue"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Bank Asset"
+                    android:textColor="@color/myYellow"
+                    android:textColorHint="@color/myWhite"
+                    android:backgroundTint="@color/myYellow"/>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Highest Education"
-                android:textColor="@color/myWhite"
-                android:textColorHint="@color/myWhite"
-                android:backgroundTint="@color/myWhite"/>
+                android:weightSum="2"
+                android:orientation="horizontal">
 
-            <!--   + name + non traditional data score     -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/myWhite"
+                    android:text="Highest Education Degree:"/>
 
+                <EditText
+                    android:id="@+id/etEducation"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Education"
+                    android:textColor="@color/myYellow"
+                    android:textColorHint="@color/myWhite"
+                    android:backgroundTint="@color/myYellow"/>
 
+            </LinearLayout>
 
 
         </LinearLayout>
