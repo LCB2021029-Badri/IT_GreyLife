@@ -289,7 +289,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textColor="@color/myWhite"
-                    android:text="Highest Education Degree:"/>
+                    android:text="Highest Education:"/>
 
                 <EditText
                     android:id="@+id/etEducation"
@@ -303,18 +303,63 @@
 
             </LinearLayout>
 
-<!--            <TextView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="hello"-->
-<!--                android:textColor="@color/myYellow"/>-->
-
-            <EditText
-                android:id="@+id/etSelectPdf"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColorHint="@color/myYellow"
-                android:hint="tap 2 times to upload pdf"/>
+                android:weightSum="2"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/myWhite"
+                    android:text="Select 1st PDF:"/>
+
+                <EditText
+                    android:id="@+id/etSelectPdf1"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Tap twice"
+                    android:textColor="@color/myYellow"
+                    android:textColorHint="@color/myWhite"
+                    android:backgroundTint="@color/myYellow"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/myWhite"
+                    android:text="Select 2nd PDF:"/>
+
+                <EditText
+                    android:id="@+id/etSelectPdf2"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Tap twice"
+                    android:textColor="@color/myYellow"
+                    android:textColorHint="@color/myWhite"
+                    android:backgroundTint="@color/myYellow"/>
+
+            </LinearLayout>
+
+
+
+
+
+
+
+
 
             <Button
                 android:id="@+id/btnUpload"

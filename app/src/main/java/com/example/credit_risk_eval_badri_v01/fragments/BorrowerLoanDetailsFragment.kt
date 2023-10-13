@@ -8,6 +8,7 @@ import android.content.Intent
 import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
+import android.provider.ContactsContract.CommonDataKinds.Identity
 import android.provider.OpenableColumns
 import android.view.LayoutInflater
 import android.view.View
@@ -71,7 +72,8 @@ class BorrowerLoanDetailsFragment : Fragment() {
 
 
 
-    private lateinit var etSelectPdf:EditText
+    private lateinit var etSelectPdf1:EditText
+    private lateinit var etSelectPdf2:EditText
     private lateinit var btnUpload:Button
 
 
@@ -100,15 +102,19 @@ class BorrowerLoanDetailsFragment : Fragment() {
         et10 = view.findViewById(R.id.etBankAsssetsValue)
         val btnNext:Button = view.findViewById(R.id.btnSubmit)
         val tvLoanType:TextView = view.findViewById(R.id.tvLoanType)
-        etSelectPdf = view.findViewById(R.id.etSelectPdf)
+        etSelectPdf1 = view.findViewById(R.id.etSelectPdf1)
+        etSelectPdf2 = view.findViewById(R.id.etSelectPdf2)
         btnUpload = view.findViewById(R.id.btnUpload)
         //--------------------
         initializeData()
         //---------------------
 
         //------------
-        etSelectPdf.setOnClickListener {
-            selectPDF()
+        etSelectPdf1.setOnClickListener {
+            selectPDF(101)
+        }
+        etSelectPdf2.setOnClickListener {
+            selectPDF(102)
         }
         //------------
 
@@ -132,37 +138,75 @@ class BorrowerLoanDetailsFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
 
 
-        if (requestCode == 101 && resultCode == Activity.RESULT_OK && data != null && data.data != null) {
-            val uri = data.data
-
-            //we need the file name of the pdf file, so extract the name of the pdf file
-            val uriString = uri.toString()
-            val myFile = File(uriString)
-            val path = myFile.absolutePath
-            var displayName: String? = null
-            if (uriString.startsWith("content://")) {
-                var cursor: Cursor? = null
-                try {
-                    //--------------------
-                    cursor = requireContext().getContentResolver().query(uri!!, null, null, null, null)
-                    if (cursor != null && cursor.moveToFirst()) {
-                        displayName =
-                            cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME))
+        if (resultCode == Activity.RESULT_OK && data != null && data.data != null) {
+            when (requestCode) {
+                101 -> {
+                    // Handle requestCode 101 (pdf1)
+                    val uri = data.data
+                    val uriString = uri.toString()
+                    val myFile = File(uriString)
+                    val path = myFile.absolutePath
+                    var displayName: String? = null
+                    if (uriString.startsWith("content://")) {
+                        var cursor: Cursor? = null
+                        try {
+                            cursor = requireContext().contentResolver.query(
+                                uri!!,
+                                null,
+                                null,
+                                null,
+                                null
+                            )
+                            if (cursor != null && cursor.moveToFirst()) {
+                                displayName =
+                                    cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME))
+                            }
+                        } finally {
+                            cursor?.close()
+                        }
+                    } else if (uriString.startsWith("file://")) {
+                        displayName = myFile.name
                     }
-                } finally {
-                    cursor!!.close()
+                    etSelectPdf1.setText(displayName)
+                    uploadPDF(data.data!!, "pdf1",etSelectPdf1)
                 }
-            } else if (uriString.startsWith("file://")) {
-                displayName = myFile.name
-            }
-            etSelectPdf.setText(displayName)
-            btnUpload.setOnClickListener(View.OnClickListener { uploadPDF(data.data!!) })
-        }
 
+                102 -> {
+                    // Handle requestCode 102 (pdf2)
+                    val uri = data.data
+                    val uriString = uri.toString()
+                    val myFile = File(uriString)
+                    val path = myFile.absolutePath
+                    var displayName: String? = null
+                    if (uriString.startsWith("content://")) {
+                        var cursor: Cursor? = null
+                        try {
+                            cursor = requireContext().contentResolver.query(
+                                uri!!,
+                                null,
+                                null,
+                                null,
+                                null
+                            )
+                            if (cursor != null && cursor.moveToFirst()) {
+                                displayName =
+                                    cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME))
+                            }
+                        } finally {
+                            cursor?.close()
+                        }
+                    } else if (uriString.startsWith("file://")) {
+                        displayName = myFile.name
+                    }
+                    etSelectPdf2.setText(displayName)
+                    uploadPDF(data.data!!, "pdf2",etSelectPdf2)
+                }
+            }
+        }
     }
 
 
-    private fun uploadPDF(data: Uri) {
+    private fun uploadPDF(data: Uri, docType:String,et:EditText) {
         storageReference = FirebaseStorage.getInstance().reference
         databaseReference = FirebaseDatabase.getInstance().getReference("pdfs")
 
@@ -180,12 +224,13 @@ class BorrowerLoanDetailsFragment : Fragment() {
                 val uri = uriTask.result
                 val fileinModel =
                     FileinModel(
-                        etSelectPdf.getText().toString(),
+                        et.getText().toString(),
                         uri.toString()
                     ) //get the views from the model class
                 databaseReference
                     .child(FirebaseAuth.getInstance().uid.toString())
-                    .child(databaseReference.push().getKey()!!)
+//                    .child(databaseReference.push().getKey()!!)
+                    .child(docType)
                     .setValue(fileinModel) // push the value into the realtime database
                 Toast.makeText(
                     requireContext(),
@@ -199,11 +244,11 @@ class BorrowerLoanDetailsFragment : Fragment() {
             }
     }
 
-    private fun selectPDF(){
+    private fun selectPDF(requestCode: Int){
         val intent = Intent()
         intent.type = "application/pdf"
         intent.action = Intent.ACTION_GET_CONTENT
-        startActivityForResult(Intent.createChooser(intent, "Select Pdf files"), 101)
+        startActivityForResult(Intent.createChooser(intent, "Select Pdf files"), requestCode)
     }
 
     private fun initializeData(){
