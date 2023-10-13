@@ -158,7 +158,6 @@ class HomeScreenActivity : AppCompatActivity() {
         val transaction = fragmentManager.beginTransaction()
         transaction.replace(fragmentContainer.id, defaultFragment)
         transaction.commit()
-
     }
 
 
