@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/myYellow"
+    android:background="@color/myBackground"
     android:gravity="center"
     tools:context=".activities.SignupActivity">
 
@@ -24,6 +24,7 @@
                 android:gravity="center"
                 android:textSize="24sp"
                 android:textStyle="bold"
+                android:textColor="@color/myYellow"
                 android:layout_height="wrap_content"
                 android:text="Create a new Account"/>
 
@@ -38,10 +39,15 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:hint="Username"
+                app:boxStrokeColor="@drawable/box_outline_selector"
+                app:hintTextColor="@color/myYellow"
+                android:textColorHint="@color/myWhite"
+                app:startIconTint="@color/myWhite"
                 app:startIconDrawable="@drawable/ic_user">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etName"
+                    android:textColor="@color/myYellow"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -58,10 +64,15 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:hint="Email"
+                app:boxStrokeColor="@drawable/box_outline_selector"
+                app:hintTextColor="@color/myYellow"
+                android:textColorHint="@color/myWhite"
+                app:startIconTint="@color/myWhite"
                 app:startIconDrawable="@drawable/ic_mail">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etEmail"
+                    android:textColor="@color/myYellow"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress" />
@@ -80,10 +91,15 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:hint="Confirm Email"
+                app:boxStrokeColor="@drawable/box_outline_selector"
+                app:hintTextColor="@color/myYellow"
+                android:textColorHint="@color/myWhite"
+                app:startIconTint="@color/myWhite"
                 app:startIconDrawable="@drawable/ic_mail_confirm">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etConfirmEmail"
+                    android:textColor="@color/myYellow"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress" />
@@ -102,11 +118,16 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:hint="Password"
+                app:boxStrokeColor="@drawable/box_outline_selector"
+                app:hintTextColor="@color/myYellow"
+                android:textColorHint="@color/myWhite"
+                app:startIconTint="@color/myWhite"
                 app:endIconMode="password_toggle"
                 app:startIconDrawable="@drawable/ic_password">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etPassword"
+                    android:textColor="@color/myYellow"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword" />
@@ -126,11 +147,16 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:hint="Confirm Password"
+                app:boxStrokeColor="@drawable/box_outline_selector"
+                app:hintTextColor="@color/myYellow"
+                android:textColorHint="@color/myWhite"
+                app:startIconTint="@color/myWhite"
                 app:endIconMode="password_toggle"
                 app:startIconDrawable="@drawable/ic_password_confirm">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etConfirmPassword"
+                    android:textColor="@color/myYellow"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword" />
@@ -148,8 +174,8 @@
                     android:id="@+id/rbLender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:buttonTint="@color/black"
+                    android:textColor="@color/myWhite"
+                    app:buttonTint="@color/myYellow"
                     android:text="Select this only if you are LENDER"/>
 
             </RadioGroup>
@@ -159,8 +185,8 @@
                 android:layout_below="@id/rbGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/black"
-                android:textColor="@color/myYellow"
+                android:backgroundTint="@color/myYellow"
+                android:textColor="@color/black"
                 android:padding="10dp"
                 android:layout_marginHorizontal="10dp"
                 android:textSize="18sp"
@@ -175,7 +201,7 @@
                 android:layout_centerInParent="true"
                 android:layout_marginTop="10dp"
                 android:text="Already have an account? "
-                android:textColor="@color/black" />
+                android:textColor="@color/myWhite" />
 
             <TextView
                 android:id="@+id/tvLogin"
@@ -185,7 +211,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
                 android:textStyle="bold|italic"
-                android:textColor="@color/black"
+                android:textColor="@color/myYellow"
                 android:text="Login"/>
 
 

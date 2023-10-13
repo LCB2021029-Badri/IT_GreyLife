@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.PersonalityQuestionDesctiptionFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -71,6 +72,7 @@
                 android:textColor="@color/myWhite"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:buttonTint="@color/myYellow"
                 android:text="TVS Credit E.P.I.C S1"/>
 
             <RadioButton
@@ -78,6 +80,7 @@
                 android:textColor="@color/myWhite"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:buttonTint="@color/myYellow"
                 android:text="TVS Credit E.P.I.C S2"/>
 
             <RadioButton
@@ -85,6 +88,7 @@
                 android:textColor="@color/myWhite"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:buttonTint="@color/myYellow"
                 android:text="TVS Credit E.P.I.C S3"/>
 
             <RadioButton
@@ -92,12 +96,14 @@
                 android:textColor="@color/myWhite"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:buttonTint="@color/myYellow"
                 android:text="TVS Credit E.P.I.C S4"/>
 
         </RadioGroup>
 
         <TextView
             android:id="@+id/testing"
+            android:visibility="gone"
             android:layout_marginTop="5dp"
             android:layout_below="@id/radioGroup"
             android:text="selected option"
