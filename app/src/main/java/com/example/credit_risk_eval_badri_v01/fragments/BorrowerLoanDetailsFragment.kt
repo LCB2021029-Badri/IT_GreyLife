@@ -2,6 +2,7 @@ package com.example.credit_risk_eval_badri_v01.fragments
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.database.Cursor
@@ -165,6 +166,10 @@ class BorrowerLoanDetailsFragment : Fragment() {
         storageReference = FirebaseStorage.getInstance().reference
         databaseReference = FirebaseDatabase.getInstance().getReference("pdfs")
 
+        val pd = ProgressDialog(requireContext())
+        pd.setTitle("File Uploading..")
+        pd.show()
+
         val reference = storageReference.child("uploads/" + System.currentTimeMillis() + ".pdf")
         // store in upload folder of the Firebase storage
         // store in upload folder of the Firebase storage
@@ -185,10 +190,11 @@ class BorrowerLoanDetailsFragment : Fragment() {
                     "File Uploaded Successfully!!",
                     Toast.LENGTH_SHORT
                 ).show()
+                pd.dismiss()
             }.addOnProgressListener { snapshot ->
                 val percent = (100 * snapshot.bytesTransferred / snapshot.totalByteCount).toFloat()
+                pd.setMessage("Uploaded : " + percent.toInt() + "%")
             }
-
     }
 
     private fun selectPDF(){
