@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.LoanDefaultFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/myYellow"
+            android:textSize="24sp"
+            android:gravity="center"
+            android:textStyle="bold|italic"
+            android:text="Provide Accurate and Honest Information"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:textColor="@color/myWhite"
+            android:textSize="20sp"
+            android:gravity="left"
+            android:text="This is a crucial step for applying loan"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/myWhite"
+            android:layout_marginTop="20dp"
+            android:textSize="20sp"
+            android:gravity="left"
+            android:text="We are dedicated to maintaining the integrity of our lending process, and strict actions will be taken if any fraudulent activity is detected"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/myWhite"
+            android:textSize="20sp"
+            android:layout_marginTop="20dp"
+            android:gravity="left"
+            android:text="Your cooperation ensures a fair and secure loan application"
+            />
+
+
+
+
+
+
+    </LinearLayout>
+
+
+</FrameLayout>

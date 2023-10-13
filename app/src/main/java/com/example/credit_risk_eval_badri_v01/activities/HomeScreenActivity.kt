@@ -6,12 +6,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.example.credit_risk_eval_badri_v01.MainActivity
 import com.example.credit_risk_eval_badri_v01.R
 import com.example.credit_risk_eval_badri_v01.adapters.LoanTypeAdapter
 import com.example.credit_risk_eval_badri_v01.models.LoanTypeModel
 import com.example.credit_risk_eval_badri_v01.databinding.ActivityHomeScreenBinding
+import com.example.credit_risk_eval_badri_v01.fragments.AssessmentDefaultFragment
+import com.example.credit_risk_eval_badri_v01.fragments.LoanDefaultFragment
 import com.example.credit_risk_eval_badri_v01.models.UserModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -35,7 +38,7 @@ class HomeScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        defaultFragmentDisplayed()
         enableBottomNavView()
         enableRecyclerView()
         getNameFromDatabase()
@@ -143,6 +146,17 @@ class HomeScreenActivity : AppCompatActivity() {
         auth.signOut()
         startActivity(Intent(this, MainActivity::class.java))
         finish()
+    }
+
+    private fun defaultFragmentDisplayed(){
+        val fragmentContainer = binding.fragmentContainerView
+        // Check if the fragment is already added to avoid adding it multiple times
+        val defaultFragment = LoanDefaultFragment()
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(fragmentContainer.id, defaultFragment, "DefaultFragmentTag")
+        transaction.addToBackStack(null) // Add to back stack if needed
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+        transaction.commit()
     }
 
 

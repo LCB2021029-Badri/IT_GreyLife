@@ -7,10 +7,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.example.credit_risk_eval_badri_v01.adapters.PersonalityAssessmentAdapter
 import com.example.credit_risk_eval_badri_v01.models.PersonalityAssessmentQuestionModel
 import com.example.credit_risk_eval_badri_v01.databinding.ActivityPersonalityAssessmentBinding
+import com.example.credit_risk_eval_badri_v01.fragments.AssessmentDefaultFragment
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 
@@ -120,6 +122,7 @@ class PersonalityAssessmentActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         enableRecyclerView()
+        defaultFragmentDisplayed()
         nextBtn()
     }
 
@@ -215,6 +218,17 @@ class PersonalityAssessmentActivity : AppCompatActivity() {
 //                Toast.makeText(this,"snackbar button pressed",Toast.LENGTH_SHORT).show()
             }
             .show()
+    }
+
+    private fun defaultFragmentDisplayed(){
+        val fragmentContainer = binding.fragmentContainerView
+        // Check if the fragment is already added to avoid adding it multiple times
+            val defaultFragment = AssessmentDefaultFragment()
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.replace(fragmentContainer.id, defaultFragment, "DefaultFragmentTag")
+            transaction.addToBackStack(null) // Add to back stack if needed
+            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            transaction.commit()
     }
 
 
