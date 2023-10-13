@@ -183,7 +183,9 @@ class BorrowerLoanDetailsFragment : Fragment() {
                         etSelectPdf.getText().toString(),
                         uri.toString()
                     ) //get the views from the model class
-                databaseReference.child(databaseReference.push().key!!)
+                databaseReference
+                    .child(FirebaseAuth.getInstance().uid.toString())
+                    .child(databaseReference.push().getKey()!!)
                     .setValue(fileinModel) // push the value into the realtime database
                 Toast.makeText(
                     requireContext(),
