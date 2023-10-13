@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.credit_risk_eval_badri_v01.R
 import com.example.credit_risk_eval_badri_v01.activities.PersonalityAssessmentActivity
@@ -44,10 +45,19 @@ class PersonalityAssessmentAdapter(private val questionsList:ArrayList<Personali
                 bundle.putString("key", question.qNo)
                 questionFragment.arguments = bundle
 
-                activity.supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragmentContainerView,questionFragment)
-                    .addToBackStack(null)
-                    .commit()
+//                activity.supportFragmentManager.beginTransaction()
+//                    .replace(R.id.fragmentContainerView,questionFragment)
+//                    .addToBackStack(null)
+//                    .commit()
+
+                val fragmentManager = activity.supportFragmentManager
+
+                // Clear the back stack before replacing the current fragment
+                fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+
+                val transaction = fragmentManager.beginTransaction()
+                transaction.replace(R.id.fragmentContainerView, questionFragment)
+                transaction.commit()
 
                 index = position
                 notifyDataSetChanged()

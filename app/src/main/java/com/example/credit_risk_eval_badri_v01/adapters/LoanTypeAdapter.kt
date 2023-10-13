@@ -10,6 +10,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.credit_risk_eval_badri_v01.R
 import com.example.credit_risk_eval_badri_v01.activities.HomeScreenActivity
@@ -50,10 +51,19 @@ class LoanTypeAdapter(private val loanTypeList:ArrayList<LoanTypeModel>, private
                 bundle.putString("loanType", loanType.loanType)
                 borrowerLoanDetailsFragment.arguments = bundle
 
-                activity.supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragmentContainerView,borrowerLoanDetailsFragment)
-                    .addToBackStack(null)
-                    .commit()
+//                activity.supportFragmentManager.beginTransaction()
+//                    .replace(R.id.fragmentContainerView,borrowerLoanDetailsFragment)
+//                    .addToBackStack(null)
+//                    .commit()
+
+                val fragmentManager = activity.supportFragmentManager
+
+                // Clear the back stack before replacing the current fragment
+                fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+
+                val transaction = fragmentManager.beginTransaction()
+                transaction.replace(R.id.fragmentContainerView, borrowerLoanDetailsFragment)
+                transaction.commit()
 
                 index = position
                 notifyDataSetChanged()
