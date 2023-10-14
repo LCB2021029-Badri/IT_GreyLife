@@ -38,12 +38,15 @@ class ClientStatusAdapter(var context: Context, var list:ArrayList<LoanDataModel
         holder.binding.userEmail.text = data.email
 //        holder.binding.tvStatus.setBackgroundColor(ContextCompat.getColor(context, R.color.your_background_color))
         if(data.mlOutput == "Declined"){
+            holder.binding.tvStatus.text = "Declined"
             holder.binding.tvStatus.setBackgroundColor(ContextCompat.getColor(context, R.color.myRed))
         }
         else if(data.mlOutput == "Accepted"){
+            holder.binding.tvStatus.text = "Accepted"
             holder.binding.tvStatus.setBackgroundColor(ContextCompat.getColor(context, R.color.myGreen))
         }
         else{
+            holder.binding.tvStatus.text = "Pending"
             holder.binding.tvStatus.setBackgroundColor(ContextCompat.getColor(context, R.color.myGrey))
         }
 

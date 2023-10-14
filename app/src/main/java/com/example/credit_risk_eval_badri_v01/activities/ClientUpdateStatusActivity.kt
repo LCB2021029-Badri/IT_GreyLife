@@ -67,7 +67,7 @@ class ClientUpdateStatusActivity : AppCompatActivity() {
             else{
                 mlOutput = binding.etUpdateResult.text.toString()
                 updateLLoanDataInDatabase()
-                postData()
+//                postData()
             }
         }
 
