@@ -3,11 +3,13 @@ package com.example.credit_risk_eval_badri_v01.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import com.example.credit_risk_eval_badri_v01.R
 import com.example.credit_risk_eval_badri_v01.adapters.MessageAdapter
 import com.example.credit_risk_eval_badri_v01.databinding.ActivityStatusScreenBinding
 import com.example.credit_risk_eval_badri_v01.databinding.ActivitySupportScreenBinding
 import com.example.credit_risk_eval_badri_v01.models.MessageModel
+import com.example.credit_risk_eval_badri_v01.models.UserModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -26,6 +28,7 @@ class SupportScreenActivity : AppCompatActivity() {
     private lateinit var senderUidMergedReceiverUid:String
     private lateinit var receiverUidMergedSenderUid:String
     private lateinit var list:ArrayList<MessageModel>
+    private lateinit var dialog: AlertDialog
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +38,9 @@ class SupportScreenActivity : AppCompatActivity() {
 
         database = FirebaseDatabase.getInstance()
         senderUid = FirebaseAuth.getInstance().uid.toString()
-        receiverUid = "0Rl5g5tbbLfZl9DV5GGlsrmxZKq1"
+        receiverUid = "DPcQTENxJ5cKU5bzIz3eLsH9BVq2"
+//        receiverUid = "0Rl5g5tbbLfZl9DV5GGlsrmxZKq1"
+//        checkLenderStatusFromDB()
         senderUidMergedReceiverUid = senderUid+receiverUid
         receiverUidMergedSenderUid = receiverUid+senderUid
         list = ArrayList()
@@ -134,6 +139,40 @@ class SupportScreenActivity : AppCompatActivity() {
                         binding.etMessage.text = null
                     }
             }
+    }
+
+
+    private fun checkLenderStatusFromDB(){
+        dialogBox("Retrieving Lender? Status Data from FB Realtime DB","Please Wait ...")
+        database.reference.child("users")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for(snapshot1 in snapshot.children){
+                        val user = snapshot1.getValue(UserModel::class.java)
+                        if(user!!.lender == "1"){
+                            dialog.dismiss()
+                            receiverUid = user.uid!!
+                            //----------------------
+
+                            //----------------------
+                            break
+                        }
+                    }
+
+                }
+                override fun onCancelled(error: DatabaseError) {
+                    dialog.dismiss()
+                }
+            })
+    }
+
+    private fun dialogBox(title:String,message:String){
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage(message)
+        builder.setTitle(title)
+        builder.setCancelable(false)
+        dialog = builder.create()
+        dialog.show()
     }
 
 }
