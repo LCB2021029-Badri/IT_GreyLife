@@ -141,11 +141,7 @@
 <!--            android:layout_height="wrap_content"-->
 <!--            android:text="bc5"/>-->
 
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            tools:listitem="@layout/pdf_item"-->
-<!--            android:id="@+id/recyclerView"/>-->
+
 
 
         <TextView
@@ -171,6 +167,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="url2"/>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/tvCommon"
+            android:layout_marginHorizontal="5dp"
+            tools:listitem="@layout/pdf_item"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
 
 

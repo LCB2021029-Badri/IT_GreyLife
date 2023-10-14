@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.credit_risk_eval_badri_v01.adapters.ChatAdapter
 import com.example.credit_risk_eval_badri_v01.adapters.MessageAdapter
+import com.example.credit_risk_eval_badri_v01.adapters.PdfAdapter
 import com.example.credit_risk_eval_badri_v01.databinding.ActivityDocsDetailsBinding
 import com.example.credit_risk_eval_badri_v01.interfaces.MyBlockchainApi
 import com.example.credit_risk_eval_badri_v01.models.FileinModel
@@ -179,10 +181,12 @@ class DocsDetailsActivity : AppCompatActivity() {
                         }
                     }
 
+
                     binding.tvPdf1.text = pdfList[0].filename
                     binding.tvPdf2.text = pdfList[1].filename
                     binding.tvUrl1.text = pdfList[0].fileurl
                     binding.tvUrl2.text = pdfList[1].fileurl
+                    binding.recyclerView.adapter = PdfAdapter(this@DocsDetailsActivity,pdfList)
 
                 }
 
