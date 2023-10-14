@@ -37,6 +37,7 @@
                 android:id="@+id/userName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
                 android:maxLines="2"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -48,6 +49,7 @@
                 android:maxLines="2"
                 android:layout_height="wrap_content"
                 android:textColor="@color/myWhite"
+                android:layout_marginBottom="4dp"
                 android:text="Uid"/>
             <TextView
                 android:id="@+id/userEmail"
@@ -68,7 +70,7 @@
             android:layout_width="0dp"
             android:paddingHorizontal="4dp"
             android:paddingVertical="4dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@color/myRed"
             android:textColor="@color/myWhite"
             android:singleLine="true"
