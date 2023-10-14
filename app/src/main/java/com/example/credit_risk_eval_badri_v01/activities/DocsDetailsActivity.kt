@@ -45,11 +45,10 @@ class DocsDetailsActivity : AppCompatActivity() {
         uid = intent.getStringExtra("uid")!!
         database = FirebaseDatabase.getInstance()
 
-        //add uid+loantype
+        loadDataFormDatabase()
 
-        saveUpdatedDataToDatabase()
 
-        getData()
+//        getData()
     }
 
 
@@ -81,47 +80,45 @@ class DocsDetailsActivity : AppCompatActivity() {
         myApi = retrofit.create(MyBlockchainApi::class.java)
     }
 
-
-
     private fun getData() {
-        dialogBox("Fetching data form Blockchain","Please wait...")
-        RetrofitCreate()
-        GlobalScope.launch(Dispatchers.IO) {
-            try {
-                val response = myApi.getData(kldFromValue2).execute()
-                if (response.isSuccessful) {
-                    val responseData = response.body()
-                    val output:Array<String> = responseData?.output!!
-                    GlobalScope.launch(Dispatchers.Main) {
-                        runOnUiThread {
-                            binding.tvbc1.text = output[0]
-                            binding.tvbc2.text = output[1]
-                            binding.tvbc3.text = output[2]
-                            binding.tvbc4.text = output[3]
-                            binding.tvbc5.text = output[4]
-                            dialog.dismiss()
-                        }
-                    }
-                } else {
-                    GlobalScope.launch(Dispatchers.Main) {
-
-                        runOnUiThread {
-                            binding.tvTesting.text = ("Data retrieval failed")
-                            dialog.dismiss()
-                        }
-                    }
-                }
-//                dialog.dismiss()
-            } catch (e: Exception) {
-                GlobalScope.launch(Dispatchers.Main) {
-                    runOnUiThread {
-                        binding.tvTesting.text = ("Error: ${e.message}")
-                        dialog.dismiss()
-                    }
-                }
-            }
-        }
-        dialog.dismiss()
+//        dialogBox("Fetching data form Blockchain","Please wait...")
+//        RetrofitCreate()
+//        GlobalScope.launch(Dispatchers.IO) {
+//            try {
+//                val response = myApi.getData(kldFromValue2).execute()
+//                if (response.isSuccessful) {
+//                    val responseData = response.body()
+//                    val output:Array<String> = responseData?.output!!
+//                    GlobalScope.launch(Dispatchers.Main) {
+//                        runOnUiThread {
+//                            binding.tvbc1.text = output[0]
+//                            binding.tvbc2.text = output[1]
+//                            binding.tvbc3.text = output[2]
+//                            binding.tvbc4.text = output[3]
+//                            binding.tvbc5.text = output[4]
+//                            dialog.dismiss()
+//                        }
+//                    }
+//                } else {
+//                    GlobalScope.launch(Dispatchers.Main) {
+//
+//                        runOnUiThread {
+//                            binding.tvTesting.text = ("Data retrieval failed")
+//                            dialog.dismiss()
+//                        }
+//                    }
+//                }
+////                dialog.dismiss()
+//            } catch (e: Exception) {
+//                GlobalScope.launch(Dispatchers.Main) {
+//                    runOnUiThread {
+//                        binding.tvTesting.text = ("Error: ${e.message}")
+//                        dialog.dismiss()
+//                    }
+//                }
+//            }
+//        }
+//        dialog.dismiss()
     }
 
     private fun dialogBox(title:String,message:String){
@@ -133,7 +130,7 @@ class DocsDetailsActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    private fun saveUpdatedDataToDatabase(){
+    private fun loadDataFormDatabase(){
         database.reference.child("loans")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
