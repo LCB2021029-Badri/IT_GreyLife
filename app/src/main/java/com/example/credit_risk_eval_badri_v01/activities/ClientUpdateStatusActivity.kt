@@ -67,19 +67,19 @@ class ClientUpdateStatusActivity : AppCompatActivity() {
             else{
                 mlOutput = binding.etUpdateResult.text.toString()
                 updateLLoanDataInDatabase()
-//                postData()
+                postData()
             }
         }
 
     }
 
     private fun displayCurrentResultFromDatabase(){
-        dialogBox("Fetching data form Database","Please wait...")
         database = FirebaseDatabase.getInstance()
         uid = intent.getStringExtra("uid")!!
         database.reference.child("loans")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
+                    dialogBox("Fetching data form Database","Please wait...")
                     for(snapshot1 in snapshot.children){
                         val data = snapshot1.getValue(LoanDataModel::class.java)
                         if(data!!.uid == uid){
@@ -116,7 +116,6 @@ class ClientUpdateStatusActivity : AppCompatActivity() {
             //do nothing
         }
         else{
-            dialogBox("Updating data in Database","Please wait...")
             var loanData = LoanDataModel(
                 name,
                 uid,
@@ -135,18 +134,18 @@ class ClientUpdateStatusActivity : AppCompatActivity() {
                 etBankAsssetsValue,
                 binding.etUpdateResult.text.toString()
             )
-
+//            dialogBox("Updating data in Database","Please wait...")
             database.reference.child("loans")
                 .child(uid)
                 .setValue(loanData)
                 .addOnSuccessListener {
 //                                startActivity(Intent(this@SignupActivity, MainActivity::class.java))
 //                                finish()
-                    dialog.dismiss()
+//                    dialog.dismiss()
                 }
                 .addOnFailureListener {
 //                createSnackBar(binding.root,"failed to upload data to Realtime DB","Try Again")
-                    dialog.dismiss()
+//                    dialog.dismiss()
                 }
 
         }
@@ -182,7 +181,6 @@ class ClientUpdateStatusActivity : AppCompatActivity() {
     }
 
     private fun postData() {
-        dialogBox("Adding updated data to the blockchain","Please wait...")
         RetrofitCreate()
         getOutputFromML()
         val inputData:List<String> = listOf(
@@ -193,29 +191,33 @@ class ClientUpdateStatusActivity : AppCompatActivity() {
             uid
         )
         val requestData = MyBlockchainApi.RequestData(inputData)
+        dialogBox("Adding updated data to the blockchain","Please wait...")
         GlobalScope.launch(Dispatchers.IO) {
             try {
                 val response = myApi.PostData(kldFromValue2, requestData).execute()
-
+//                dialogBox("Adding updated data to the blockchain","Please wait...")
                 if (response.isSuccessful) {
                     GlobalScope.launch(Dispatchers.Main) {
-                        dialog.dismiss()
-//                        Toast.makeText(this@ClientUpdateStatusActivity, "Data posted", Toast.LENGTH_SHORT).show()
+//                        dialog.dismiss()
+                        Toast.makeText(this@ClientUpdateStatusActivity, "new data added to blockchain", Toast.LENGTH_SHORT).show()
                     }
+                    dialog.dismiss()
                 } else {
                     GlobalScope.launch(Dispatchers.Main) {
-                        dialog.dismiss()
-                        Toast.makeText(this@ClientUpdateStatusActivity, "Data not posted", Toast.LENGTH_SHORT)
+//                        dialog.dismiss()
+                        Toast.makeText(this@ClientUpdateStatusActivity, "Failed to add data to blockchain", Toast.LENGTH_SHORT)
                             .show()
                     }
+                    dialog.dismiss()
                 }
             } catch (e: Exception) {
                 GlobalScope.launch(Dispatchers.Main) {
-                    dialog.dismiss()
+//                    dialog.dismiss()
                     Toast.makeText(this@ClientUpdateStatusActivity, e.message, Toast.LENGTH_SHORT).show()
                 }
             }
         }
+        dialog.dismiss()
     }
 
     private fun getOutputFromML(){

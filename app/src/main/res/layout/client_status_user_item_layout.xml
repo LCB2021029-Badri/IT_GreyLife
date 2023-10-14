@@ -60,12 +60,15 @@
         </LinearLayout>
 
         <TextView
+            android:layout_gravity="center"
             android:id="@+id/tvStatus"
+            android:padding="10dp"
+            android:layout_marginLeft="5dp"
             android:layout_weight="1"
-            android:layout_width="wrap_content"
+            android:layout_width="125dp"
             android:paddingHorizontal="4dp"
             android:paddingVertical="4dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/myRed"
             android:textColor="@color/myWhite"
             android:singleLine="true"
@@ -73,7 +76,7 @@
             android:textStyle="bold"
             android:textSize="20sp"
             android:gravity="center"
-            android:text="Declined"/>
+            android:text="Accepted"/>
 
     </LinearLayout>
 
