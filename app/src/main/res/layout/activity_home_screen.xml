@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:textSize="22sp"
         android:textColor="@color/myWhite"
-        android:textStyle="italic|bold"
+        android:textStyle="bold"
         android:text="Username"/>
 
     <TextView

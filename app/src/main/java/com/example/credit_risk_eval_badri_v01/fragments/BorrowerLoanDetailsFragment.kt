@@ -74,8 +74,8 @@ class BorrowerLoanDetailsFragment : Fragment() {
 
     private lateinit var etSelectPdf1:EditText
     private lateinit var etSelectPdf2:EditText
-    private lateinit var btnUpload:Button
-
+    private lateinit var etSelectPdf3:EditText
+    private lateinit var etSelectPdf4:EditText
 
     val USERNAME = "u0nbfzswwp"
     val PASSWORD = "7kw_tDTpsWWwyeOtSdJmOfj6179YXiiewyQN4WU7CGA"
@@ -104,7 +104,8 @@ class BorrowerLoanDetailsFragment : Fragment() {
         val tvLoanType:TextView = view.findViewById(R.id.tvLoanType)
         etSelectPdf1 = view.findViewById(R.id.etSelectPdf1)
         etSelectPdf2 = view.findViewById(R.id.etSelectPdf2)
-        btnUpload = view.findViewById(R.id.btnUpload)
+        etSelectPdf3 = view.findViewById(R.id.etSelectPdf3)
+        etSelectPdf4 = view.findViewById(R.id.etSelectPdf4)
         //--------------------
         initializeData()
         //---------------------
@@ -115,6 +116,12 @@ class BorrowerLoanDetailsFragment : Fragment() {
         }
         etSelectPdf2.setOnClickListener {
             selectPDF(102)
+        }
+        etSelectPdf3.setOnClickListener {
+            selectPDF(103)
+        }
+        etSelectPdf4.setOnClickListener {
+            selectPDF(104)
         }
         //------------
 
@@ -200,6 +207,68 @@ class BorrowerLoanDetailsFragment : Fragment() {
                     }
                     etSelectPdf2.setText(displayName)
                     uploadPDF(data.data!!, "pdf2",etSelectPdf2)
+                }
+
+                103 -> {
+                    // Handle requestCode 102 (pdf2)
+                    val uri = data.data
+                    val uriString = uri.toString()
+                    val myFile = File(uriString)
+                    val path = myFile.absolutePath
+                    var displayName: String? = null
+                    if (uriString.startsWith("content://")) {
+                        var cursor: Cursor? = null
+                        try {
+                            cursor = requireContext().contentResolver.query(
+                                uri!!,
+                                null,
+                                null,
+                                null,
+                                null
+                            )
+                            if (cursor != null && cursor.moveToFirst()) {
+                                displayName =
+                                    cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME))
+                            }
+                        } finally {
+                            cursor?.close()
+                        }
+                    } else if (uriString.startsWith("file://")) {
+                        displayName = myFile.name
+                    }
+                    etSelectPdf3.setText(displayName)
+                    uploadPDF(data.data!!, "pdf3",etSelectPdf3)
+                }
+
+                104 -> {
+                    // Handle requestCode 102 (pdf2)
+                    val uri = data.data
+                    val uriString = uri.toString()
+                    val myFile = File(uriString)
+                    val path = myFile.absolutePath
+                    var displayName: String? = null
+                    if (uriString.startsWith("content://")) {
+                        var cursor: Cursor? = null
+                        try {
+                            cursor = requireContext().contentResolver.query(
+                                uri!!,
+                                null,
+                                null,
+                                null,
+                                null
+                            )
+                            if (cursor != null && cursor.moveToFirst()) {
+                                displayName =
+                                    cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME))
+                            }
+                        } finally {
+                            cursor?.close()
+                        }
+                    } else if (uriString.startsWith("file://")) {
+                        displayName = myFile.name
+                    }
+                    etSelectPdf4.setText(displayName)
+                    uploadPDF(data.data!!, "pdf4",etSelectPdf4)
                 }
             }
         }
