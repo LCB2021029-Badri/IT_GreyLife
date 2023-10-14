@@ -141,22 +141,22 @@ class DocsDetailsActivity : AppCompatActivity() {
                     for(snapshot1 in snapshot.children){
                         val data = snapshot1.getValue(LoanDataModel::class.java)
                         if(data!!.uid == uid){
-                            binding.tv1.text = data.name
-                            binding.tv2.text = data.uid
-                            binding.tv3.text = data.loanType
-                            binding.tv4.text = data.noOfDependents
-                            binding.tv5.text = data.education
-                            binding.tv6.text = data.sritscore
-                            binding.tv7.text = data.etIncomeeAnnum
-                            binding.tv8.text = data.etLoanAmount
-                            binding.tv9.text = data.etLoanTerm
-                            binding.tv10.text = data.etCIBILScore
-                            binding.tv11.text = data.etResedentialAssetsValie
-                            binding.tv12.text = data.etCommercialAssetsValue
-                            binding.tv13.text = data.etLuxuryAssetsValue
-                            binding.tv14.text = data.etBankAsssetsValue
-                            binding.tv15.text = data.mlOutput
-                            binding.tv16.text = data.email
+                            binding.tv10.text = data.name
+                            binding.tv11.text = data.uid
+                            binding.tv12.text = data.loanType
+                            binding.tv1.text = data.noOfDependents
+                            binding.tv9.text = data.education
+                            binding.tv15.text = data.sritscore
+                            binding.tv2.text = data.etIncomeeAnnum
+                            binding.tv16.text = data.etLoanAmount
+                            binding.tv3.text = data.etLoanTerm
+                            binding.tv4.text = data.etCIBILScore
+                            binding.tv5.text = data.etResedentialAssetsValie
+                            binding.tv6.text = data.etCommercialAssetsValue
+                            binding.tv7.text = data.etLuxuryAssetsValue
+                            binding.tv8.text = data.etBankAsssetsValue
+                            binding.tv13.text = data.mlOutput
+                            binding.tv14.text = data.email
                             dialog.dismiss()
                             break
                         }

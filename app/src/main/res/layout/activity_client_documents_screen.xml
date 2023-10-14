@@ -18,13 +18,13 @@
 
         <TextView
             android:id="@+id/tvCommon"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Customer Documents"
             android:textColor="@color/myYellow"
-            android:text="Customer Documents"/>
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnLogout"
@@ -54,6 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/btnLogout"
+            android:layout_marginTop="5dp"
             android:layout_marginHorizontal="5dp"
             tools:listitem="@layout/client_chat_user_item_layout"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
