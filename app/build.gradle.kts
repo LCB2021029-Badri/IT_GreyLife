@@ -80,4 +80,12 @@ dependencies {
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation ("com.squareup.okhttp3:logging-interceptor:4.11.0")
 
+    //pdf reader
+//    implementation ("com.github.barteksc:android-pdf-viewer:3.2.0-beta.1")
+//    implementation ("com.github.barteksc:android-pdf-viewer:2.8.2")
+
+    //firebase ui
+    implementation ("com.google.firebase:firebase-database:20.0.2")
+    implementation ("com.firebaseui:firebase-ui-database:7.1.1")
+
 }

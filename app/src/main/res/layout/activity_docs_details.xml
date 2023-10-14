@@ -141,17 +141,37 @@
 <!--            android:layout_height="wrap_content"-->
 <!--            android:text="bc5"/>-->
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:listitem="@layout/pdf_item"
-            android:id="@+id/recyclerView"/>
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            tools:listitem="@layout/pdf_item"-->
+<!--            android:id="@+id/recyclerView"/>-->
 
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            android:layout_width="wrap_content"
+
+        <TextView
+            android:id="@+id/tvPdf1"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"/>
+            android:text="pdf1"/>
+
+        <TextView
+            android:id="@+id/tvUrl1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="url1"/>
+
+        <TextView
+            android:id="@+id/tvPdf2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="pdf2"/>
+
+        <TextView
+            android:id="@+id/tvUrl2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="url2"/>
+
 
 
 

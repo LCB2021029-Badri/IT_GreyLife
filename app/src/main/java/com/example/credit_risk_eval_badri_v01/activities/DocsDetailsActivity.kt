@@ -1,32 +1,33 @@
 package com.example.credit_risk_eval_badri_v01.activities
 
 import android.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.credit_risk_eval_badri_v01.R
+import android.widget.ProgressBar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
+import com.example.credit_risk_eval_badri_v01.adapters.MessageAdapter
 import com.example.credit_risk_eval_badri_v01.databinding.ActivityDocsDetailsBinding
 import com.example.credit_risk_eval_badri_v01.interfaces.MyBlockchainApi
+import com.example.credit_risk_eval_badri_v01.models.FileinModel
 import com.example.credit_risk_eval_badri_v01.models.LoanDataModel
-import com.example.credit_risk_eval_badri_v01.models.UserModel
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.Query
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import okhttp3.Credentials
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+
 class DocsDetailsActivity : AppCompatActivity() {
 
     private lateinit var dialog:AlertDialog
+    private lateinit var pdfList:ArrayList<FileinModel>
 
     private lateinit var binding:ActivityDocsDetailsBinding
     private lateinit var uid: String
@@ -36,7 +37,7 @@ class DocsDetailsActivity : AppCompatActivity() {
     val PASSWORD = "7kw_tDTpsWWwyeOtSdJmOfj6179YXiiewyQN4WU7CGA"
 //    val BASE2_URL = "https://u0ft62dsi9-u0bftvrkqx-rpc.us0aws.kaleido.io//gateways/testinggreylife/0xea3238eb802619629107e6e5f0fd00be0aa132bb/"
     val BASE2_URL = "https://u0ft62dsi9-u0oicgb1o0-connect.us0-aws.kaleido.io/gateways/testinggreylife/0xea3238eb802619629107e6e5f0fd00be0aa132bb/"
-    val kldFromValue2 = "0x0c7d6a7a583b790be7635bef63c9a65327d415d5"
+//    val kldFromValue2 = "0x0c7d6a7a583b790be7635bef63c9a65327d415d5"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDocsDetailsBinding.inflate(layoutInflater)
@@ -45,10 +46,10 @@ class DocsDetailsActivity : AppCompatActivity() {
         uid = intent.getStringExtra("uid")!!
         database = FirebaseDatabase.getInstance()
 
+
         loadDataFormDatabase()
 
-
-//        getData()
+        displayPdfs()
     }
 
 
@@ -164,6 +165,33 @@ class DocsDetailsActivity : AppCompatActivity() {
                 }
             })
     }
+
+    private fun displayPdfs() {
+        pdfList = ArrayList()
+        database.reference.child("pdfs")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    pdfList.clear()
+                    for(snapshot1 in snapshot.children){
+                        for(data in snapshot1.children){
+                            val user = data.getValue(FileinModel::class.java)
+                            pdfList.add(user!!)
+                        }
+                    }
+
+                    binding.tvPdf1.text = pdfList[0].filename
+                    binding.tvPdf2.text = pdfList[1].filename
+                    binding.tvUrl1.text = pdfList[0].fileurl
+                    binding.tvUrl2.text = pdfList[1].fileurl
+
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    dialog.dismiss()
+                }
+            })
+    }
+
 
 
 
