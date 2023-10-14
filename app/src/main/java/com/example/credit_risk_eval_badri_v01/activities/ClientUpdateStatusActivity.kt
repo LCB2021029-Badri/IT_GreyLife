@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.example.credit_risk_eval_badri_v01.R
 import com.example.credit_risk_eval_badri_v01.databinding.ActivityClientUpdateStatusBinding
 import com.example.credit_risk_eval_badri_v01.interfaces.MyBlockchainApi
@@ -83,7 +84,6 @@ class ClientUpdateStatusActivity : AppCompatActivity() {
                     for(snapshot1 in snapshot.children){
                         val data = snapshot1.getValue(LoanDataModel::class.java)
                         if(data!!.uid == uid){
-                            binding.tvCurrentResult.text = data.mlOutput
                             name = data.name!!
                             email = data.email!!
                             loanType = data.loanType!!
@@ -100,6 +100,16 @@ class ClientUpdateStatusActivity : AppCompatActivity() {
                             etCommercialAssetsValue = data.etCommercialAssetsValue!!
                             mlOutput = data.mlOutput!!
 
+                            binding.tvCurrentResult.text =mlOutput
+                            if(mlOutput=="Accepted"){
+                                binding.tvCurrentResult.setBackgroundColor(ContextCompat.getColor(this@ClientUpdateStatusActivity, R.color.myGreen))
+                            }
+                            else if(mlOutput == "Declined"){
+                                binding.tvCurrentResult.setBackgroundColor(ContextCompat.getColor(this@ClientUpdateStatusActivity, R.color.myRed))
+                            }
+                            else{
+                                binding.tvCurrentResult.setBackgroundColor(ContextCompat.getColor(this@ClientUpdateStatusActivity, R.color.myGrey))
+                            }
                             break
                         }
                     }

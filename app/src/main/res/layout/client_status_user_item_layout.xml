@@ -29,7 +29,7 @@
 
         <LinearLayout
             android:layout_weight="1"
-            android:layout_width="250dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
@@ -65,7 +65,7 @@
             android:padding="10dp"
             android:layout_marginLeft="5dp"
             android:layout_weight="1"
-            android:layout_width="125dp"
+            android:layout_width="0dp"
             android:paddingHorizontal="4dp"
             android:paddingVertical="4dp"
             android:layout_height="wrap_content"
