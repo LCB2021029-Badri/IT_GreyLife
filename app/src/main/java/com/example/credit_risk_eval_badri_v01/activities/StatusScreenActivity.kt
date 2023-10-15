@@ -92,6 +92,7 @@ class StatusScreenActivity : AppCompatActivity() {
                         val data = snapshot1.getValue(LoanDataModel::class.java)
                         if(data!!.uid == uid){
                             status = data.mlOutput.toString()
+                            binding.tvLoanType.text = data!!.loanType
                             if(status == "Accepted"){
                                 binding.tvStatus.text = "Accepted"
                                 binding.tvStatus.setBackgroundColor(ContextCompat.getColor(this@StatusScreenActivity, R.color.myGreen))
