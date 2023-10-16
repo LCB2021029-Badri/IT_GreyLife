@@ -74,7 +74,7 @@ class SignupActivity : AppCompatActivity() {
         val confirmEmail = binding.etConfirmEmail.text.toString()
         val pass = binding.etPassword.text.toString()
         val confirmPass = binding.etConfirmPassword.text.toString()
-        if(email.isNotEmpty() && confirmEmail.isNotEmpty() && pass.isNotEmpty() && confirmPass.isNotEmpty() && lender=="-1"){
+        if(email.isNotEmpty() && confirmEmail.isNotEmpty() && pass.isNotEmpty() && confirmPass.isNotEmpty() && lender!="-1"){
             if(email == confirmEmail && pass == confirmPass){
                 auth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener {
                     if(it.isSuccessful){

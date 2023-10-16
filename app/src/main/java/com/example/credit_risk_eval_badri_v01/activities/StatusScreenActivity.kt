@@ -114,6 +114,7 @@ class StatusScreenActivity : AppCompatActivity() {
                     dialog.dismiss()
                 }
             })
+        dialog.dismiss()
     }
 
     private fun dialogBox(title:String,message:String){

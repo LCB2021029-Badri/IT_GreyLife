@@ -28,7 +28,7 @@
             android:textColor="@color/myYellow"
             android:textSize="25sp"
             android:textStyle="bold|italic"
-            android:text="Loan Type"/>
+            android:text="No Loan Applied"/>
 
         <TextView
             android:id="@+id/tvCommon"
