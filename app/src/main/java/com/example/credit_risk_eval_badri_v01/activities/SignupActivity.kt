@@ -43,8 +43,13 @@ class SignupActivity : AppCompatActivity() {
                 R.id.rbLender -> {
                     lender="1"
                 }
+                R.id.rbBorrower -> {
+                    lender = "0"
+                }
             }
         }
+
+
 
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance()

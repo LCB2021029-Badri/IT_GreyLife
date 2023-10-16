@@ -170,13 +170,24 @@
                 android:layout_centerHorizontal="true"
                 android:layout_height="wrap_content">
 
+
+                <RadioButton
+                    android:id="@+id/rbBorrower"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/myWhite"
+                    app:buttonTint="@color/myYellow"
+                    android:text="Select this if you are a BORROWER"/>
+
                 <RadioButton
                     android:id="@+id/rbLender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/myWhite"
                     app:buttonTint="@color/myYellow"
-                    android:text="Select this only if you are LENDER"/>
+                    android:text="Select this if you are a LENDER"/>
+
+
 
             </RadioGroup>
 
