@@ -37,7 +37,7 @@ class SignupActivity : AppCompatActivity() {
         binding = ActivitySignupBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        lender = "0"
+        lender = "-1"
         binding.rbGroup.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
                 R.id.rbLender -> {
@@ -45,6 +45,10 @@ class SignupActivity : AppCompatActivity() {
                 }
                 R.id.rbBorrower -> {
                     lender = "0"
+                }
+                else -> {
+                    // Handle the case where neither radio button is checked
+                    lender = "-1"
                 }
             }
         }
@@ -70,7 +74,7 @@ class SignupActivity : AppCompatActivity() {
         val confirmEmail = binding.etConfirmEmail.text.toString()
         val pass = binding.etPassword.text.toString()
         val confirmPass = binding.etConfirmPassword.text.toString()
-        if(email.isNotEmpty() && confirmEmail.isNotEmpty() && pass.isNotEmpty() && confirmPass.isNotEmpty()){
+        if(email.isNotEmpty() && confirmEmail.isNotEmpty() && pass.isNotEmpty() && confirmPass.isNotEmpty() && lender=="-1"){
             if(email == confirmEmail && pass == confirmPass){
                 auth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener {
                     if(it.isSuccessful){
