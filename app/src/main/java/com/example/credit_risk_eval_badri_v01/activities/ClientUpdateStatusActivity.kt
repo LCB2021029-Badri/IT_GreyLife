@@ -27,7 +27,6 @@ class ClientUpdateStatusActivity : AppCompatActivity() {
 
     private lateinit var binding:ActivityClientUpdateStatusBinding
     private lateinit var database: FirebaseDatabase
-    private lateinit var dialog:AlertDialog
 
     val USERNAME = "u0nbfzswwp"
     val PASSWORD = "7kw_tDTpsWWwyeOtSdJmOfj6179YXiiewyQN4WU7CGA"
@@ -80,7 +79,6 @@ class ClientUpdateStatusActivity : AppCompatActivity() {
         database.reference.child("loans")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    dialogBox("Fetching data form Database","Please wait...")
                     for(snapshot1 in snapshot.children){
                         val data = snapshot1.getValue(LoanDataModel::class.java)
                         if(data!!.uid == uid){
@@ -113,10 +111,8 @@ class ClientUpdateStatusActivity : AppCompatActivity() {
                             break
                         }
                     }
-                    dialog.dismiss()
                 }
                 override fun onCancelled(error: DatabaseError) {
-                    dialog.dismiss()
                 }
             })
     }
@@ -201,7 +197,6 @@ class ClientUpdateStatusActivity : AppCompatActivity() {
             uid
         )
         val requestData = MyBlockchainApi.RequestData(inputData)
-        dialogBox("Adding updated data to the blockchain","Please wait...")
         GlobalScope.launch(Dispatchers.IO) {
             try {
                 val response = myApi.PostData(kldFromValue2, requestData).execute()
@@ -211,14 +206,12 @@ class ClientUpdateStatusActivity : AppCompatActivity() {
 //                        dialog.dismiss()
                         Toast.makeText(this@ClientUpdateStatusActivity, "new data added to blockchain", Toast.LENGTH_SHORT).show()
                     }
-                    dialog.dismiss()
                 } else {
                     GlobalScope.launch(Dispatchers.Main) {
 //                        dialog.dismiss()
                         Toast.makeText(this@ClientUpdateStatusActivity, "Failed to add data to blockchain", Toast.LENGTH_SHORT)
                             .show()
                     }
-                    dialog.dismiss()
                 }
             } catch (e: Exception) {
                 GlobalScope.launch(Dispatchers.Main) {
@@ -227,20 +220,10 @@ class ClientUpdateStatusActivity : AppCompatActivity() {
                 }
             }
         }
-        dialog.dismiss()
     }
 
     private fun getOutputFromML(){
         mlOutput = binding.etUpdateResult.text.toString()
-    }
-
-    private fun dialogBox(title:String,message:String){
-        val builder = AlertDialog.Builder(this)
-        builder.setMessage(message)
-        builder.setTitle(title)
-        builder.setCancelable(false)
-        dialog = builder.create()
-        dialog.show()
     }
 
 

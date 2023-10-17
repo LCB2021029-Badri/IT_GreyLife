@@ -38,7 +38,7 @@ class SupportScreenActivity : AppCompatActivity() {
 
         database = FirebaseDatabase.getInstance()
         senderUid = FirebaseAuth.getInstance().uid.toString()
-        receiverUid = "DPcQTENxJ5cKU5bzIz3eLsH9BVq2"
+        receiverUid = "l9iU9onyrne3mGFpeCozHbJxcyr2"
 //        receiverUid = "0Rl5g5tbbLfZl9DV5GGlsrmxZKq1"
 //        checkLenderStatusFromDB()
         senderUidMergedReceiverUid = senderUid+receiverUid
