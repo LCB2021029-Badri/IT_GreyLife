@@ -300,7 +300,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etSelectPdf1"
                         android:textColor="@color/myYellow"
-                        android:hint="Tap 2 Times"
+                        android:hint="Upload"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -335,7 +335,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etSelectPdf2"
                         android:textColor="@color/myYellow"
-                        android:hint="Tap 2 Times"
+                        android:hint="Upload"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -371,7 +371,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etSelectPdf3"
                         android:textColor="@color/myYellow"
-                        android:hint="Tap 2 Times"
+                        android:hint="Upload"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -406,7 +406,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etSelectPdf4"
                         android:textColor="@color/myYellow"
-                        android:hint="Tap 2 Times"
+                        android:hint="Upload"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 

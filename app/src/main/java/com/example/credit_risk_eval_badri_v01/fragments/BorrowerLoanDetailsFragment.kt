@@ -10,6 +10,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.ContactsContract.CommonDataKinds.Identity
 import android.provider.OpenableColumns
+import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -109,19 +110,39 @@ class BorrowerLoanDetailsFragment : Fragment() {
         //--------------------
         initializeData()
         //---------------------
+        etSelectPdf1.isFocusable = false
+        etSelectPdf1.isFocusableInTouchMode = false
+        etSelectPdf1.inputType = InputType.TYPE_NULL
 
+        etSelectPdf2.isFocusable = false
+        etSelectPdf2.isFocusableInTouchMode = false
+        etSelectPdf2.inputType = InputType.TYPE_NULL
+
+        etSelectPdf3.isFocusable = false
+        etSelectPdf3.isFocusableInTouchMode = false
+        etSelectPdf3.inputType = InputType.TYPE_NULL
+
+        etSelectPdf4.isFocusable = false
+        etSelectPdf4.isFocusableInTouchMode = false
+        etSelectPdf4.inputType = InputType.TYPE_NULL
         //------------
         etSelectPdf1.setOnClickListener {
             selectPDF(101)
+//            etSelectPdf1.isFocusable = false
+//            etSelectPdf2.isFocusableInTouchMode = false
+//            etSelectPdf1.inputType = InputType.TYPE_NULL
         }
         etSelectPdf2.setOnClickListener {
             selectPDF(102)
+
         }
         etSelectPdf3.setOnClickListener {
             selectPDF(103)
+
         }
         etSelectPdf4.setOnClickListener {
             selectPDF(104)
+
         }
         //------------
 
