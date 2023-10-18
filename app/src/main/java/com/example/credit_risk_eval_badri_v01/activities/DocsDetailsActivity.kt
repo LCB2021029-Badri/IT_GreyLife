@@ -3,6 +3,7 @@ package com.example.credit_risk_eval_badri_v01.activities
 import android.app.AlertDialog
 import android.os.Bundle
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.credit_risk_eval_badri_v01.adapters.ChatAdapter
@@ -28,7 +29,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class DocsDetailsActivity : AppCompatActivity() {
 
-    private lateinit var dialog:AlertDialog
+//    private lateinit var dialog:AlertDialog
     private lateinit var pdfList:ArrayList<FileinModel>
 
     private lateinit var binding:ActivityDocsDetailsBinding
@@ -124,23 +125,24 @@ class DocsDetailsActivity : AppCompatActivity() {
 //        dialog.dismiss()
     }
 
-    private fun dialogBox(title:String,message:String){
-        val builder = AlertDialog.Builder(this)
-        builder.setMessage(message)
-        builder.setTitle(title)
-        builder.setCancelable(false)
-        dialog = builder.create()
-        dialog.show()
-    }
+//    private fun dialogBox(title:String,message:String){
+//        val builder = AlertDialog.Builder(this)
+//        builder.setMessage(message)
+//        builder.setTitle(title)
+//        builder.setCancelable(false)
+//        dialog = builder.create()
+//        dialog.show()
+//    }
 
     private fun loadDataFormDatabase(){
         database.reference.child("loans")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    dialogBox("Fetching data from database","please wait...")
+//                    dialogBox("Fetching data from database","please wait...")
                     for(snapshot1 in snapshot.children){
                         val data = snapshot1.getValue(LoanDataModel::class.java)
                         if(data!!.uid == uid){
+//                            dialog.dismiss()
                             binding.tv10.text = data.name
                             binding.tv11.text = data.uid
                             binding.tv12.text = data.loanType
@@ -157,13 +159,12 @@ class DocsDetailsActivity : AppCompatActivity() {
                             binding.tv8.text = data.etBankAsssetsValue
                             binding.tv13.text = data.mlOutput
                             binding.tv14.text = data.email
-                            dialog.dismiss()
                             break
                         }
                     }
                 }
                 override fun onCancelled(error: DatabaseError) {
-                    dialog.dismiss()
+//                    dialog.dismiss()
                 }
             })
     }
@@ -183,16 +184,17 @@ class DocsDetailsActivity : AppCompatActivity() {
                     }
 
 
-                    binding.tvPdf1.text = pdfList[0].filename
-                    binding.tvPdf2.text = pdfList[1].filename
-                    binding.tvUrl1.text = pdfList[0].fileurl
-                    binding.tvUrl2.text = pdfList[1].fileurl
-                    binding.recyclerView.adapter = PdfAdapter(this@DocsDetailsActivity,pdfList)
+                    if(pdfList.size>0){
+                        binding.recyclerView.adapter = PdfAdapter(this@DocsDetailsActivity,pdfList)
+                    }
+                    else{
+                        Toast.makeText(this@DocsDetailsActivity,"documents not yet uploaded",Toast.LENGTH_SHORT).show()
+                        binding.recyclerView.adapter = PdfAdapter(this@DocsDetailsActivity,pdfList)
+                    }
 
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    dialog.dismiss()
                 }
             })
     }

@@ -65,7 +65,7 @@
                         android:textStyle="bold"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="text"/>
+                        android:text="null"/>
 
                 </LinearLayout>
 
@@ -95,7 +95,7 @@
                         android:textStyle="bold"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="text"/>
+                        android:text="null"/>
 
                 </LinearLayout>
 
@@ -123,7 +123,7 @@
                         android:textStyle="bold"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="text"/>
+                        android:text="null"/>
 
                 </LinearLayout>
 
@@ -151,7 +151,7 @@
                         android:textStyle="bold"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="text"/>
+                        android:text="null"/>
 
                 </LinearLayout>
 
@@ -179,7 +179,7 @@
                         android:textStyle="bold"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="text"/>
+                        android:text="null"/>
 
                 </LinearLayout>
 
@@ -207,7 +207,7 @@
                     android:textStyle="bold"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="text"/>
+                    android:text="null"/>
 
             </LinearLayout>
 
@@ -236,7 +236,7 @@
                         android:textStyle="bold"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="text"/>
+                        android:text="null"/>
 
                 </LinearLayout>
 
@@ -264,7 +264,7 @@
                         android:textStyle="bold"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="text"/>
+                        android:text="null"/>
 
                 </LinearLayout>
 
@@ -292,7 +292,7 @@
                         android:textStyle="bold"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="text"/>
+                        android:text="null"/>
 
                 </LinearLayout>
 
@@ -320,7 +320,7 @@
                         android:textStyle="bold"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="text"/>
+                        android:text="null"/>
 
                 </LinearLayout>
 
@@ -348,7 +348,7 @@
                         android:textStyle="bold"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="text"/>
+                        android:text="null"/>
 
                 </LinearLayout>
 
@@ -376,7 +376,7 @@
                         android:textStyle="bold"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="text"/>
+                        android:text="null"/>
 
                 </LinearLayout>
 
@@ -404,7 +404,7 @@
                         android:textStyle="bold"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="text"/>
+                        android:text="null"/>
 
                 </LinearLayout>
 
@@ -432,7 +432,7 @@
                         android:textStyle="bold"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="text"/>
+                        android:text="null"/>
 
                 </LinearLayout>
 
@@ -460,7 +460,7 @@
                         android:textStyle="bold"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="text"/>
+                        android:text="null"/>
 
                 </LinearLayout>
 
@@ -493,7 +493,7 @@
                         android:textStyle="bold"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="text"/>
+                        android:text="null"/>
 
                 </LinearLayout>
 
