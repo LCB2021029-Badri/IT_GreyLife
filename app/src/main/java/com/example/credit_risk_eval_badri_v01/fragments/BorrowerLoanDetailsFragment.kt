@@ -18,6 +18,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.credit_risk_eval_badri_v01.R
 import com.example.credit_risk_eval_badri_v01.interfaces.MyBlockchainApi
@@ -125,12 +126,30 @@ class BorrowerLoanDetailsFragment : Fragment() {
         etSelectPdf4.isFocusable = false
         etSelectPdf4.isFocusableInTouchMode = false
         etSelectPdf4.inputType = InputType.TYPE_NULL
+
+//        val color = ContextCompat.getColor(requireContext(), R.color.myYellow)
+//        if(etSelectPdf1.text.toString() != ""){
+//            etSelectPdf1.setBackgroundColor(color)
+//            etSelectPdf1.setTextColor(color)
+//        }
+//
+//        if(etSelectPdf2.text.toString() != null){
+//            etSelectPdf2.setBackgroundColor(color)
+//            etSelectPdf2.setTextColor(color)
+//        }
+//
+//        if(etSelectPdf3.text.toString() != null){
+//            etSelectPdf3.setBackgroundColor(color)
+//            etSelectPdf3.setTextColor(color)
+//        }
+//
+//        if(etSelectPdf4.text.toString() != null){
+//            etSelectPdf4.setBackgroundColor(color)
+//            etSelectPdf4.setTextColor(color)
+//        }
         //------------
         etSelectPdf1.setOnClickListener {
             selectPDF(101)
-//            etSelectPdf1.isFocusable = false
-//            etSelectPdf2.isFocusableInTouchMode = false
-//            etSelectPdf1.inputType = InputType.TYPE_NULL
         }
         etSelectPdf2.setOnClickListener {
             selectPDF(102)
@@ -148,7 +167,8 @@ class BorrowerLoanDetailsFragment : Fragment() {
 
         tvLoanType.text = loanType
         btnNext.setOnClickListener {
-            if(et1.text.isNullOrEmpty()|| et2.text.isNullOrEmpty()|| et3.text.isNullOrEmpty()|| et4.text.isNullOrEmpty()|| et5.text.isNullOrEmpty()|| et6.text.isNullOrEmpty()|| et7.text.isNullOrEmpty()|| et8.text.isNullOrEmpty()|| et9.text.isNullOrEmpty()|| et10.text.isNullOrEmpty()
+            if(et1.text.isNullOrEmpty()|| et2.text.isNullOrEmpty()|| et3.text.isNullOrEmpty()|| et4.text.isNullOrEmpty()|| et5.text.isNullOrEmpty()|| et6.text.isNullOrEmpty()|| et7.text.isNullOrEmpty()|| et8.text.isNullOrEmpty()|| et9.text.isNullOrEmpty()|| et10.text.isNullOrEmpty() ||
+                etSelectPdf1.text.isNullOrEmpty() || etSelectPdf2.text.isNullOrEmpty() || etSelectPdf3.text.isNullOrEmpty() || etSelectPdf4.text.isNullOrEmpty()
             ){
                 Toast.makeText(requireContext(),"fill all details",Toast.LENGTH_SHORT).show()
             }
@@ -336,6 +356,26 @@ class BorrowerLoanDetailsFragment : Fragment() {
     }
 
     private fun selectPDF(requestCode: Int){
+//        if(requestCode == 101){
+//            val color = ContextCompat.getColor(requireContext(), R.color.myYellow)
+//            etSelectPdf1.setBackgroundColor(color)
+//            etSelectPdf1.setTextColor(color)
+//        }
+//        else if(requestCode == 102){
+//            val color = ContextCompat.getColor(requireContext(), R.color.myYellow)
+//            etSelectPdf2.setBackgroundColor(color)
+//            etSelectPdf2.setTextColor(color)
+//        }
+//        else if(requestCode == 103){
+//            val color = ContextCompat.getColor(requireContext(), R.color.myYellow)
+//            etSelectPdf3.setBackgroundColor(color)
+//            etSelectPdf3.setTextColor(color)
+//        }
+//        else if(requestCode == 104){
+//            val color = ContextCompat.getColor(requireContext(), R.color.myYellow)
+//            etSelectPdf4.setBackgroundColor(color)
+//            etSelectPdf4.setTextColor(color)
+//        }
         val intent = Intent()
         intent.type = "application/pdf"
         intent.action = Intent.ACTION_GET_CONTENT
