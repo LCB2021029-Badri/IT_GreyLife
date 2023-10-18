@@ -28,7 +28,6 @@ class SignupActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignupBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var database: FirebaseDatabase
-    private lateinit var dialog: AlertDialog
     private lateinit var lender:String
 
 
@@ -59,6 +58,8 @@ class SignupActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance()
         binding.btnSignup.setOnClickListener {
             btnSignupCLick()
+//            startActivity(Intent(this@SignupActivity, LoginActivity::class.java))
+//            finish()
         }
 
         binding.tvLogin.setOnClickListener {
@@ -69,7 +70,6 @@ class SignupActivity : AppCompatActivity() {
     }
 
     private fun btnSignupCLick(){
-        dialogBox("Creating new account","Please Wait ...")
         val email = binding.etEmail.text.toString()
         val confirmEmail = binding.etConfirmEmail.text.toString()
         val pass = binding.etPassword.text.toString()
@@ -79,18 +79,19 @@ class SignupActivity : AppCompatActivity() {
                 auth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener {
                     if(it.isSuccessful){
                         uploadDataToDatabase()
-                        dialog.dismiss()
+                        startActivity(Intent(this@SignupActivity, LoginActivity::class.java))
+                        finish()
                     }else{
-                        dialog.dismiss()
+
                         createSnackBar(binding.root, "Error " + it.exception.toString(),"Try Again")
                     }
                 }
             }else{
-                dialog.dismiss()
+
                 createSnackBar(binding.root, "password or email is not matching !","Try Again")
             }
         }else{
-            dialog.dismiss()
+
             createSnackBar(binding.root, "empty fields not allowed !","Try Again")
         }
     }
@@ -107,18 +108,9 @@ class SignupActivity : AppCompatActivity() {
             .show()
     }
 
-    private fun dialogBox(title:String,message:String){
-        val builder = AlertDialog.Builder(this)
-        builder.setMessage(message)
-        builder.setTitle(title)
-        builder.setCancelable(false)
-        dialog = builder.create()
-        dialog.show()
-    }
 
 
     private fun uploadDataToDatabase(){
-        dialogBox("Uploading data to Database","Please Wait ...")
         var user = UserModel(auth.uid.toString(),
             binding.etName.text.toString(),
             binding.etEmail.text.toString(),
@@ -194,10 +186,8 @@ class SignupActivity : AppCompatActivity() {
                 createSnackBar(binding.root,"failed to upload data to Realtime DB","Try Again")
             }
 
-
-        dialog.dismiss()
-        startActivity(Intent(this@SignupActivity, LoginActivity::class.java))
-        finish()
+//        startActivity(Intent(this@SignupActivity, LoginActivity::class.java))
+//        finish()
 
     }
 

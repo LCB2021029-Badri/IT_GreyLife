@@ -26,7 +26,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var database: FirebaseDatabase
-    private lateinit var dialog: AlertDialog
     var lendingStatus:String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,14 +36,12 @@ class MainActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance()
         checkLogin()
 
-        dialogBox("Retrieving Lender? Status Data from FB Realtime DB","Please Wait ...")
         database.reference.child("users")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     for(snapshot1 in snapshot.children){
                         val user = snapshot1.getValue(UserModel::class.java)
                         if(user!!.uid == FirebaseAuth.getInstance().uid){
-                            dialog.dismiss()
                             lendingStatus = user!!.lender
 //                            binding.tvLending.text = lendingStatus
 //                            binding.tvLinks.text = user!!.links.toString()
@@ -58,7 +55,6 @@ class MainActivity : AppCompatActivity() {
 
                 }
                 override fun onCancelled(error: DatabaseError) {
-                    dialog.dismiss()
                 }
             })
 
@@ -122,14 +118,6 @@ class MainActivity : AppCompatActivity() {
 //                    dialog.dismiss()
 //                }
 //            })
-    }
-    private fun dialogBox(title:String,message:String){
-        val builder = AlertDialog.Builder(this)
-        builder.setMessage(message)
-        builder.setTitle(title)
-        builder.setCancelable(false)
-        dialog = builder.create()
-        dialog.show()
     }
 
 

@@ -294,7 +294,8 @@ class BorrowerLoanDetailsFragment : Fragment() {
                 val fileinModel =
                     FileinModel(
                         et.getText().toString(),
-                        uri.toString()
+                        uri.toString(),
+                        FirebaseAuth.getInstance().uid.toString()
                     ) //get the views from the model class
                 databaseReference
                     .child(FirebaseAuth.getInstance().uid.toString())

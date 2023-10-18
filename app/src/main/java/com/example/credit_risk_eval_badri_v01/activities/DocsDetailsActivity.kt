@@ -177,6 +177,7 @@ class DocsDetailsActivity : AppCompatActivity() {
                     for(snapshot1 in snapshot.children){
                         for(data in snapshot1.children){
                             val user = data.getValue(FileinModel::class.java)
+                            if(user!!.uid == uid)
                             pdfList.add(user!!)
                         }
                     }
