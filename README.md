@@ -86,6 +86,15 @@ Private blockchains are preferred in enterprise use cases, such as supply chain 
 - ML model Processed Output
 - Secure Storage of data in Private Polygon BlockChain Deployed on Kaleido
 
+## App Video Walkthrough
+
+
+
+https://github.com/LCB2021029-Badri/IT_GreyLife/assets/96579549/2798a121-2be8-4242-8f64-f190ec49de26
+
+
+
+
 ## TECH STACK
 - Kotlin
 - XML
