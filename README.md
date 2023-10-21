@@ -9,6 +9,6 @@ The app features user-friendly customer service assisted by automated systems an
 ## Project Components
 This Project is divided into 3 parts:
 
-### Android
-### Machine Learning
-### Blockchain
+1. Android
+2. Machine Learning
+3. Blockchain
