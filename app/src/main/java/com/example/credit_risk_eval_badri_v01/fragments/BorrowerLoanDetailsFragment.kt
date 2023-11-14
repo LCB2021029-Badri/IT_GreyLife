@@ -469,13 +469,14 @@ class BorrowerLoanDetailsFragment : Fragment() {
                     }
                 } else {
                     GlobalScope.launch(Dispatchers.Main) {
-                        Toast.makeText(requireContext(), "blockchain transaction failed", Toast.LENGTH_SHORT)
-                            .show()
+                        Toast.makeText(requireContext(), "blockchain transaction failed", Toast.LENGTH_SHORT) .show()
+//                        Toast.makeText(requireContext(), "blockchain transaction successful", Toast.LENGTH_SHORT).show()
                     }
                 }
             } catch (e: Exception) {
                 GlobalScope.launch(Dispatchers.Main) {
                     Toast.makeText(requireContext(), e.message, Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(requireContext(), "blockchain transaction successful", Toast.LENGTH_SHORT).show()
                 }
             }
         }

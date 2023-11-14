@@ -71,10 +71,11 @@ class HomeScreenActivity : AppCompatActivity() {
     private fun enableRecyclerView(){
         recyclerView = binding.recyclerView
         loanTypeList = ArrayList()
-        loanTypeList.add(LoanTypeModel("Tractor", R.drawable.ic_tractor))
-        loanTypeList.add(LoanTypeModel("2-Wheeler", R.drawable.ic_scooter))
-        loanTypeList.add(LoanTypeModel("Used Cars", R.drawable.ic_car))
-        loanTypeList.add(LoanTypeModel("3-Wheeler", R.drawable.ic_auto))
+        loanTypeList.add(LoanTypeModel("Home", R.drawable.ic_home))
+        loanTypeList.add(LoanTypeModel("Vehicle", R.drawable.ic_car))
+        loanTypeList.add(LoanTypeModel("Gold", R.drawable.ic_gold))
+        loanTypeList.add(LoanTypeModel("Educational", R.drawable.ic_school))
+        loanTypeList.add(LoanTypeModel("Personal", R.drawable.ic_personal))
         loanTypeAdapter = LoanTypeAdapter(loanTypeList,this)
         recyclerView.adapter = loanTypeAdapter
 

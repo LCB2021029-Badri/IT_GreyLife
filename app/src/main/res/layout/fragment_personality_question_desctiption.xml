@@ -83,7 +83,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:buttonTint="@color/myYellow"
-                android:text="TVS Credit E.P.I.C S1"/>
+                android:text="Canara DACAE-Thon"/>
 
             <RadioButton
                 android:id="@+id/option1"
@@ -91,7 +91,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:buttonTint="@color/myYellow"
-                android:text="TVS Credit E.P.I.C S2"/>
+                android:text="Canara DACAE-Thon"/>
 
             <RadioButton
                 android:id="@+id/option2"
@@ -99,7 +99,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:buttonTint="@color/myYellow"
-                android:text="TVS Credit E.P.I.C S3"/>
+                android:text="Canara DACAE-Thon"/>
 
             <RadioButton
                 android:id="@+id/option3"
@@ -107,7 +107,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:buttonTint="@color/myYellow"
-                android:text="TVS Credit E.P.I.C S4"/>
+                android:text="Canara DACAE-Thon"/>
 
         </RadioGroup>
 

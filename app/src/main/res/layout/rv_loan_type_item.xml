@@ -28,19 +28,20 @@
                 android:layout_weight="1"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/ic_tractor"
+                android:src="@drawable/ic_car"
                 />
 
             <TextView
                 android:id="@+id/tvLoanType"
                 android:layout_weight="1"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
+                android:gravity="center"
                 android:textStyle="italic|bold"
                 android:layout_marginBottom="5dp"
                 android:textColor="@color/myWhite"
-                android:text="Tractor Loan"/>
+                android:text="Car Loan"/>
 
 
         </LinearLayout>

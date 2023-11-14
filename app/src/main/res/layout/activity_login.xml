@@ -38,7 +38,7 @@
         android:layout_marginBottom="10dp"
         android:textColor="@color/myYellow"
         android:layout_height="wrap_content"
-        android:text="TVS CREDIT E.P.I.C IT S5"/>
+        android:text="Canara DACAE-Thon"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/one"
