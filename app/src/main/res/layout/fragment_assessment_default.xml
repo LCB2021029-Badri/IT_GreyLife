@@ -8,7 +8,7 @@
     android:layout_marginHorizontal="5dp"
     android:layout_marginTop="10dp"
     app:cardCornerRadius="20dp"
-    android:backgroundTint="@color/myNavBarBg"
+    android:backgroundTint="@color/myWhite"
     tools:context=".fragments.AssessmentDefaultFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -33,7 +33,7 @@
             android:textColor="@color/myYellow"
             android:textSize="24sp"
             android:gravity="center"
-            android:textStyle="bold|italic"
+            android:textStyle="bold"
             android:text="Welcome to our Psychometric Test!"
             />
 
@@ -41,8 +41,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:textColor="@color/myWhite"
-            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
             android:gravity="left"
             android:text="Please provide honest answers as this is a critical step in our loan application process."
             />
@@ -50,9 +50,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/myWhite"
+            android:textColor="@color/black"
             android:layout_marginTop="20dp"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:gravity="left"
             android:text="Detecting fraud is a top priority, and we are committed to taking strict actions if any fraudulent activity is detected."
             />
@@ -60,8 +60,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/myWhite"
-            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
             android:layout_marginTop="20dp"
             android:gravity="left"
             android:text="Your cooperation ensures a fair and secure loan process."

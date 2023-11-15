@@ -7,7 +7,7 @@
     app:cardElevation="20dp"
     android:layout_marginHorizontal="5dp"
     android:layout_marginTop="10dp"
-    android:backgroundTint="@color/myNavBarBg"
+    android:backgroundTint="@color/myWhite"
     tools:context=".fragments.BorrowerLoanDetailsFragment">
 
 
@@ -43,9 +43,11 @@
         android:layout_toEndOf="@id/tvCommon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/myDark"
+        android:textColor="@color/myYellow"
         android:textStyle="bold"
         android:textSize="18sp"
+        android:background="@color/myBackground"
+        android:paddingHorizontal="5dp"
         android:text="Tractor"/>
 
     <TextView
@@ -79,8 +81,8 @@
                 android:layout_marginBottom="5dp"
                 android:hint="No of Dependents"
                 app:boxStrokeColor="@drawable/box_outline_selector"
-                app:hintTextColor="@color/myYellow"
-                android:textColorHint="@color/myWhite">
+                app:hintTextColor="@color/myNavBarBg"
+                android:textColorHint="@color/black">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etNoOfDependents"
@@ -100,8 +102,8 @@
                 android:layout_marginBottom="5dp"
                 android:hint="Income per Annum"
                 app:boxStrokeColor="@drawable/box_outline_selector"
-                app:hintTextColor="@color/myYellow"
-                android:textColorHint="@color/myna">
+                app:hintTextColor="@color/myNavBarBg"
+                android:textColorHint="@color/black">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etIncomeAnnum"
@@ -120,8 +122,8 @@
                 android:layout_marginBottom="5dp"
                 android:hint="Loan amount"
                 app:boxStrokeColor="@drawable/box_outline_selector"
-                app:hintTextColor="@color/myYellow"
-                android:textColorHint="@color/myWhite">
+                app:hintTextColor="@color/myNavBarBg"
+                android:textColorHint="@color/black">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etLoanAmount"
@@ -140,8 +142,8 @@
                 android:layout_marginBottom="5dp"
                 android:hint="Loan Term"
                 app:boxStrokeColor="@drawable/box_outline_selector"
-                app:hintTextColor="@color/myYellow"
-                android:textColorHint="@color/myWhite">
+                app:hintTextColor="@color/myNavBarBg"
+                android:textColorHint="@color/black">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etLoanTerm"
@@ -160,8 +162,8 @@
                 android:layout_marginBottom="5dp"
                 android:hint="CIBIL Score"
                 app:boxStrokeColor="@drawable/box_outline_selector"
-                app:hintTextColor="@color/myYellow"
-                android:textColorHint="@color/myWhite">
+                app:hintTextColor="@color/myNavBarBg"
+                android:textColorHint="@color/black">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etCIBILScore"
@@ -180,8 +182,8 @@
                 android:layout_marginBottom="5dp"
                 android:hint="Resedential Assets Value"
                 app:boxStrokeColor="@drawable/box_outline_selector"
-                app:hintTextColor="@color/myYellow"
-                android:textColorHint="@color/myWhite">
+                app:hintTextColor="@color/myNavBarBg"
+                android:textColorHint="@color/black">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etResedentialAssetsValie"
@@ -200,8 +202,8 @@
                 android:layout_marginBottom="5dp"
                 android:hint="Commercial Assets Value"
                 app:boxStrokeColor="@drawable/box_outline_selector"
-                app:hintTextColor="@color/myYellow"
-                android:textColorHint="@color/myWhite">
+                app:hintTextColor="@color/myNavBarBg"
+                android:textColorHint="@color/black">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etCommercialAssetsValue"
@@ -220,8 +222,8 @@
                 android:layout_marginBottom="5dp"
                 android:hint="Luxury Assets Value"
                 app:boxStrokeColor="@drawable/box_outline_selector"
-                app:hintTextColor="@color/myYellow"
-                android:textColorHint="@color/myWhite">
+                app:hintTextColor="@color/myNavBarBg"
+                android:textColorHint="@color/black">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etLuxuryAssetsValue"
@@ -240,8 +242,8 @@
                 android:layout_marginBottom="5dp"
                 android:hint="Bank Assets Value"
                 app:boxStrokeColor="@drawable/box_outline_selector"
-                app:hintTextColor="@color/myYellow"
-                android:textColorHint="@color/myWhite">
+                app:hintTextColor="@color/myNavBarBg"
+                android:textColorHint="@color/black">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etBankAsssetsValue"
@@ -260,8 +262,8 @@
                 android:layout_marginBottom="5dp"
                 android:hint="Highest Education Degree"
                 app:boxStrokeColor="@drawable/box_outline_selector"
-                app:hintTextColor="@color/myYellow"
-                android:textColorHint="@color/myWhite">
+                app:hintTextColor="@color/myNavBarBg"
+                android:textColorHint="@color/black">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etEducation"
@@ -285,7 +287,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textSize="18sp"
-                    android:textColor="@color/myWhite"
+                    android:textColor="@color/black"
                     android:text="Aadhar Card:"/>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -295,12 +297,12 @@
                     android:layout_height="wrap_content"
                     app:boxStrokeColor="@drawable/box_outline_selector"
                     app:hintTextColor="@color/myYellow"
-                    android:textColorHint="@color/myWhite">
+                    android:textColorHint="@color/myNavBarBg">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etSelectPdf1"
                         android:textColor="@color/myYellow"
-                        android:hint="Upload"
+                        android:hint="Upload File"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -320,7 +322,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textSize="18sp"
-                    android:textColor="@color/myWhite"
+                    android:textColor="@color/black"
                     android:text="Address Proof:"/>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -330,12 +332,12 @@
                     android:layout_height="wrap_content"
                     app:boxStrokeColor="@drawable/box_outline_selector"
                     app:hintTextColor="@color/myYellow"
-                    android:textColorHint="@color/myWhite">
+                    android:textColorHint="@color/myNavBarBg">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etSelectPdf2"
                         android:textColor="@color/myYellow"
-                        android:hint="Upload"
+                        android:hint="Upload File"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -356,7 +358,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textSize="18sp"
-                    android:textColor="@color/myWhite"
+                    android:textColor="@color/black"
                     android:text="Income Proof:"/>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -366,12 +368,12 @@
                     android:layout_height="wrap_content"
                     app:boxStrokeColor="@drawable/box_outline_selector"
                     app:hintTextColor="@color/myYellow"
-                    android:textColorHint="@color/myWhite">
+                    android:textColorHint="@color/myNavBarBg">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etSelectPdf3"
                         android:textColor="@color/myYellow"
-                        android:hint="Upload"
+                        android:hint="Upload File"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -391,7 +393,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textSize="18sp"
-                    android:textColor="@color/myWhite"
+                    android:textColor="@color/black"
                     android:text="Bank Statement:"/>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -401,12 +403,12 @@
                     android:layout_height="wrap_content"
                     app:boxStrokeColor="@drawable/box_outline_selector"
                     app:hintTextColor="@color/myYellow"
-                    android:textColorHint="@color/myWhite">
+                    android:textColorHint="@color/myNavBarBg">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etSelectPdf4"
                         android:textColor="@color/myYellow"
-                        android:hint="Upload"
+                        android:hint="Upload File"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 

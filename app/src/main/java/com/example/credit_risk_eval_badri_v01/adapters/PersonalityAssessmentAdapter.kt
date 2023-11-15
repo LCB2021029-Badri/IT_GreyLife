@@ -80,7 +80,8 @@ class PersonalityAssessmentAdapter(private val questionsList:ArrayList<Personali
                 holder.layout.setBackgroundColor(Color.parseColor("#FDD962"))
             }
             if(index == position){
-                holder.qNo.setTextColor(Color.BLACK)
+//                holder.qNo.setTextColor(Color.BLACK)
+                holder.qNo.setTextColor(Color.parseColor("#165485"))
             }
             else{
                 //
