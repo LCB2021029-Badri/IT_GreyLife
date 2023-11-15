@@ -69,21 +69,32 @@ class PersonalityAssessmentAdapter(private val questionsList:ArrayList<Personali
             holder.qNo.setTextColor(Color.BLACK)
         }
         else{
-            holder.qNo.setTextColor(Color.parseColor("#FFC6C7C9"))
+            //
+            holder.qNo.setTextColor(Color.BLACK)
         }
 
         val activity = activity as? PersonalityAssessmentActivity
         if(activity!!.questions[position][5]=="null"){
-            holder.layout.setBackgroundColor(Color.parseColor("#FF233238"))
+            holder.layout.setBackgroundColor(Color.parseColor("#FDFDFD"))
             if(index == position){
                 holder.layout.setBackgroundColor(Color.parseColor("#FDD962"))
+            }
+            if(index == position){
+                holder.qNo.setTextColor(Color.BLACK)
+            }
+            else{
+                //
+                holder.qNo.setTextColor(Color.BLACK)
             }
         }
         else{
+            holder.qNo.setTextColor(Color.parseColor("#FDFDFD"))
             holder.layout.setBackgroundColor(Color.parseColor("#308E2D"))
             if(index == position){
                 holder.layout.setBackgroundColor(Color.parseColor("#FDD962"))
+                holder.qNo.setTextColor(Color.BLACK)
             }
+
         }
 
     }

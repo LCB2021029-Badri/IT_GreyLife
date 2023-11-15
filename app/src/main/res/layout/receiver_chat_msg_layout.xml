@@ -12,7 +12,7 @@
         android:background="@drawable/bg_receiver_chat"
         android:padding="8dp"
         android:textSize="16sp"
-        android:textColor="@color/myWhite"
+        android:textColor="@color/black"
         android:text="hello, i am eren"/>
 
 </RelativeLayout>

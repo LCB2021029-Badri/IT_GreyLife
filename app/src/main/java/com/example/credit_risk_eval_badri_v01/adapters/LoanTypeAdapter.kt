@@ -69,18 +69,21 @@ class LoanTypeAdapter(private val loanTypeList:ArrayList<LoanTypeModel>, private
         })
 
         if(index == position){
-            holder.tvLoanType.setTextColor(Color.BLACK)
-            holder.layout.setBackgroundColor(Color.parseColor("#FDD962"))
+            holder.tvLoanType.setTextColor(Color.parseColor("#165485"))
+            holder.layout.setBackgroundColor(Color.parseColor("#FBC100"))
 
-            val color = ContextCompat.getColor(holder.itemView.context, R.color.black)
+            val color = ContextCompat.getColor(holder.itemView.context, R.color.myDark)
             holder.ivLoanType.setColorFilter(color)
 
         }
         else{
-            holder.tvLoanType.setTextColor(Color.parseColor("#C6C7C9"))
-            holder.layout.setBackgroundColor(Color.parseColor("#233238"))
+            holder.tvLoanType.setTextColor(Color.parseColor("#13A7DF"))
+            //set icon color
+//            holder.layout.setBackgroundColor(Color.parseColor("#233238"))
+//            holder.layout.setBackgroundColor(Color.parseColor("#C2C9E1"))
+            holder.layout.setBackgroundColor(Color.parseColor("#FDFDFD"))
 
-            val color = ContextCompat.getColor(holder.itemView.context, R.color.myWhite)
+            val color = ContextCompat.getColor(holder.itemView.context, R.color.myBackground)
             holder.ivLoanType.setColorFilter(color)
 
         }

@@ -18,30 +18,29 @@
             android:id="@+id/layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:gravity="center"
+            android:orientation="vertical"
             android:weightSum="2">
 
             <ImageView
-                android:layout_marginTop="5dp"
                 android:id="@+id/ivLoanType"
-                android:layout_weight="1"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/ic_car"
-                />
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_car" />
 
             <TextView
                 android:id="@+id/tvLoanType"
-                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:gravity="center"
-                android:textStyle="italic|bold"
                 android:layout_marginBottom="5dp"
-                android:textColor="@color/myWhite"
-                android:text="Car Loan"/>
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Car Loan"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="italic|bold" />
 
 
         </LinearLayout>

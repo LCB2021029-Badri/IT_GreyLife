@@ -39,7 +39,7 @@
         android:layout_marginHorizontal="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/myYellow"
+        android:textColor="@color/myWhite"
         android:text="Welcome Back!"/>
 
     <TextView
@@ -49,7 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="22sp"
-        android:textColor="@color/myWhite"
+        android:textColor="@color/myYellow"
         android:textStyle="bold"
         android:text="Username"/>
 
@@ -102,7 +102,7 @@
         android:layout_toRightOf="@id/tvWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/myYellow"
+        android:textColor="@color/myWhite"
         android:textStyle="italic"
         android:text="SRIT"/>
 
