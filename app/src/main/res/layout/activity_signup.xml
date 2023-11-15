@@ -47,7 +47,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etName"
-                    android:textColor="@color/myYellow"
+                    android:textColor="@color/myWhite"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -72,7 +72,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etEmail"
-                    android:textColor="@color/myYellow"
+                    android:textColor="@color/myWhite"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress" />
@@ -99,7 +99,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etConfirmEmail"
-                    android:textColor="@color/myYellow"
+                    android:textColor="@color/myWhite"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress" />
@@ -127,7 +127,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etPassword"
-                    android:textColor="@color/myYellow"
+                    android:textColor="@color/myWhite"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword" />
@@ -156,7 +156,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etConfirmPassword"
-                    android:textColor="@color/myYellow"
+                    android:textColor="@color/myWhite"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword" />

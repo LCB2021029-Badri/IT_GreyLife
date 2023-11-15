@@ -31,6 +31,7 @@
             android:layout_marginHorizontal="10dp"
             app:cardCornerRadius="10dp"
             android:backgroundTint="@color/myNavBarBg"
+            android:layout_marginBottom="20dp"
             app:cardElevation="20dp">
 
             <LinearLayout
@@ -52,7 +53,7 @@
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/myYellow"
+                        android:textColor="@color/black"
                         android:textSize="15sp"
                         android:text="Name"/>
 
@@ -82,7 +83,7 @@
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/myYellow"
+                        android:textColor="@color/black"
                         android:textSize="15sp"
                         android:text="User Id"/>
 
@@ -110,7 +111,7 @@
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/myYellow"
+                        android:textColor="@color/black"
                         android:textSize="15sp"
                         android:text="Email"/>
 
@@ -138,7 +139,7 @@
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/myYellow"
+                        android:textColor="@color/black"
                         android:textSize="15sp"
                         android:text="Loan Type"/>
 
@@ -166,7 +167,7 @@
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/myYellow"
+                        android:textColor="@color/black"
                         android:textSize="15sp"
                         android:text="SRIT Score"/>
 
@@ -194,7 +195,7 @@
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/myYellow"
+                    android:textColor="@color/black"
                     android:textSize="15sp"
                     android:text="No of Dependents"/>
 
@@ -223,7 +224,7 @@
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/myYellow"
+                        android:textColor="@color/black"
                         android:textSize="15sp"
                         android:text="Income per Annum"/>
 
@@ -251,7 +252,7 @@
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/myYellow"
+                        android:textColor="@color/black"
                         android:textSize="15sp"
                         android:text="Loan Amount"/>
 
@@ -279,7 +280,7 @@
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/myYellow"
+                        android:textColor="@color/black"
                         android:textSize="15sp"
                         android:text="Loan Term"/>
 
@@ -307,7 +308,7 @@
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/myYellow"
+                        android:textColor="@color/black"
                         android:textSize="15sp"
                         android:text="CIBIL Score"/>
 
@@ -335,7 +336,7 @@
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/myYellow"
+                        android:textColor="@color/black"
                         android:textSize="15sp"
                         android:text="Resedential Assets Value"/>
 
@@ -363,7 +364,7 @@
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/myYellow"
+                        android:textColor="@color/black"
                         android:textSize="15sp"
                         android:text="Commercial Assets Value"/>
 
@@ -391,7 +392,7 @@
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/myYellow"
+                        android:textColor="@color/black"
                         android:textSize="15sp"
                         android:text="Luxury Assets Value"/>
 
@@ -419,7 +420,7 @@
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/myYellow"
+                        android:textColor="@color/black"
                         android:textSize="15sp"
                         android:text="Bank Assets Value"/>
 
@@ -448,7 +449,7 @@
                         android:layout_margin="5dp"
                         android:layout_weight="1"
                         android:text="Highest Education Degree"
-                        android:textColor="@color/myYellow"
+                        android:textColor="@color/black"
                         android:textSize="15sp" />
 
                     <TextView
@@ -480,7 +481,7 @@
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/myYellow"
+                        android:textColor="@color/black"
                         android:textSize="15sp"
                         android:text="ML Output Status"/>
 
@@ -501,11 +502,15 @@
                 <TextView
                     android:id="@+id/docs"
                     android:layout_below="@id/cv"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Documents"
+                    android:layout_marginTop="10dp"
                     android:layout_marginHorizontal="5dp"
-                    android:textColor="@color/myWhite"
+                    android:gravity="center"
+                    android:paddingHorizontal="5dp"
+                    android:background="@color/myBackground"
+                    android:textColor="@color/myYellow"
                     android:textSize="24sp"
                     android:textStyle="bold"/>
 
@@ -516,6 +521,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="10dp"
                     android:layout_marginHorizontal="5dp"
                     android:layout_marginTop="10dp"
                     tools:listitem="@layout/pdf_item"

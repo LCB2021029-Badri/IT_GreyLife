@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardElevation="10dp"
     android:layout_margin="5dp"
-    android:backgroundTint="@color/myNavBarBg"
+    android:backgroundTint="@color/myWhite"
     app:cardCornerRadius="10dp"
 
     android:layout_height="wrap_content">
@@ -41,22 +41,22 @@
                 android:maxLines="2"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="@color/myWhite"
+                android:textColor="@color/black"
                 android:text="Name of User"/>
             <TextView
                 android:id="@+id/userId"
                 android:layout_width="wrap_content"
                 android:maxLines="2"
                 android:layout_height="wrap_content"
-                android:textColor="@color/myWhite"
-                android:layout_marginBottom="4dp"
+                android:textColor="@color/myDark"
+                android:layout_marginBottom="2dp"
                 android:text="Uid"/>
             <TextView
                 android:id="@+id/userEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLines="2"
-                android:textColor="@color/myYellow"
+                android:textColor="@color/myBackground"
                 android:text="user email"/>
 
         </LinearLayout>
