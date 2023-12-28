@@ -37,11 +37,6 @@ The Android app has two sides:
 
 ## Borrower's Side App Screenshots
 
-### Login and Signup Screens:
-
-<img src="https://github.com/Smarshal21/GREYLIFE_CANARA/assets/99678760/78303699-85a9-4de2-bdd1-d15a06b81578" width="240" height="510" /> 
-<img src="https://github.com/Smarshal21/GREYLIFE_CANARA/assets/99678760/9fdb5c7c-8c62-4092-bacd-c1c105f42c19" width="240" height="510" />
-
 ### Home and Status Screens:
 <img src="https://github.com/Smarshal21/GREYLIFE_CANARA/assets/99678760/7dc868c4-8757-4c9d-8672-48bb84c9032a" width="240" height="510" /> 
 <img src="https://github.com/Smarshal21/GREYLIFE_CANARA/assets/99678760/1b1f07e5-ace3-43de-b429-9d4ded37a2ab" width="240" height="510" /> 
