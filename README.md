@@ -1,4 +1,4 @@
-# GreyLife Canara DACOE-Thon - Loan  Default Prediction & Prevention Solution
+# GreyLife TVS Credit EPIC Season 5 IT Challenge - Loan  Default Prediction & Prevention Solution
 
 ## Introduction
 
@@ -135,8 +135,5 @@ Private blockchains are preferred in enterprise use cases, such as supply chain 
 - Kaleido
 - Polygon-Edge
 - JavaScript
-## Meet The Team
-- KSN Samanwith (Team Leader)|[Github](https://github.com/Smarshal21)
-- Badri Akkala |[Github](https://github.com/LCB2021029-Badri)
 
 
