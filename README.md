@@ -1,4 +1,4 @@
-# GreyLife TVS Credit EPIC Season 5 IT Challenge - Loan  Default Prediction & Prevention Solution
+# GreyLife - Loan  Default Prediction & Prevention Solution
 
 ## Introduction
 
