@@ -20,6 +20,9 @@ guidance through customer service. This approach encompasses financial education
 recommendations aimed at improving the borrower's financial well-being. By adopting a proactive stance, the
 application empowers borrowers to progressively diminish their risk profile over time.
 
+## Link for video of app functionality
+https://www.youtube.com/watch?v=L3TLujMAQt8
+
 ## Project Components
 
 This Project is divided into 3 parts:
