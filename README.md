@@ -2,7 +2,7 @@
 
 ## Introduction
 
-We propose to develop an AI-powered blockchain-based mobile application that will help Canara Bank to assess the risk of borrowers more accurately, making the process of loan prediction, tracking and prevention more reliable.
+We propose to develop an AI-powered blockchain-based mobile application that will help Bank to assess the risk of borrowers more accurately, making the process of loan prediction, tracking and prevention more reliable.
 This app collects essential borrower data, such as credit scores, income, and debt-to-income ratios, alongside collects non-traditional data form the user in the form of personality assessment test to anticipate financial
 behavior and risk tolerance level.
 
