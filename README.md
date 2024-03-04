@@ -111,4 +111,4 @@ Private blockchains are preferred in enterprise use cases, such as supply chain 
 
 ## Meet The Team
 - Badri Akkala | [Github](https://github.com/LCB2021029-Badri)
-- - KSN Samanwith | [Github](https://github.com/Smarshal21)
+- KSN Samanwith | [Github](https://github.com/Smarshal21)
