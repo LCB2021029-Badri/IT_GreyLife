@@ -1,27 +1,12 @@
-# GreyLife - Loan  Default Prediction & Prevention Solution
+# GreyLife - Loan Risk Assessment 
 
 ## Introduction
 
-We propose to develop an AI-powered blockchain-based mobile application that will help Bank to assess the risk of borrowers more accurately, making the process of loan prediction, tracking and prevention more reliable.
-This app collects essential borrower data, such as credit scores, income, and debt-to-income ratios, alongside collects non-traditional data form the user in the form of personality assessment test to anticipate financial
-behavior and risk tolerance level.
+We propose to develop an AI-powered blockchain-based mobile application that will help TVS Credit to assess the risk of borrowers more accurately. This app collects essential borrower data, such as credit scores, income, and debt-to-income ratios, alongside non-traditional data in the form of a personality assessment test to anticipate financial behavior and risk tolerance levels.
 
-An Advanced ML model is then employed to ascertain whether an applicant qualifies as a low-risk candidate based
-on both traditional and non-traditional data.
-Notably, all borrower information will be securely stored in a decentralised private blockchain network, ensuring the
-utmost security and privacy.
+An advanced ML model is then employed to determine whether an applicant qualifies as a low-risk candidate based on both traditional and non-traditional data. Notably, all borrower information will be securely stored in a decentralized blockchain network, ensuring the utmost security and privacy.
 
-The app contains a user friendly customer service assisted by Automated System and Live Human Interaction so
-that loan borrower can clear his doubts regarding the process etc, thus preventing the loan form turning into a bad
-loan.
-
-Furthermore, this application goes beyond risk assessment by offering borrowers personalised risk mitigation
-guidance through customer service. This approach encompasses financial education and tailored
-recommendations aimed at improving the borrower's financial well-being. By adopting a proactive stance, the
-application empowers borrowers to progressively diminish their risk profile over time.
-
-## Link for video of app functionality
-https://www.youtube.com/watch?v=L3TLujMAQt8
+The app features user-friendly customer service assisted by automated systems and live human interaction to help loan borrowers clear doubts regarding the process, etc. Furthermore, this application goes beyond risk assessment by offering personalized risk mitigation guidance through customer service. This approach encompasses financial education and tailored recommendations aimed at improving the borrower's financial well-being. By adopting a proactive stance, the application empowers borrowers to progressively diminish their risk profile over time.
 
 ## Project Components
 
@@ -38,35 +23,29 @@ The Android app has two sides:
 - **Borrower**
 - **Lender**
 
-## Borrower's Side App Screenshots
 
-### Home and Status Screens:
-<img src="https://github.com/Smarshal21/GREYLIFE_CANARA/assets/99678760/7dc868c4-8757-4c9d-8672-48bb84c9032a" width="240" height="510" /> 
-<img src="https://github.com/Smarshal21/GREYLIFE_CANARA/assets/99678760/1b1f07e5-ace3-43de-b429-9d4ded37a2ab" width="240" height="510" /> 
-<img src="https://github.com/Smarshal21/GREYLIFE_CANARA/assets/99678760/bd092c5e-731e-4ebb-890e-4937e14698f7" width="240" height="510" /> 
-<img src="https://github.com/Smarshal21/GREYLIFE_CANARA/assets/99678760/517b5875-e32c-4340-bd0c-98839d4181b2" width="240" height="510"/>
+### Borrower's Side App Screenshots
 
+#### Login and Signup Screens:
+<img width="507" alt="Screenshot 2023-11-17 at 5 05 08 PM" src="https://github.com/Smarshal21/GREY_LIFE_IT/assets/99678760/0df491c2-cc84-4390-a3f4-730303233b92">
 
+#### Home and Status Screens:
+<img width="758" alt="Screenshot 2023-11-17 at 5 06 01 PM" src="https://github.com/Smarshal21/GREY_LIFE_IT/assets/99678760/99b0aa20-4bd9-4321-a720-ced2555678da">
 
-
-### SRIT Test and Risk Mitigation Screens:
-
-<img src="https://github.com/Smarshal21/GREYLIFE_CANARA/assets/99678760/e40e3ea3-3565-4978-a598-72475595ce6d" width="240" height="510" /> 
-<img src="https://github.com/Smarshal21/GREYLIFE_CANARA/assets/99678760/6f8db64c-ee31-459d-b4ae-c0ef365d6755" width="240" height="510"/>
-<img src="https://github.com/Smarshal21/GREYLIFE_CANARA/assets/99678760/ff5cb069-92c5-45fd-9ced-20021a3c83df" width="240" height="510" /> 
+#### SRIT Test and Risk Mitigation Screens:
+<img width="507" alt="Screenshot 2023-11-17 at 5 06 35 PM" src="https://github.com/Smarshal21/GREY_LIFE_IT/assets/99678760/720d4d6e-5286-403e-b3b7-f9624b2c2f7d">
 
 
-## Lender's Side App Screenshots
+### Lender's Side App Screenshots
 
-### Chat and Risk Mitigation Screens:
-<img src="https://github.com/Smarshal21/GREYLIFE_CANARA/assets/99678760/8bc58ede-f77b-486d-b9b7-786e08ccb4d8" width="240" height="510" /> 
-<img src="https://github.com/Smarshal21/GREYLIFE_CANARA/assets/99678760/7a781697-f504-4967-8da1-39cda63178ee" width="240" height="510" /> 
 
-### Customer Details and Status:
-<img src="https://github.com/Smarshal21/GREYLIFE_CANARA/assets/99678760/8bc58ede-f77b-486d-b9b7-786e08ccb4d8" width="240" height="510" /> 
-<img src="https://github.com/Smarshal21/GREYLIFE_CANARA/assets/99678760/5699fa3d-77e1-4133-9aa8-96a146b121e1" width="240" height="510" /> 
-<img src="https://github.com/Smarshal21/GREYLIFE_CANARA/assets/99678760/5c3b1828-897d-42a9-b4be-39527c0a1c17" width="240" height="510" /> 
-<img src="https://github.com/Smarshal21/GREYLIFE_CANARA/assets/99678760/4240e5ec-69f3-4fd6-9c05-cdd00ea659c0" width="240" height="510" /> 
+#### Customer Details and Risk Mitigation Screens:
+<img src="https://github.com/Smarshal21/GREY_LIFE_IT/assets/99678760/b2eb40fb-fa84-48f8-ba40-2c06bd96e0d6" width="250" height="500" /> 
+<img src="https://github.com/Smarshal21/GREY_LIFE_IT/assets/99678760/46e9b714-e2a1-496d-a4cd-cf82ff523987" width="250" height="500" /> 
+
+#### Status:
+<img src="https://github.com/Smarshal21/GREY_LIFE_IT/assets/99678760/232b7aa6-7ebe-43e3-b9e8-4ba10ca41bdd" width="250" height="500" /> 
+<img src="https://github.com/Smarshal21/GREY_LIFE_IT/assets/99678760/5b2f92e8-5fe1-4ff3-88d0-cff595446547" width="250" height="500" /> 
 
 ## Machine Learning
 ### Overview
@@ -83,11 +62,10 @@ Can lead to improved model performance, especially when the individual models ha
 
 ### Workflow
 
-<img src="https://github.com/Smarshal21/GREYLIFE_CANARA/assets/99678760/186e90d2-8e2e-4885-b72d-76308e8cf12b" width="700" height="300" /> 
-
+<img width="641" alt="Screenshot 2023-11-17 at 5 07 19 PM" src="https://github.com/Smarshal21/GREY_LIFE_IT/assets/99678760/a8a84e10-4456-4e1d-b329-17bead07c46b">
 
 ### Sample Input and Output
-<img src="https://github.com/Smarshal21/GREYLIFE_CANARA/assets/99678760/04403898-f017-4204-a711-8576a999cd91" width="1000" height="500" /> 
+<img width="1010" alt="Screenshot 2023-11-17 at 5 07 47 PM" src="https://github.com/Smarshal21/GREY_LIFE_IT/assets/99678760/603f9ea4-2b5e-4659-86fb-dab63ad46e4d">
 
 ## BlockChain
 ### Overview
@@ -100,18 +78,15 @@ The ledger is the decentralized database that stores all of the transactions tha
 #### Smart Contracts
 Smart contracts are self-executing contracts.These are used blockchain consortium architecture to automate the process of executing transactions on the blockchain. Kaleido's Smart Contract Management component simplifies Ethereum transaction submission and application development by providing clean RESTful interfaces for interaction with your smart contract methods.
 ##### Smart Contract WorkFlow
-<img width="1025" alt="Screenshot 2023-11-16 at 2 42 25 AM" src="https://github.com/Smarshal21/GREYLIFE_CANARA/assets/99678760/aedf1e91-5731-47a9-9206-b5ec68a8633d">
+<img width="1030" alt="Screenshot 2023-11-17 at 5 08 15 PM" src="https://github.com/Smarshal21/GREY_LIFE_IT/assets/99678760/50640901-9417-4fec-b6fa-b85b505d0400">
 
 #### Governance
 Consortium blockchain governance is member-defined and adaptable, comprising rules and decision-making mechanisms tailored to specific use cases and goals.
 Access to a private blockchain network is restricted to authorized parties only, and the network is not open to the public.
 Private blockchains are preferred in enterprise use cases, such as supply chain management, to maintain greater network control.
 #### Transaction Details
-
-
-<img src="https://github.com/Smarshal21/GREYLIFE_CANARA/assets/99678760/795fc8ed-f16a-418a-8b90-aed448b0086d" width="500" height="250" /> 
-<img src="https://github.com/Smarshal21/GREYLIFE_CANARA/assets/99678760/63e3c1fa-7def-44df-8042-0644c1d4831b" width="500" height="250" /> 
-<img src="https://github.com/Smarshal21/GREYLIFE_CANARA/assets/99678760/7745bf72-2e5f-4b42-8704-5e606e2c2efb" width="550" height="300"/> 
+<img width="1003" alt="Screenshot 2023-11-17 at 5 08 59 PM" src="https://github.com/Smarshal21/GREY_LIFE_IT/assets/99678760/87e49173-f167-412a-b616-986433f3a8f1">
+<img width="492" alt="Screenshot 2023-11-17 at 5 09 23 PM" src="https://github.com/Smarshal21/GREY_LIFE_IT/assets/99678760/021ae77c-8b02-4726-aa79-72232f7a1adc">
 
 ## Features
 - Authentication - Email-Password
@@ -134,4 +109,6 @@ Private blockchains are preferred in enterprise use cases, such as supply chain 
 - Polygon-Edge
 - JavaScript
 
-
+## Meet The Team
+- Badri Akkala | [Github](https://github.com/LCB2021029-Badri)
+- - KSN Samanwith | [Github](https://github.com/Smarshal21)
