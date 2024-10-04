@@ -23,6 +23,9 @@ The Android app has two sides:
 - **Borrower**
 - **Lender**
 
+## Demo Video
+[**click here**](https://www.youtube.com/watch?v=L3TLujMAQt8&t=1s)
+
 
 ### Borrower's Side App Screenshots
 
